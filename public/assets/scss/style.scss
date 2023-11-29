@@ -1,0 +1,130 @@
+/*============================================================
+[Master Stylesheet]
+Theme Name:     Kartuss
+Version:        1.0
+Author:         athemeart
+URL:            https://themeforest.net/user/athemeart
+=========================================================*/
+/*=======================================================
+TABLE OF CONTENTS:
+
+01  global Style
+
+====== section stylsheet ======
+
+02  header section
+03  banner section
+04  partner section
+05  about section
+06  service section
+07  process section
+08  pricing section
+09  cta section
+10  testimonial section
+11  blog section
+12  call back section
+13  footer section
+
+====== sections only in home page two ======
+
+14  feature section
+15  faq section
+16  project section
+17  team section
+18  fun fact section
+
+====== inner page stylsheet ======
+
+19  breadcrumb section for all page
+20  about page
+21  service details page
+22  team page
+23  testimonial page
+24  pricing page
+25  faq page
+26  portfolio page
+27  portfolio details page
+28  blog grid and details page
+29  contact page
+30  error page
+
+====== responsive stylsheet ======
+
+31  responsive layout for all page*/
+
+
+
+@import "main/variable";
+/*########## 1. global style ##########*/
+@import "main/global";
+
+
+/*########## section style ##########*/
+
+//*========== 2. header section ==========*//
+@import "sections/header";
+//*========== 3. banner section ==========*//
+@import "sections/banner";
+//*========== 4. partner section ==========*//
+@import "sections/partner";
+//*========== 5. about section ==========*//
+@import "sections/about";
+//*========== 6. service section ==========*//
+@import "sections/service";
+//*========== 7. process section ==========*//
+@import "sections/process";
+//*========== 8. choosing reason section ==========*//
+@import "sections/pricing";
+//*========== 9. cta section ==========*//
+@import "sections/cta";
+//*========== 10. testimonial section ==========*//
+@import "sections/testimonial";
+//*========== 11. blog section ==========*//
+@import "sections/blog";
+//*========== 12. call back section ==========*//
+@import "sections/call-back";
+//*========== 13. footer section ==========*//
+@import "sections/footer";
+
+/*########## sections only in home page two ##########*/
+
+//*========== 14. feature section ==========*//
+@import "sections/feature";
+//*========== 15. faq section ==========*//
+@import "sections/faq";
+//*========== 16. project section ==========*//
+@import "sections/project";
+//*========== 17. team section ==========*//
+@import "sections/team";
+//*========== 18. fun-fact section ==========*//
+@import "sections/fun-fact";
+
+/*########## inner pages style ##########*/
+
+//*========== 19. breadcrumb section for all page ==========*//
+@import "pages/breadcrumb";
+//*========== 20. about page ==========*//
+@import "pages/about";
+//*========== 21. service details page ==========*//
+@import "pages/service-details";
+//*========== 22. team page ==========*//
+@import "pages/team";
+//*========== 23. testimonial page ==========*//
+@import "pages/testimonial";
+//*========== 24. pricing page ==========*//
+@import "pages/pricing";
+//*========== 25. faq page ==========*//
+@import "pages/faq";
+//*========== 26. portfolio page ==========*//
+@import "pages/portfolio";
+//*========== 27. portfolio details page ==========*//
+@import "pages/portfolio-details";
+//*========== 28. blog grid & blog details page ==========*//
+@import "pages/blog";
+//*========== 29. contact page ==========*//
+@import "pages/contact";
+//*========== 30. error page ==========*//
+@import "pages/error";
+
+/*########## 31. responsive layout for all page ##########*/
+@import "main/responsive";
