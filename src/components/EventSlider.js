@@ -24,28 +24,32 @@ const EventSlider = () => {
   useEffect(() => {
     getEvent();
   }, []);
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000, // Adjust the speed as needed
+    autoplaySpeed: 4000,
+    spacing: 10, // Adjust the spacing value as needed
   };
 
   return (
     <div className="blog">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-xl-5 col-lg-6">
+          <div className="col-xl-4 col-lg-3">
             <div className="heading">
               <h5>Event Activities</h5>
             </div>
           </div>
         </div>
-      
-        <div className="blog-slider owl-carousel">
+
+        <div class="row justify-content-center">
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <div class="blog-slider owl-carousel">
           <div className="container">
             <Slider {...settings}>
               {Array.isArray(events) &&
@@ -53,14 +57,14 @@ const EventSlider = () => {
                   <div
                     key={event.content_id}
                     className="single-box"
-                    style={{ padding: '50px' }} // Adjust the padding value as needed
+                    style={{ margin: '100px' }} // Adjust the margin value as needed
                   >
                     <div className="part-img" style={{ width: '30%', float: 'left' }}>
                       <img
                         src={`http://43.228.126.245/EMS-API/storage/uploads/${event.file_name}`}
                         alt={`Event`}
-                        width="300px"          
-                        height="280px"     
+                        width="280px"          
+                        height="270px"     
                       />
                     </div>
                     <div className="part-txt" style={{ width: '50%', float: 'left', paddingLeft: '20px' }}>
@@ -69,15 +73,15 @@ const EventSlider = () => {
                       </a>
                       <p>{stripHtmlTags(event.description)}</p>
 
-                      <div className="part-btn" style={{ textAlign:"center" }}>
-                        <a href="blog-details.html" className="def-btn">
-                          Read More
-                        </a>
-                      </div>
+                                <div class="part-btn">
+                                    <a href="blog-details.html" class="def-btn">Read More</a>
+                                </div>
                     </div>
                   </div>
                 ))}
             </Slider>
+          </div>
+          </div>
           </div>
         </div>
       </div>
