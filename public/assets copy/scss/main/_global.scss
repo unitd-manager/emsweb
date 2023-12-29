@@ -1,0 +1,177 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+}
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+button, input, textarea {
+    border: 0;
+    background: transparent;
+    transition: 0.4s;
+    &:focus {
+        outline: none;
+    }
+}
+a {
+    display: inline-block;
+    transition: 0.4s;
+    &:hover {
+        text-decoration: none;
+    }
+}
+img {
+    max-width: 100%;
+}
+span {
+    display: inline-block;
+}
+
+@keyframes pulse-1 {
+    0% {
+        width:100%;
+        height:100%;
+        top:0;
+        left:0
+    }
+    100% {
+        width:150%;
+        height:150%;
+        top:-25%;
+        left:-25%;
+        opacity:0
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        min-width: 1200px;
+    }
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    .loader {
+        width: 100px;
+        height: 100px;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.scroll-to-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    visibility: hidden;
+    .container {
+        height: 100%;
+        position: relative;
+        button {
+            position: absolute;
+            bottom: 100%;
+            right: 15px;
+            width: 55px;
+            height: 55px;
+            line-height: 50px;
+            font-size: 22px;
+            color: $white;
+            background: $color-1;
+            border: 2px solid $white;
+            border-radius: 50%;
+            visibility: visible;
+            &.active {
+                bottom: 20px;
+            }
+            &:hover {
+                color: $color-1;
+                background: $white;
+                border-color: $color-1;
+            }
+        }
+    }
+}
+
+.def-btn {
+    height: 55px;
+    line-height: 55px;
+    background: $color-1;
+    border-radius: 30px;
+    padding: 0 40px;
+    font-size: 18px;
+    color: $white;
+    &.def-btn-2 {
+        background: $color-2;
+        &:hover, &:focus {
+            background: $color-1;
+        }
+    }
+    &:hover, &:focus {
+        background: $color-2;
+        color: $white;
+    }
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 70px;
+    &.heading-2 {
+        h5, h2 {
+            color: $white;
+        }
+    }
+    h5 {
+        font-size: 18px;
+        line-height: 100%;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $black-2;
+        margin-top: -2px;
+        margin-bottom: 18px;
+    }
+    h2 {
+        font-size: 35px;
+        line-height: 45px;
+        font-weight: 700;
+        color: $black-2;
+        margin-bottom: -11px;
+    }
+}
+
+.clear {
+    overflow: hidden;
+}
+
+.fb {
+    background: $fb;
+}
+.tw {
+    background: $tw;
+}
+.ggl {
+    background: $ggl;
+}
+.ld {
+    background: $ld;
+}
+.yt {
+    background: $yt;
+}
+.pin {
+    background: $pin;
+}

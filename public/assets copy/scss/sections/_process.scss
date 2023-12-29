@@ -1,0 +1,225 @@
+.process {
+    padding-top: 120px;
+    padding-bottom: 60px;
+    .single-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0px 0px 20px 0px rgba($black, 0.12);
+        border-radius: 10px;
+        padding: 40px 30px;
+        position: relative;
+        overflow: hidden;
+        z-index: 2;
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            height: 6px;
+            background: $color-2;
+            border-radius: 3px;
+            transition: all 0.4s ease-in;
+            z-index: -3;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            height: 6px;
+            background: $color-2;
+            border-radius: 3px;
+            transition: all 0.4s ease-in;
+            z-index: -1;
+        }
+        .part-icon {
+            width: 64px;
+            height: 64px;
+            background: $color-1;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .part-txt {
+            text-align: center;
+            h3 {
+                font-size: 26px;
+                line-height: 100%;
+                font-weight: 700;
+                color: $black-2;
+                margin-top: -3px;
+                margin-bottom: 18px;
+                transition: all 0.4s ease-in;
+            }
+            p {
+                font-size: 16px;
+                line-height: 26px;
+                color: $black-2;
+                margin-bottom: -8px;
+                transition: all 0.4s ease-in;
+            }
+        }
+        span {
+            position: absolute;
+            bottom: -13px;
+            right: -3px;
+            font-size: 80px;
+            line-height: 100%;
+            font-weight: 700;
+            color: $white-4;
+            transition: all 0.3s ease-in;
+            z-index: -2;
+        }
+        &:hover {
+            &:before {
+                left: 0;
+                right: 0;
+                height: 100%;
+                border-radius: 10px;
+            }
+            &:after {
+                left: 0;
+                right: 0;
+                height: 100%;
+                border-radius: 10px;
+                opacity: 0;
+            }
+            .part-txt {
+                h3, p {
+                    color: $white;
+                }
+            }
+            span {
+                color: $color-7;
+            }
+        }
+    }
+}
+
+.process-2 {
+    background: $color-1;
+    padding: 120px 0;
+    &.process-inner {
+        background: transparent;
+        padding: 0;
+        .no-gutters {
+            .single-box {
+                .part-icon {
+                    background: $color-1;
+                    .icon {
+                        color: $white;
+                    }
+                    .no {
+                        border-color: $white;
+                        color: $color-1;
+                    }
+                }
+                .part-txt {
+                    h3, p {
+                        color: $black-2;
+                    }
+                }
+                &:hover {
+                    .part-icon {
+                        .icon {
+                            color: $color-1;
+                        }
+                        .no {
+                            background: $color-1;
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .no-gutters {
+        margin: 0 -15px;
+        .single-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 0 15px;
+            .part-icon {
+                width: 90px;
+                height: 90px;
+                background: $white;
+                border-radius: 50%;
+                text-align: center;
+                margin-bottom: 40px;
+                position: relative;
+                transition: 0.4s;
+                .icon {
+                    font-size: 35px;
+                    line-height: 103px;
+                    color: $color-1;
+                    transition: 0.4s;
+                }
+                .no {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 28px;
+                    height: 28px;
+                    line-height: 24px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    background: $color-2;
+                    border: 2px solid $color-1;
+                    border-radius: 50%;
+                    color: $white;
+                    transition: 0.4s;
+                }
+            }
+            .part-txt {
+                text-align: center;
+                h3 {
+                    font-size: 26px;
+                    line-height: 100%;
+                    font-weight: 700;
+                    color: $white;
+                    margin-top: -3px;
+                    margin-bottom: 18px;
+                }
+                p {
+                    font-size: 16px;
+                    line-height: 26px;
+                    color: $white;
+                    margin-bottom: -8px;
+                }
+            }
+            .arrow {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 90px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                transform: translateX(50%);
+                &.rotate {
+                    transform: translateX(50%) rotateX(180deg);
+                }
+            }
+            &:hover {
+                .part-icon {
+                    background: $color-2;
+                    .icon {
+                        color: $white;
+                    }
+                    .no {
+                        background: $white;
+                        color: $color-1;
+                    }
+                }
+            }
+        }
+    }
+}

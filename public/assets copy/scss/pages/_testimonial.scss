@@ -1,0 +1,276 @@
+.testimonial-2 {
+    padding: 120px 0;
+    .testimonial-slider {
+        .owl-stage-outer {
+            padding: 0 15px;
+            margin: 0 -15px;
+            .single-box {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                .part-img {
+                    width: 110px;
+                    height: 110px;
+                    border-radius: 50%;
+                    border: 5px solid $white;
+                    box-shadow: 0px 0px 20px rgba($black, 0.3);
+                    position: relative;
+                    img {
+                        border-radius: 50%;
+                    }
+                    &:after {
+                        content: "\f132";
+                        font-family: flaticon;
+                        position: absolute;
+                        bottom: -5px;
+                        right: -5px;
+                        width: 45px;
+                        height: 45px;
+                        color: $white;
+                        font-size: 16px;
+                        line-height: 35px;
+                        background: $color-1;
+                        border: 5px solid $white;
+                        border-radius: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        transition: 0.4s;
+                    }
+                }
+                .part-txt {
+                    width: 415px;
+                    background: $color-1;
+                    border-radius: 10px;
+                    padding: 30px;
+                    position: relative;
+                    transition: 0.4s;
+                    z-index: 2;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        bottom: 45px;
+                        left: -25px;
+                        width: 45px;
+                        height: 100px;
+                        background: $color-1;
+                        border-radius: 25px;
+                        transition: 0.4s;
+                        z-index: -1;
+                    }
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        bottom: 60px;
+                        left: -27px;
+                        width: 27px;
+                        height: 100px;
+                        background: $white;
+                        border-radius: 15px;
+                        z-index: -1;
+                    }
+                    p {
+                        font-size: 16px;
+                        line-height: 26px;
+                        color: $white;
+                        margin-top: -7px;
+                        margin-bottom: 22px;
+                    }
+                    .title {
+                        padding-top: 30px;
+                        border-top: 1px solid $white;
+                        h3 {
+                            font-size: 25px;
+                            line-height: 100%;
+                            font-weight: 700;
+                            color: $white;
+                            margin-top: -2px;
+                            margin-bottom: 8px;
+                        }
+                        span {
+                            display: block;
+                            font-size: 16px;
+                            line-height: 100%;
+                            color: $white;
+                            margin-bottom: -3px;
+                        }
+                    }
+                }
+                &:hover {
+                    .part-img {
+                        &:after {
+                            background: $color-2;
+                        }
+                    }
+                    .part-txt {
+                        background: $color-2;
+                        &:before {
+                            background: $color-2;
+                        }
+                    }
+                }
+            }
+        }
+        .owl-dots {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding-top: 60px;
+            .owl-dot {
+                width: 16px;
+                height: 16px;
+                background: $white;
+                border: 4px solid $color-1;
+                border-radius: 50%;
+                margin: 0 3px;
+                &.active {
+                    background: $color-2;
+                }
+            }
+        }
+    }
+}
+
+.testimonial-3 {
+    padding: 120px 0;
+    background: url(../images/testimonial-bg-2.jpg) center center no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 2;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url(../images/testimonial-overlay.png) center left 30% no-repeat;
+        background-size: cover;
+        z-index: -1;
+    }
+    .testimonial-slider-2 {
+        .single-box {
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            position: relative;
+            z-index: 2;
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                right: -10px;
+                border: 75px solid transparent;
+                border-bottom-color: $color-5;
+                border-right-color: $color-5;
+                z-index: -1;
+            }
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: $white;
+                border-radius: 10px;
+                z-index: -1;
+            }
+            .top {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 23px;
+                .profile {
+                    display: flex;
+                    .part-img {
+                        width: 65px;
+                        height: 65px;
+                        border-radius: 7px;
+                        overflow: hidden;
+                        margin-right: 15px;
+                    }
+                    .txt {
+                        h3 {
+                            font-size: 20px;
+                            line-height: 100%;
+                            font-weight: 700;
+                            color: $black-2;
+                            margin-top: -2px;
+                            margin-bottom: 4px;
+                        }
+                        p {
+                            font-size: 16px;
+                            line-height: 100%;
+                            color: $black-2;
+                            margin-bottom: 16px;
+                        }
+                        span {
+                            display: block;
+                            font-size: 10px;
+                            line-height: 100%;
+                            color: $color-1;
+                            margin-bottom: -1px;
+                            transition: 0.4s;
+                            i {
+                                margin: 0 1px;
+                            }
+                        }
+                    }
+                }
+                .quote {
+                    span {
+                        font-size: 45px;
+                        line-height: 100%;
+                        color: $color-1;
+                        margin-top: -3px;
+                        transition: 0.4s;
+                    }
+                }
+            }
+            .part-txt {
+                p {
+                    font-size: 16px;
+                    line-height: 26px;
+                    color: $black-2;
+                    margin-bottom: -8px;
+                }
+            }
+            &:hover {
+                .top {
+                    .profile {
+                        .txt {
+                            span {
+                                color: $color-2;
+                            }
+                        }
+                    }
+                    .quote {
+                        span {
+                            color: $color-2;
+                        }
+                    }
+                }
+            }
+        }
+        .owl-dots {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding-top: 60px;
+            .owl-dot {
+                width: 16px;
+                height: 16px;
+                background: $color-1;
+                border: 4px solid $white;
+                border-radius: 50%;
+                margin: 0 3px;
+                &.active {
+                    background: $color-2;
+                }
+            }
+        }
+    }
+}

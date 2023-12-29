@@ -6,12 +6,12 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Link} from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import api from '../constants/api';
-
+import HeroSliderTwo from '../components/HeroSliderTwo';
+import EventSlider from '../components/EventSlider';
 
 const Home = () => {
-    const [banners, setBanners] = useState([]);
-    const [blogItems, setBlogItems] = useState([]);
-    const [videoUrls, setVideoUrls] = useState([]);
+    // const [banners, setBanners] = useState([]);
+      const [videoUrls, setVideoUrls] = useState([]);
 
     // Function to fetch video URLs from the API
     const getVideoUrls = () => {
@@ -28,37 +28,27 @@ const Home = () => {
 
 
     
-const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000, // Adjust the speed as needed
-  };
+// const sliderSettings = {
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     autoplay: true,
+//     autoplaySpeed: 2000, // Adjust the speed as needed
+//   };
  // const { id } = useParams();
    // Get Product data By product id
-const getBannerImages = () => {
-api
-  .post('/media/getMediaFileName')
-  .then((res) => {
-    setBanners(res.data.data);
-  })
-  .catch(() => {
-    // message('Product Data Not Found', 'info');
-  });
-};
-const getblogItems = () => {
-    api
-      .post('/media/getNewsFileName')
-      .then((res) => {
-        setBlogItems(res.data.data);
-      })
-      .catch(() => {
-        // message('Product Data Not Found', 'info');
-      });
-    };
+// const getBannerImages = () => {
+// api
+//   .post('/media/getMediaFileName')
+//   .then((res) => {
+//     setBanners(res.data.data);
+//   })
+//   .catch(() => {
+//     // message('Product Data Not Found', 'info');
+//   });
+// };
 
   const settings = {
     dots: false,
@@ -71,8 +61,7 @@ const getblogItems = () => {
   };
 
 useEffect(() => {
-getBannerImages();
-getblogItems();
+// getBannerImages();
 getVideoUrls(); 
 }, []);
   return (
@@ -128,7 +117,7 @@ getVideoUrls();
                         <div class="col-xl-1 col-lg-1 col-4">
                             <div class="logo">
                                 <a href="/">
-                                    <img src="assets/images/logo.png" alt="LOGO" />
+                                    <img src="assets/images/United Logo.png" alt="LOGO" />
                                 </a>
                             </div>
                         </div>
@@ -210,21 +199,11 @@ getVideoUrls();
         </div>
     </div>
    
-<Slider {...sliderSettings}>
-{Array.isArray(banners) && banners.map((banner, index) => (
-    <div key={index} className="banner-2">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-xl-12">
-            <div className="part-img">
-              <img src={`http://43.228.126.245/EMS-API/storage/uploads/${banner.images}`} alt={`Banner ${index}`} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  ))}
-</Slider> 
+  
+
+<HeroSliderTwo />
+<EventSlider></EventSlider>
+       
 
  {/* Video Gallery Panel */}
  <div className="video-gallery">
@@ -247,66 +226,6 @@ getVideoUrls();
         </div>
       </div>
 
-<div className="blog-2">
-<h2>News And Update</h2>
-      <div className="container">
-        <Slider {...settings}>
-          {Array.isArray(blogItems) && blogItems.map((item, index) => (
-            <div key={item.content_id} className="single-blog">
-              <div className="part-img">
-              <img
-    src={`http://43.228.126.245/EMS-API/storage/uploads/${item.news_image}`}
-    alt={`News ${item.content_id}`}
-    style={{ width: '370px', height: '225px' }} // Adjust the width and height values as needed
-  />
-                <div className="tags">
-                  <span>{item.title}</span>
-                </div>
-              </div>
-              <div className="part-txt">
-                <div className="blog-info">
-                  <ul>
-                    <li>
-                      <span>
-                        <i className="flaticon-user"></i>
-                      </span>
-                      By {item.created_by}
-                    </li>
-                    <li>
-                      <span>
-                        <i className="flaticon-clock"></i>
-                      </span>
-                      {item.content_date}
-                    </li>
-                    {/* <li>
-                      <span>
-                        <i className="flaticon-bubble-speak"></i>
-                      </span>
-                      {item.comments}
-                    </li> */}
-                  </ul>
-                </div>
-               {/* Check if item.description is not null before accessing its properties */}
-               {item.description !== null && (
-                <>
-                <h3>{item.description.slice(0, 20).replace(/<p.*?>/g, '')}...</h3>
-                <Link
-                    to={`/blog/${item.content_id}`}
-                   
-                    >
-                    Read More
-                    </Link>
-                        
-                </>
-              )}
-                   
-                       
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </div>
    
     <div class="feature">
         <div class="container">

@@ -1,0 +1,44 @@
+.error {
+    padding-top: 120px;
+    .boxes {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 80px;
+        .single-box {
+            width: 195px;
+            height: 195px;
+            line-height: 195px;
+            text-align: center;
+            background: $color-1;
+            border-radius: 10px;
+            font-size: 200px;
+            font-weight: 700;
+            color: $white;
+            margin: 0 12.5px;
+            &:nth-child(2) {
+                background: $color-2;
+            }
+        }
+    }
+    .part-txt {
+        text-align: center;
+        h2 {
+            font-size: 55px;
+            line-height: 100%;
+            font-weight: 700;
+            color: $black-2;
+            margin-top: -6px;
+            margin-bottom: 40px;
+            span {
+                color: $color-2;
+            }
+        }
+        p {
+            font-size: 25px;
+            line-height: 100%;
+            color: $black-2;
+            margin-bottom: 55px;
+        }
+    }
+}
