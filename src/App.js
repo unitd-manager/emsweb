@@ -9,6 +9,7 @@ import TeamPage from './pages/TeamPage';
 import Events from './pages/Events';
 import EventsEdit from './pages/EventsEdit';
 import Vappanayagam from './pages/Vappanayagam';
+import FromBooks from './pages/FromBooks';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/Events" element={<Events />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/Vappanayagam" element={<Vappanayagam />} />
+          <Route path="/books/:categoryId" element={<FromBooks />} />
 
         </Routes>
       </Router>
