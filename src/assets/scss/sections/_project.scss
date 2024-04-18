@@ -1,0 +1,104 @@
+.project {
+    padding: 120px 0;
+    background: url(../images/project-bg.jpg) center center no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 2;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url(../images/project-overlay.png) center right 30% no-repeat;
+        background-size: cover;
+        z-index: -1;
+    }
+    .all-projects {
+        .project-slider {
+            .owl-stage-outer {
+                border-radius: 10px;
+                margin-right: -9999px;
+                .single-box {
+                    position: relative;
+                    overflow: hidden;
+                    .part-txt {
+                        position: absolute;
+                        top: 0;
+                        transform: rotateY(90deg);
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        background: rgba($color-1, 0.8);
+                        transition: all 0.4s ease-in;
+                        a {
+                            font-size: 35px;
+                            line-height: 100%;
+                            color: $white;
+                            margin-bottom: 82px;
+                            &:hover {
+                                color: $color-2;
+                            }
+                        }
+                        .title {
+                            background: $color-1;
+                            border-radius: 10px;
+                            padding: 25px 0;
+                            margin: 0 20px 20px;
+                            h3 {
+                                font-size: 18px;
+                                line-height: 100%;
+                                font-weight: 700;
+                                color: $white;
+                                margin-top: -2px;
+                                margin-bottom: 16px;
+                            }
+                            p {
+                                font-size: 14px;
+                                line-height: 100%;
+                                color: $white-3;
+                                margin-bottom: -3px;
+                            }
+                        }
+                    }
+                    &:hover {
+                        .part-txt {
+                            transform: rotateY(0deg);
+                        }
+                    }
+                }
+            }
+            .owl-nav {
+                position: absolute;
+                top: 50%;
+                left: -23px;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column-reverse;
+                button {
+                    text-align: center;
+                    width: 46px;
+                    height: 46px;
+                    line-height: 50px;
+                    background: $color-1;
+                    border: 1px solid $white;
+                    border-radius: 50%;
+                    color: $white;
+                    font-size: 14px;
+                    opacity: 0.7;
+                    &.owl-next {
+                        margin-bottom: 10px;
+                    }
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

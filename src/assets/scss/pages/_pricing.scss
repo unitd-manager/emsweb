@@ -1,0 +1,200 @@
+.pricing-2 {
+    padding: 120px 0;
+    background: url(../images/pricing-bg.jpg) center right 30% no-repeat;
+    background-size: cover;
+    .single-box {
+        background: $white;
+        border-radius: 10px;
+        padding: 40px 30px;
+        .top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba($black-2, 0.4);
+            .part-icon {
+                width: 85px;
+                height: 85px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0px 0px 30px 0px rgba($black, 0.15);
+                border-radius: 7px;
+                transition: 0.4s;
+            }
+            .price {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                p {
+                    font-size: 20px;
+                    line-height: 100%;
+                    font-weight: 700;
+                    color: $black-2;
+                    margin-top: -30px;
+                    margin-right: 10px;
+                    margin-bottom: 0;
+                }
+                h3 {
+                    font-size: 45px;
+                    line-height: 100%;
+                    font-weight: 700;
+                    color: $black-2;
+                    margin-top: -6px;
+                    margin-bottom: 0;
+                    span {
+                        font-size: 16px;
+                        line-height: 100%;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+        .bottom {
+            padding-top: 30px;
+            text-align: center;
+            h3 {
+                font-size: 25px;
+                line-height: 100%;
+                font-weight: 700;
+                color: $black-2;
+                margin-top: -2px;
+                margin-bottom: 16px;
+                transition: 0.4s;
+            }
+            ul {
+                padding: 0;
+                margin-bottom: 19px;
+                list-style: none;
+                li {
+                    font-size: 16px;
+                    line-height: 31px;
+                    color: $black-2;
+                }
+            }
+            .part-btn {
+                height: 45px;
+                line-height: 45px;
+                padding: 0 25px;
+                box-shadow: 0px 0px 30px 0px rgba($black, 0.15);
+                border-radius: 7px;
+                font-size: 18px;
+                color: $black-2;
+                &:hover, &:focus {
+                    background: $color-2;
+                    color: $white;
+                }
+            }
+        }
+        &:hover {
+            .top {
+                .part-icon {
+                    background: $color-2;
+                }
+            }
+            .bottom {
+                h3 {
+                    color: $color-2;
+                }
+            }
+        }
+    }
+}
+
+.pricing-3 {
+    padding-top: 120px;
+    .boxes {
+        .single-box {
+            box-shadow: 0px 0px 30px -5px rgba($black, 0.12);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .part-img {
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            .title {
+                h4 {
+                    font-size: 25px;
+                    line-height: 100%;
+                    font-weight: 700;
+                    color: $black-2;
+                    margin-top: -2px;
+                    margin-bottom: 36px;
+                    transition: 0.4s;
+                }
+                .price {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    p {
+                        font-size: 20px;
+                        line-height: 100%;
+                        font-weight: 700;
+                        color: $black-2;
+                        margin-top: -30px;
+                        margin-right: 10px;
+                        margin-bottom: 0;
+                    }
+                    h3 {
+                        font-size: 45px;
+                        line-height: 100%;
+                        font-weight: 700;
+                        color: $black-2;
+                        margin-top: -6px;
+                        margin-bottom: -8px;
+                        span {
+                            font-size: 16px;
+                            line-height: 100%;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+            ul {
+                padding: 0;
+                margin-top: -2px;
+                margin-bottom: -3px;
+                list-style: none;
+                li {
+                    font-size: 16px;
+                    line-height: 100%;
+                    color: $black-2;
+                    margin-bottom: 17px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            .part-btn {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                a {
+                    height: 45px;
+                    line-height: 45px;
+                    padding: 0 35px;
+                    box-shadow: 0px 0px 30px 0px rgba($black, 0.15);
+                    border-radius: 7px;
+                    font-size: 18px;
+                    color: $black-2;
+                    &:hover, &:focus {
+                        background: $color-2;
+                        color: $white;
+                    }
+                }
+            }
+            &:hover {
+                .title {
+                    h4 {
+                        color: $color-2;
+                    }
+                }
+            }
+        }
+    }
+}
