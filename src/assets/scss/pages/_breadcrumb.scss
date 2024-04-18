@@ -1,0 +1,83 @@
+.breadcrumb {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    background: url(../images/default-breadcrumb.jpg) center center no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 2;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $color-1;
+        opacity: 0.85;
+        z-index: -1;
+    }
+    &.about-breadcrumb {
+        background: url(../images/about-breadcrumb.jpg) center center no-repeat;
+        background-size: cover;
+    }
+    &.service-breadcrumb {
+        background: url(../images/service-breadcrumb.jpg) center center no-repeat;
+        background-size: cover;
+    }
+    &.team-breadcrumb {
+        background: url(../images/team-breadcrumb.jpg) center center no-repeat;
+        background-size: cover;
+    }
+    &.error-breadcrumb {
+        background: url(../images/error-breadcrumb.jpg) center center no-repeat;
+        background-size: cover;
+    }
+    &.faq-breadcrumb {
+        background: url(../images/faq-breadcrumb.jpg) center center no-repeat;
+        background-size: cover;
+    }
+    &.portfolio-breadcrumb {
+        background: url(../images/portfolio-breadcrumb.jpg) center center no-repeat;
+        background-size: cover;
+    }
+    &.blog-breadcrumb {
+        background: url(../images/blog-breadcrumb.jpg) center center no-repeat;
+        background-size: cover;
+    }
+    &.contact-breadcrumb {
+        background: url(../images/contact-breadcrumb.jpg) center center no-repeat;
+        background-size: cover;
+    }
+    .part-txt {
+        text-align: center;
+        padding: 150px 0;
+        h1 {
+            font-size: 35px;
+            line-height: 100%;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: $white;
+            margin-top: -4px;
+            margin-bottom: 22px;
+        }
+        ul {
+            padding: 0;
+            margin-bottom: -4px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            li {
+                list-style: none;
+                font-size: 18px;
+                line-height: 100%;
+                color: $white;
+                margin-right: 10px;
+                color: $white;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

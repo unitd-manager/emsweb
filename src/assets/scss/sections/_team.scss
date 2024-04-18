@@ -1,0 +1,96 @@
+.team {
+    padding: 120px 0;
+    &.team-inner {
+        background: $color-1;
+    }
+    .single-box {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        .part-img {
+            img {
+                z-index: -1;
+            }
+        }
+        .part-txt {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            height: 68px;
+            text-align: center;
+            background: $color-1;
+            border-radius: 10px;
+            transition: all 0.4s ease-in;
+            overflow: hidden;
+            z-index: 2;
+            .txt {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 120px 10px 0;
+                transition: all 0.4s ease-in;
+                .title {
+                    margin-bottom: 26px;
+                    a {
+                        display: block;
+                        font-size: 18px;
+                        line-height: 100%;
+                        font-weight: 700;
+                        color: $white;
+                        margin-top: -2px;
+                        margin-bottom: 5px;
+                        &:hover {
+                            color: $color-2;
+                        }
+                    }
+                    span {
+                        font-size: 14px;
+                        line-height: 100%;
+                        color: $white;
+                    }
+                }
+                p {
+                    font-size: 16px;
+                    line-height: 26px;
+                    color: $white;
+                    margin-bottom: 10px;
+                }
+                .social {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    padding-top: 22px;
+                    a {
+                        text-align: center;
+                        width: 28px;
+                        height: 28px;
+                        line-height: 32px;
+                        font-size: 12px;
+                        background: $white;
+                        border-radius: 50%;
+                        color: $color-2;
+                        margin: 0 5px;
+                        &:hover {
+                            background: $color-2;
+                            color: $color-1;
+                        }
+                    }
+                }
+            }
+        }
+        &:hover {
+            .part-txt {
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100%;
+                background: rgba($color-1, 0.85);
+                .txt {
+                    padding: 0 30px;
+                }
+            }
+        }
+    }
+}
