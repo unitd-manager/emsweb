@@ -135,7 +135,7 @@ function App() {
           <Route path="/Events" element={<Events />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/Vappanayagam" element={<Vappanayagam />} />
-          <Route path="/books/:categoryId" element={<FromBooks />} />
+          <Route path="/நூற்கள்/:id" element={<FromBooks />} />
 
         </Routes>
     
