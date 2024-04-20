@@ -8,8 +8,9 @@ import ServiceDetails from './pages/ServiceDetails';
 import TeamPage from './pages/TeamPage';
 import Events from './pages/Events';
 import EventsEdit from './pages/EventsEdit';
-import Vappanayagam from './pages/Vappanayagam';
-
+import Ahlubaith from './pages/Ahlubaith';
+import Kolgaigal from './pages/Kolgaigal';
+import Thandhainayagam from './pages/Thandhainayagam';
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
           <Route path="/team" element={<TeamPage />} />
           <Route path="/Events" element={<Events />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
-          <Route path="/Vappanayagam" element={<Vappanayagam />} />
+          <Route path="/Ahlubaith" element={<Ahlubaith />} />
+          <Route path="/Kolgaigal" element={<Kolgaigal/>} />
+          <Route path="/Thandhainayagam" element={<Thandhainayagam/>} />
 
         </Routes>
       </Router>
