@@ -1,0 +1,31 @@
+.service-inner {
+    padding-bottom: 90px;
+    .single-box {
+        margin-bottom: 30px;
+    }
+}
+
+.cta {
+    background: url(../images/cta-bg.jpg) center center no-repeat;
+    background-size: cover;
+    .part-txt {
+        h2 {
+            font-size: 50px;
+            line-height: 65px;
+            font-weight: 700;
+            color: $white;
+            padding: 75px 0;
+            margin-top: -7px;
+            margin-bottom: -20px;
+        }
+    }
+    .def-btn {
+        background: $white;
+        border-color: $white;
+        color: $color-2;
+        &:hover {
+            background: $color-2;
+            color: $white;
+        }
+    }
+}

@@ -1,18 +1,20 @@
 import React, { useEffect,useState } from 'react';
-
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Link} from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import api from '../constants/api';
-import HeroSliderTwo from '../components/HeroSliderTwo';
 import EventSlider from '../components/EventSlider';
 
 const Home = () => {
     // const [banners, setBanners] = useState([]);
       const [videoUrls, setVideoUrls] = useState([]);
-
+      const [banners, setBanner] = useState([]);
+      const [homeLink, setHomeLink] = useState([]);
+      const stripHtmlTags = (htmlString) => {
+        const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+        return doc.body.textContent || '';
+      };
     // Function to fetch video URLs from the API
     const getVideoUrls = () => {
       api
@@ -25,8 +27,66 @@ const Home = () => {
           // Handle error
         });
     };
+    const getHomeLink = () => {
+        api
+          .get('/content/getHomeLink')
+          .then((res) => {
+            setHomeLink(res.data.data);
+            console.log('edit Line Item',res.data.data)
+          })
+          .catch(() => {
+            // Handle error
+          });
+      };
 
-
+    const getBanners = () => {
+        // First API call to get banners
+        api.get("/content/getBanners")
+          .then((res) => {
+            setBanner(res.data.data);
+      
+            // Extract content_id from the response
+            const contentIds = res.data.data.map(item => item.content_id);
+      
+            // Second API call to get images based on content_id
+            contentIds.forEach(contentId => {
+              // Making a POST request with content_id in the request body
+              api.post("/file/getListOfFiles", { record_id: contentId })
+                .then((imageRes) => {
+                  // Handle image response
+                  console.log(`Images for content_id ${contentId}:`, imageRes.data);
+                })
+                .catch((imageError) => {
+                  console.error(`Error fetching images for content_id ${contentId}:`, imageError);
+                });
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching banners:", error);
+          });
+      };
+      const bannersettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1, // Display three slides at a time
+        slidesToScroll: 1, // Scroll one slide at a time
+        autoplay: true,
+        responsive: [
+          {
+            breakpoint: 1140,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+        ],
+      };
     
 // const sliderSettings = {
 //     dots: true,
@@ -63,146 +123,34 @@ const Home = () => {
 useEffect(() => {
 // getBannerImages();
 getVideoUrls(); 
+getBanners();
+getHomeLink();
 }, []);
   return (
     
     <div>
-    
-    <div class="preloader">
-        <div class="loader"><img src="assets/images/spinner.gif" alt="imagess" /></div>
-    </div>
-    
-    <div class="header-2">
-        <div class="top-header">
-            <div class="container">
-                <div class="bg">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-xl-6 col-lg-6 col-md-7">
-                            <div class="top-left">
-                                <ul>
-                                    <li><i class="flaticon-message"></i><span>youremailhere@gmail.com</span></li>
-                                    <li><i class="flaticon-phone-call"></i><span>+008 1234 56789</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-5">
-                            <div class="top-right">
-                                <div class="language">
-                                    <div class="select-lang">
-                                        <div id="demo"
-                                            data-input-name="country"
-                                            data-selected-country="US"
-                                            data-scrollable-height="250px">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="try-btn">
-                                    <a href="/">FREE TRY</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+       
+ 
+   <div>
+   <Slider {...bannersettings}>
+        {Array.isArray(banners) &&
+          banners.map((item, index) => (
+            <div key={item.content_id} className="single-blog">
+              <div className="part-img">
+                <img
+                  src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
+                  alt={`News ${item.content_id}`}
+                  style={{ width: "100%", height: "400px", objectFit: "cover" }}
+                />
+              </div>
+              <div className="part-txt">
+                {/* Check if item.description is not null before accessing its properties */}
+              </div>
             </div>
-        </div>
-        <div class="bottom-header">
-            <div class="container">
-                <div class="bg">
-                    <div class="row align-items-center">
-                        <div class="d-xl-none d-lg-none d-flex col-4">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <i class="flaticon-menu-button-of-three-horizontal-lines"></i>
-                            </button>
-                        </div>
-                        <div class="col-xl-1 col-lg-1 col-4">
-                            <div class="logo">
-                                <a href="/">
-                                    <img src="assets/images/United Logo.png" alt="LOGO" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-8 next">
-                            <nav class="navbar navbar-expand-lg navbar-light">
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <ul class="navbar-nav m-rauto">
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="homeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                HOME
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="homeDropdown">
-                                                <li><a class="dropdown-item" href="index.html">Home One</a></li>
-                                                <li><a class="dropdown-item" href="index-2.html">Home Two</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="about.html" class="nav-link">ABOUT US</a>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="serviceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                SERVICES
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="serviceDropdown">
-                                                <li><a class="dropdown-item" href="service.html">Service</a></li>
-                                                <li><a class="dropdown-item" href="service-details.html">Service Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="pageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                PAGES
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="pageDropdown">
-                                                <li><a class="dropdown-item" href="team.html">Team</a></li>
-                                                <li><a class="dropdown-item" href="team-details.html">Team Details</a></li>
-                                                <li><a class="dropdown-item" href="testimonial.html">Testimonial</a></li>
-                                                <li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
-                                                <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
-                                                <li><a class="dropdown-item" href="error.html">Error 404</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="projectDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                PORTFOLIO
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="projectDropdown">
-                                                <li><a class="dropdown-item" href="portfolio.html">Portfolio</a></li>
-                                                <li><a class="dropdown-item" href="portfolio-details.html">Portfolio Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link" href="/" id="blogDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                NEWS
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="blogDropdown">
-                                                <li><a class="dropdown-item" href="blog-l-bar.html">Blog Left Bar</a></li>
-                                                <li><a class="dropdown-item" href="blog-r-bar.html">Blog Right Bar</a></li>
-                                                <li><a class="dropdown-item" href="blog-details.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="contact.html">CONTACTS</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-4">
-                            <div class="bottom-right">
-                                <form class="nav-form">
-                                    <input type="search" placeholder="Search......" required />
-                                    <button><i class="flaticon-magnifying-glass-search"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-  
+          ))}
+      </Slider>
 
-<HeroSliderTwo />
-<EventSlider></EventSlider>
+    <EventSlider></EventSlider>
        
 
  {/* Video Gallery Panel */}
@@ -226,7 +174,59 @@ getVideoUrls();
         </div>
       </div>
 
-   
+      <div class="col-xl-12 col-lg-12 col-md-9">
+                    <div class="tab-content" id="nav-tabContent">
+                   
+                        <div class="tab-pane fade show active" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab">
+                            <div class="row">
+                            {homeLink.map((item, index) => (
+                                <div class="col-xl-4 col-lg-4">
+                                    <div class="single-box">
+                                        <div class="part-img">
+                                        <img
+                  src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
+                  alt={`News ${item.content_id}`}
+                  style={{ width: "50%", height: "50%", objectFit: "cover" }}
+                />                                           
+                                        </div>
+                                        
+                                        <div class="part-btn" style={{marginTop:"25px"}}>
+                                        <a href={stripHtmlTags(item.description)} class="def-btn" target="_blank" rel="noopener noreferrer">Buy Now</a>                                        </div>
+                                    </div>
+                                </div>
+                                  ))}
+                            </div>
+                        </div>
+                
+                        {/* <div class="tab-pane fade" id="nav-year" role="tabpanel" aria-labelledby="nav-year-tab">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="single-box">
+                                        <div class="part-img">
+                                            <img src="assets/images/pricing-img-1.jpg" alt="image"/>
+                                        </div>
+                                      
+                                        <div class="part-btn">
+                                            <a href="#" class="def-btn">Buy Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="single-box">
+                                        <div class="part-img">
+                                            <img src="assets/images/pricing-img-2.jpg" alt="image"/>
+                                           
+                                        </div>
+                                      
+                                        <div class="part-btn">
+                                            <a href="#" class="def-btn">Buy Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> */}
+                    </div>
+                </div>
     <div class="feature">
         <div class="container">
             <div class="row justify-content-center">
@@ -814,7 +814,7 @@ getVideoUrls();
             </div>
         </div>
     </div>
-  
+  </div>
     <div class="footer">
         <div class="container">
             <div class="main-footer">

@@ -1,0 +1,96 @@
+.testimonial {
+    padding: 120px 0;
+    &.testimonial-inner {
+        padding-bottom: 0;
+    }
+    .bg {
+        background: url(../images/testimonial-bg.png) center center no-repeat;
+        background-size: cover;
+        border-radius: 10px;
+        padding: 60px 0 60px 55px;
+        // padding-right: 0;
+        .part-txt {
+            padding-right: 35px;
+            .controls {
+                display: flex;
+                button {
+                    text-align: center;
+                    width: 46px;
+                    height: 46px;
+                    line-height: 50px;
+                    background: $color-2;
+                    border: 1px solid $color-2;
+                    border-radius: 50%;
+                    color: $white;
+                    padding: 0;
+                    &:first-child {
+                        margin-right: 20px;
+                    }
+                    &:hover {
+                        background: transparent;
+                    }
+                }
+            }
+        }
+        .comment-area {
+            .comment-slider {
+                .single-comment {
+                    text-align: center;
+                    p {
+                        font-size: 16px;
+                        line-height: 26px;
+                        color: $black-2;
+                        margin-top: -7px;
+                        margin-bottom: 10px;
+                    }
+                    .client {
+                        padding-top: 136px;
+                        h3 {
+                            font-size: 25px;
+                            line-height: 100%;
+                            font-weight: 700;
+                            color: $black-2;
+                            margin-bottom: 13px;
+                        }
+                        h5 {
+                            font-size: 16px;
+                            line-height: 100%;
+                            font-weight: 400;
+                            color: $black-2;
+                            margin-bottom: -3px;
+                        }
+                    }
+                }
+            }
+            .client-slider {
+                margin-top: -76px;
+                transform: translateY(-89px);
+                padding: 0 95px;
+                .slick-track {
+                    height: 76px;
+                    .single-box {
+                        width: 58px !important;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.4s ease;
+                        .img {
+                            border: 4px solid rgba($color-1, 0.15);
+                            border-radius: 50%;
+                            margin: 0 10px;
+                            overflow: hidden;
+                            transition: all 0.4s ease;
+                        }
+                        &.slick-active {
+                            width: 75px !important;
+                        }
+                        &.slick-center {
+                            width: 96px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

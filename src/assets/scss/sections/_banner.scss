@@ -1,0 +1,139 @@
+.banner {
+    background: $color-1;
+    position: relative;
+    z-index: 2;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url(../images/banner-img.png) center center no-repeat;
+        background-size: cover;
+        z-index: -1;
+    }
+    .banner-txt {
+        padding: 220px 0;
+        h4 {
+            font-size: 20px;
+            line-height: 100%;
+            font-weight: 700;
+            color: $color-2;
+            margin-top: -2px;
+            margin-bottom: 25px;
+        }
+        h1 {
+            font-size: 55px;
+            line-height: 65px;
+            font-weight: 700;
+            color: $white;
+            margin-bottom: 19px;
+            span {
+                color: $color-2;
+            }
+        }
+        p {
+            font-size: 18px;
+            line-height: 28px;
+            color: $white;
+            margin-bottom: 36px;
+        }
+        .btn-box {
+            display: flex;
+            padding-top: 16px;
+            a {
+                height: 55px;
+                line-height: 55px;
+                font-size: 18px;
+                padding: 0 35px;
+                border: 1px solid;
+                border-radius: 30px;
+                &.left-btn {
+                    border-color: $white;
+                    background: $white;
+                    color: $black-2;
+                    margin-right: 30px;
+                    &:hover {
+                        background: transparent;
+                        color: $white;
+                    }
+                }
+                &.right-btn {
+                    border-color: $color-2;
+                    color: $white;
+                    &:hover {
+                        background: $color-2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.banner-2 {
+    background: url(../images/banner-bg.jpg) center right 30% no-repeat;
+    background-size: cover;
+    .banner-txt {
+        padding: 220px 0;
+        h4 {
+            font-size: 22px;
+            line-height: 100%;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 7px;
+            color: $white;
+            margin-top: -2px;
+            margin-bottom: 25px;
+        }
+        h1 {
+            font-size: 55px;
+            line-height: 65px;
+            font-weight: 700;
+            color: $white;
+            margin-bottom: 19px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 28px;
+            color: $white;
+            margin-bottom: 36px;
+        }
+        .btn-box {
+            display: flex;
+            padding-top: 16px;
+            a {
+                height: 55px;
+                line-height: 55px;
+                font-size: 18px;
+                padding: 0 35px;
+                border: 1px solid;
+                border-radius: 30px;
+                &.left-btn {
+                    border-color: $white;
+                    background: $white;
+                    color: $black-2;
+                    margin-right: 30px;
+                    &:hover {
+                        background: transparent;
+                        color: $white;
+                    }
+                }
+                &.right-btn {
+                    border-color: $white;
+                    color: $white;
+                    &:hover {
+                        background: $white;
+                        color: $black-2;
+                    }
+                }
+            }
+        }
+    }
+    .part-img {
+        margin-left: -55px;
+        img {
+            max-width: none;
+        }
+    }
+}

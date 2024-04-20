@@ -1,0 +1,89 @@
+.header-2 {
+    position: relative;
+    background: $white;
+    z-index: 11;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url(../images/header-bg.png) center center no-repeat;
+        background-size: cover;
+        z-index: -1;
+    }
+    &.fixed-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: 0px 10px 20px 0px rgba($black, 0.1);
+    }
+    .navbar {
+        padding: 0;
+        .navbar-nav {
+            .nav-item {
+                padding: 0 20px;
+                &.dropdown {
+                    .dropdown-menu {
+                        display: block;
+                        margin-top: 0;
+                        border: 0;
+                        border-radius: 0;
+                        padding: 0;
+                        width: 250px;
+                        box-shadow: 0px 10px 30px 0px rgba($black, 0.15);
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: all 0.3s ease-in;
+                        .dropdown-item {
+                            font-size: 16px;
+                            line-height: 100%;
+                            font-weight: 500;
+                            color: $black-2;
+                            padding: 0 20px;
+                            border-bottom: 1px solid rgba($black, 0.10);
+                            transition: all 0.3s ease-in;
+                            &:last-child {
+                                border-bottom: 0;
+                            }
+                            &:hover {
+                                background: transparent;
+                                color: $color-1;
+                            }
+                        }
+                    }
+                    &:hover {
+                        .dropdown-menu {
+                            opacity: 1;
+                            visibility: visible;
+                            .dropdown-item {
+                                padding: 20px;
+                            }
+                        }
+                    }
+                }
+                .nav-link {
+                    padding: 29px 0 25px 0;
+                    font-size: 18px;
+                    line-height: 100%;
+                    font-weight: 600;
+                    color: $color-2;
+                    &:hover {
+                        color: $color-1;
+                    }
+                }
+            }
+        }
+    }
+    .nav-btn {
+        width: 100%;
+        text-align: right;
+        .def-btn {
+            height: 55px;
+            line-height: 60px;
+            padding: 0 30px;
+        }
+    }
+}
