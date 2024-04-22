@@ -10,6 +10,7 @@ import TeamPage from './pages/TeamPage';
 import Events from './pages/Events';
 import EventsEdit from './pages/EventsEdit';
 import Vappanayagam from './pages/Vappanayagam';
+import Religious from "./pages/Religious";
 import { useEffect, useState } from "react";
 import api from "./constants/api";
 
@@ -134,6 +135,7 @@ function App() {
           <Route path="/Events" element={<Events />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/Vappanayagam" element={<Vappanayagam />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:title" element={<Religious />} />
 
         </Routes>
     
