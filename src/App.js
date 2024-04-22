@@ -12,6 +12,8 @@ import EventsEdit from './pages/EventsEdit';
 import Thandhainayagam from './pages/Thandhainayagam';
 import Kolgaigal from './pages/Kolgaigal';
 import Ahlubaith from './pages/Ahlubaith';
+//import Vappanayagam from './pages/Vappanayagam';
+import Religious from "./pages/Religious";
 import { useEffect, useState } from "react";
 import api from "./constants/api";
 import React from "react";
@@ -139,7 +141,10 @@ function App() {
           <Route path="/Kolgaigal" element={<Kolgaigal />} />
           <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:title" element={<Ahlubaith />} />
           <Route path="/நூற்கள்/:title" element={<FromBooks />} />
-
+          <Route path="/Ahlubaith" element={<Ahlubaith />} />
+          <Route path="/Kolgaigal" element={<Kolgaigal/>} />
+          <Route path="/Thandhainayagam" element={<Thandhainayagam/>} />
+          <Route path="/Religious" element={<Religious/>} />
         </Routes>
     
     </HashRouter>
