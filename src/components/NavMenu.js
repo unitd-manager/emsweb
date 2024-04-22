@@ -121,7 +121,7 @@ function Navbar() {
                         <li key={category.category_id}>
                           {/* Handle category click */}
                           <Link
-                            to={`/${section.section_title}/${category.category_title}`}
+                            to={`/${section.section_title}/${category.category_id}`}
                             className={`dropdown-item ${
                               selectedCategoryId === category.category_id
                                 ? "active"
