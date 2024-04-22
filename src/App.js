@@ -18,7 +18,8 @@ import { useEffect, useState } from "react";
 import api from "./constants/api";
 import React from "react";
 import FromBooks from './pages/FromBooks';
-
+import Thoguppugal from './pages/Thoguppugal';
+import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -143,7 +144,10 @@ function App() {
           <Route path="/நூற்கள்/:id" element={<FromBooks />} />
           <Route path="/Kolgaigal" element={<Kolgaigal/>} />
           <Route path="/Thandhainayagam" element={<Thandhainayagam/>} />
-          <Route path="/Religious" element={<Religious/>} />
+          <Route path="/Religious" element={<Religious/>} />          
+          <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
+          <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
+
         </Routes>
     
     </HashRouter>
