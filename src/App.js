@@ -9,13 +9,11 @@ import ServiceDetails from './pages/ServiceDetails';
 import TeamPage from './pages/TeamPage';
 import Events from './pages/Events';
 import EventsEdit from './pages/EventsEdit';
-import Ahlubaith from './pages/Ahlubaith';
-import Kolgaigal from './pages/Kolgaigal';
 import Thandhainayagam from './pages/Thandhainayagam';
-//import Vappanayagam from './pages/Vappanayagam';
+import Kolgaigal from './pages/Kolgaigal';
+import Ahlubaith from './pages/Ahlubaith';
 import { useEffect, useState } from "react";
 import api from "./constants/api";
-
 import React from "react";
 import FromBooks from './pages/FromBooks';
 
@@ -137,9 +135,10 @@ function App() {
           <Route path="/team" element={<TeamPage />} />
           <Route path="/Events" element={<Events />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
-          <Route path="/Ahlubaith" element={<Ahlubaith />} />
-          <Route path="/Kolgaigal" element={<Kolgaigal/>} />
-          <Route path="/Thandhainayagam" element={<Thandhainayagam/>} />
+          <Route path="/Thandhainayagam" element={<Thandhainayagam />} />
+          <Route path="/Kolgaigal" element={<Kolgaigal />} />
+          <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:title" element={<Ahlubaith />} />
+          <Route path="/நூற்கள்/:title" element={<FromBooks />} />
 
         </Routes>
     
