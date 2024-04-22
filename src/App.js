@@ -139,9 +139,8 @@ function App() {
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/Thandhainayagam" element={<Thandhainayagam />} />
           <Route path="/Kolgaigal" element={<Kolgaigal />} />
-          <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:title" element={<Ahlubaith />} />
-          <Route path="/நூற்கள்/:title" element={<FromBooks />} />
-          <Route path="/Ahlubaith" element={<Ahlubaith />} />
+          <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:id" element={<Ahlubaith />} />
+          <Route path="/நூற்கள்/:id" element={<FromBooks />} />
           <Route path="/Kolgaigal" element={<Kolgaigal/>} />
           <Route path="/Thandhainayagam" element={<Thandhainayagam/>} />
           <Route path="/Religious" element={<Religious/>} />
