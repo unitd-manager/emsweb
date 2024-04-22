@@ -12,10 +12,10 @@ import EventsEdit from './pages/EventsEdit';
 import Vappanayagam from './pages/Vappanayagam';
 import { useEffect, useState } from "react";
 import api from "./constants/api";
-
 import React from "react";
 import FromBooks from './pages/FromBooks';
-
+import Thoguppugal from './pages/Thoguppugal';
+import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -136,6 +136,8 @@ function App() {
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/Vappanayagam" element={<Vappanayagam />} />
           <Route path="/நூற்கள்/:id" element={<FromBooks />} />
+          <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
+          <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
 
         </Routes>
     

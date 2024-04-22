@@ -142,7 +142,7 @@ function Navbar() {
                                 <li key={subcategory.sub_category_id}>
                                   {/* Render subcategory links */}
                                   <Link
-                                    to={`/${section.section_title}/${category.category_title}/${subcategory.sub_category_id}`}
+                                    to={`/${section.section_title}/${category.category_id}/${subcategory.sub_category_id}`}
                                     className="dropdown-item"
                                   >
                                     {subcategory.sub_category_title}

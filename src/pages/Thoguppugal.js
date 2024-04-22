@@ -5,25 +5,25 @@ import "aos/dist/aos.css";
 //import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
-const FromBooks = () => {
+const Thoguppugal = () => {
   const { id } = useParams();
 
-  const [books, setBooks] = useState([]);
+  const [thoguppugal, setThoguppugal] = useState([]);
 
   useEffect(() => {
-    const getBooks = () => {
+    const getThoguppugal = () => {
       //var formated = title.split("-").join(" ");
 
       api
-        .post("/content/getBooks", { category_id:id })
+        .post("/content/getThoguppugal", { category_id:id })
         .then((res) => {
-          setBooks(res.data.data);
+            setThoguppugal(res.data.data);
           AOS.init(); // Move AOS.init() inside the promise chain to ensure it's called after data is fetched
         })
         .catch(() => {});
     };
 
-    getBooks();
+    getThoguppugal();
   }, [id]);
 
   return (
@@ -33,11 +33,11 @@ const FromBooks = () => {
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
               <div className="part-txt">
-                <h1>Books</h1>
+                <h1>Thoguppugal</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>Books Detail</li>
+                  <li>Thoguppugal Detail</li>
                  
                 </ul>
               </div>
@@ -50,12 +50,12 @@ const FromBooks = () => {
       <div className="feature-2">
         <div className="container">
           <div className="row justify-content-center">
-            {books.map((image, index) => (
+            {thoguppugal.map((image, index) => (
               <div key={index} className="col-xl-12 col-lg-12 col-md-12">
                 <div className="part-img">
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12">
-                    <p>{image.category_title}</p>
+                    {/* <p>{image.category_title}</p> */}
                     <h3 class="pt- pb-3 text-capitalize card-title">{image.title}</h3>
                   <div
                     className="part-txt"
@@ -71,4 +71,4 @@ const FromBooks = () => {
   );
 };
 
-export default FromBooks;
+export default Thoguppugal;
