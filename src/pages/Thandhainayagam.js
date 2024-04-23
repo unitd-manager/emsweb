@@ -1,18 +1,19 @@
 // ServiceDetails.js
 import React, { useState, useEffect } from 'react';
+import ReactHtmlParser from "react-html-parser";
 //import { useParams } from 'react-router-dom';
 import api from '../constants/api';
 
-const stripHtmlTags = (htmlString) => {
-    const doc = new DOMParser().parseFromString(htmlString, 'text/html');
-    return doc.body.textContent || '';
-  };
-const Vappanayagam = () => {
+// const stripHtmlTags = (htmlString) => {
+//     const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+//     return doc.body.textContent || '';
+//   };
+const Thandhainayagam = () => {
     const [content, setContent] = useState(null);
-    //const {id}=useParams();
+   // const {id}=useParams();
     useEffect(() => {
         const fetchContent = () => {
-            api.get("/content/getVappa")
+            api.get("/content/getThandhai")
                 .then(response => {
                     setContent(response.data.data);
                     console.log("Content", response.data.data);
@@ -32,7 +33,7 @@ const Vappanayagam = () => {
 
     return (
         <div>
-            <div className="header">
+            {/* <div className="header">
                 <div className="top-header">
                     <div className="container">
                         <div className="row no-gutters justify-content-between align-items-center">
@@ -175,7 +176,7 @@ const Vappanayagam = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className="service-details">
                 <div className="container">
                     <div className="row">
@@ -189,13 +190,16 @@ const Vappanayagam = () => {
                                                 content.map(item => (
                                                     <div key={item.content_id}>
                                                         <h2>{item.title}</h2>
-                                                        <img
-                                                            src={`http://emsmedia.net/magazine/web_control/images/article/img/1538875043.gif`}
+                                                        {/* <img
+                                                            src={`http://emsmedia.net/magazine/web_control/images/article/img/2117504070.jpg`}
                                                             alt={item.alt}
                                                             width="300px"
                                                             height="250px"
-                                                        />
-                                                        <p>{stripHtmlTags(item.description)}</p>
+                                                        /> */}
+                                                        <p>
+                                                        {ReactHtmlParser(item.description)}
+                                                        {/* {stripHtmlTags(item.description)} */}
+                                                        </p>
                                                     </div>
                                                 ))
                                             }
@@ -211,4 +215,4 @@ const Vappanayagam = () => {
     );
 };
 
-export default Vappanayagam;
+export default Thandhainayagam;

@@ -1,0 +1,168 @@
+.about {
+    padding-top: 60px;
+    padding-bottom: 120px;
+    &.about-2 {
+        .part-img {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            img {
+                max-width: none;
+            }
+        }
+        .part-txt {
+            .def-btn {
+                margin-top: 27px;
+            }
+        }
+    }
+    &.about-inner {
+        padding-top: 120px;
+    }
+    .image-box {
+        padding-right: 34px;
+        .part-img {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            z-index: -1;
+        }
+        .fun-fact-inner {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background: $color-2;
+            border: 5px solid $white;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px 0px rgba($black, 0.1);
+            padding: 30px 25px;
+            margin: -70px 35px 0;
+            z-index: 2;
+            .single-box {
+                padding: 0 10px;
+                h4 {
+                    font-size: 30px;
+                    line-height: 100%;
+                    font-weight: 700;
+                    color: $white;
+                    margin-top: -4px;
+                    margin-bottom: 6px;
+                    span {
+                        line-height: 100%;
+                    }
+                }
+                p {
+                    font-size: 14px;
+                    line-height: 24px;
+                    font-weight: 600;
+                    color: $color-1;
+                    margin-bottom: -8px;
+                    span {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+    .part-txt {
+        .heading {
+            margin-bottom: 43px;
+            text-align: left;
+        }
+        p {
+            font-size: 16px;
+            line-height: 26px;
+            color: $black-2;
+            margin-bottom: 15px;
+        }
+        .boxes {
+            margin-top: 41px;
+            .single-box {
+                display: flex;
+                margin-bottom: 42px;
+                .icon {
+                    margin-right: 15px;
+                    span {
+                        font-size: 25px;
+                        color: $black-2;
+                        transition: 0.4s;
+                    }
+                }
+                .txt {
+                    h3 {
+                        font-size: 20px;
+                        line-height: 100%;
+                        font-weight: 600;
+                        color: $black-2;
+                        margin-top: -1px;
+                        margin-bottom: 10px;
+                        transition: 0.4s;
+                    }
+                    span {
+                        font-size: 14px;
+                        line-height: 24px;
+                        color: $black-2;
+                        margin-bottom: 0px;
+                    }
+                }
+                &:hover {
+                    .icon {
+                        span {
+                            color: $color-2;
+                        }
+                    }
+                    .txt {
+                        h3 {
+                            color: $color-2;
+                        }
+                    }
+                }
+            }
+        }
+        .boxes-2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 50px 35px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 10px 0px rgba($black, 0.07);
+            .single-box {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding-top: 8px;
+                padding-bottom: 6px;
+                margin-bottom: -3px;
+                .img {
+                    margin-right: 15px;
+                }
+                .txt {
+                    h3 {
+                        font-size: 20px;
+                        line-height: 100%;
+                        font-weight: 700;
+                        color: $black-2;
+                        margin-bottom: 10px;
+                    }
+                    span {
+                        font-size: 16px;
+                        line-height: 100%;
+                        color: $black-2;
+                    }
+                }
+            }
+            .devider {
+                position: relative;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 100%;
+                    width: 2px;
+                    height: 100%;
+                    background: $white-3;
+                }
+            }
+        }
+    }
+}
