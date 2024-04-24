@@ -26,6 +26,10 @@ import Manitha from './pages/Manitha';
 import PiraEnaipugal from './pages/PiraEnaipugal';
 import Kalvi from './pages/kalvi';
 import Kalvisub from './pages/kalvisub';
+import Gyanagamiyangal from "./pages/Gyanagamiyangal";
+import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
+
+
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -154,10 +158,12 @@ function App() {
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
           <Route path="/மனிதா/:id" element={<Manitha />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
-          <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />          
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />      
+              
           <Route path="/கல்வி/:id" element={<Kalvi />} />
           <Route path="/கல்வி/:id/:subCategoryId" element={<Kalvisub />} />
-
+          <Route path="/ஞான அகமியங்கள்/:id" element={<Gyanagamiyangal />} />
+          <Route path="/ஞான அகமியங்கள்/:id/:id" element={<GyanagamiyangalSub />} />
 
         </Routes>
     

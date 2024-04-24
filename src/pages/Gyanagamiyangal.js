@@ -24,7 +24,7 @@ const Religious = () => {
   // Fetch the religion service data when sectiones and id are available
   useEffect(() => {
     if (sectiones.length > 0) {
-      const section = sectiones.find((sec) => sec.section_title === "வஹ்தத்துல் வுஜூத்");
+      const section = sectiones.find((sec) => sec.section_title === "ஞான அகமியங்கள்");
       if (section) {
         api
           .post("/content/getDetailContent", { category_id: id, section_id: section.section_id })
