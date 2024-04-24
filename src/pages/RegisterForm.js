@@ -1,6 +1,5 @@
 import React from "react";
 //import NavMenu from "../components/NavMenu";
-import MemberImage from "../../src/assets/banner/membership.jpg";
 import { useState } from "react";
 import api from "../constants/api";
 import { Button } from "reactstrap";
@@ -136,7 +135,7 @@ const RegisterForm = () => {
       <div
         class="breadcrumb portfolio-breadcrumb"
         style={{
-          backgroundImage: `url(${MemberImage})`,
+          //backgroundImage: `url(${MemberImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -160,8 +159,10 @@ const RegisterForm = () => {
       <div className="contact">
         <div className="container">
           <form className="form" style={{ backgroundColor: "#183368" }}>
+            <i class="fas fa-user-plus register-user"></i>
+            <h3 class="text-center">Create Your EMS Account</h3>
             <div className="row justify-content-center">
-              <div className="col-xl-5 col-lg-5 col-md-6">
+            <div className="col-xl-10 col-lg-10">
                 <label htmlFor="first_name" style={{ color: "#FFFFFF" }}>
                   Name
                 </label>
@@ -181,7 +182,7 @@ const RegisterForm = () => {
               </div>
               <div className="col-xl-10 col-lg-10">
                 <label htmlFor="birth_year" style={{ color: "#FFFFFF" }}>
-                  Year of birth
+                  Date of Birth
                 </label>
                 <br />
                 <input
@@ -217,8 +218,6 @@ const RegisterForm = () => {
                   }}
                 />
               </div>
-
-              
               <div
                 className="col-xl-10 col-lg-10"
                 style={{ backgroundColor: "#183368" }}
@@ -276,34 +275,6 @@ const RegisterForm = () => {
                   }}
                 />
               </div>
-              
-              <div className="col-xl-3 col-lg-3 col-md-4">
-                <label htmlFor="volunteerYes" style={{ color: "white" }}>
-                  Volunteer - Yes
-                </label>
-                <input
-                  type="radio"
-                  id="volunteerYes"
-                  name="published"
-                  value="1"
-                  onChange={handleSectionForms}
-                  style={{ transform: "scale(0.3)" }}
-                />
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-4">
-                <label htmlFor="volunteerNo" style={{ color: "white" }}>
-                  Volunteer - No
-                </label>
-                <input
-                  type="radio"
-                  id="volunteerNo"
-                  name="published"
-                  value="0"
-                  onChange={handleSectionForms}
-                  style={{ transform: "scale(0.3)" }}
-                />
-              </div>
-
               <div className="col-xl-12 col-lg-12">
                 <Button
                   className="def-btn def-btn-2"
