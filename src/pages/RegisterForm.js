@@ -9,9 +9,12 @@ const RegisterForm = () => {
   const [registerForm, setRegisterForm] = useState({
     first_name: "",
     birth_year: "",
+    email:"",
+    pass_word:"",
+    mobile:""
   });
-  const [mailId, setmailId] = useState("");
-  const [validationError, setValidationError] = useState("");
+  const [mailId, setmailId] = useState({});
+  const [validationError, setValidationError] = useState([]);
   const getEnquiryEmail = () => {
     api.get("/setting/getMembershipMailId")
     .then((res) => {
@@ -22,13 +25,13 @@ const RegisterForm = () => {
     setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
   };
   const validateForm = () => {
-    const { birth_year } = registerForm;
+    //const { birth_year } = registerForm;
 
     // Check if birth year is not exactly 4 digits or contains non-digit characters
-    if (!/^\d{4}$/.test(birth_year)) {
-      setValidationError("The input is not valid E-mail!");
-      return false;
-    }
+    // if (!/^\d{4}$/.test(birth_year)) {
+    //   setValidationError("Please enter a valid year");
+    //   return false;
+    // }
 
     // Clear any previous validation error
     setValidationError("");
@@ -63,14 +66,14 @@ const RegisterForm = () => {
   };
   const sendMail = () => {
     if (window.confirm(" Are you sure do you want to send Mail\n")) {
-   
+      
     {
   
       const to = registerForm.email;
        const dynamic_template_data = {
         first_name: registerForm.first_name,
         mobile: registerForm.mobile,
-        address: registerForm.address,
+        pass_word: registerForm.pass_word,
      
       };
       api
@@ -89,11 +92,11 @@ const RegisterForm = () => {
 
     {
   
-      const to = mailId.email;
+      const to = mailId && mailId.email;
        const dynamic_template_data = {
         first_name: registerForm.first_name,
         mobile: registerForm.mobile,
-        address: registerForm.address,
+        pass_word: registerForm.pass_word,
      
       };
       api
@@ -159,7 +162,7 @@ const RegisterForm = () => {
       <div className="contact">
         <div className="container">
           <form className="form" style={{ backgroundColor: "#183368" }}>
-            <i class="fas fa-user-plus register-user"></i>
+            {/* <i class="fas fa-user-plus register-user"></i> */}
             <h3 class="text-center">Create Your EMS Account</h3>
             <div className="row justify-content-center">
             <div className="col-xl-10 col-lg-10">
@@ -186,7 +189,7 @@ const RegisterForm = () => {
                 </label>
                 <br />
                 <input
-                  type="text"
+                  type="date"
                   name="birth_year"
                   style={{
                     backgroundColor: "#FFFFFF",
@@ -222,13 +225,13 @@ const RegisterForm = () => {
                 className="col-xl-10 col-lg-10"
                 style={{ backgroundColor: "#183368" }}
               >
-                <label htmlFor="address" style={{ color: "#FFFFFF" }}>
+                <label htmlFor="name" style={{ color: "#FFFFFF" }}>
                   User Name
                 </label>
                 <br />
                 <input
                   type="text"
-                  name="address"
+                  name="name"
                   style={{
                     backgroundColor: "#FFFFFF",
                     border: "1px solid white",
@@ -240,13 +243,13 @@ const RegisterForm = () => {
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-                <label htmlFor="address2" style={{ color: "#FFFFFF" }}>
+                <label htmlFor="pass_word" style={{ color: "#FFFFFF" }}>
                   Password
                 </label>
                 <br />
                 <input
                   type="text"
-                  name="address2"
+                  name="pass_word"
                   style={{
                     backgroundColor: "#FFFFFF",
                     border: "1px solid white",
@@ -258,13 +261,13 @@ const RegisterForm = () => {
                 />
               </div>
               <div className="col-xl-10 col-lg-10">
-                <label htmlFor="qualification" style={{ color: "#FFFFFF" }}>
+                <label htmlFor="mobile" style={{ color: "#FFFFFF" }}>
                   Contact Number
                 </label>
                 <br />
                 <input
                   type="text"
-                  name="qualification"
+                  name="mobile"
                   style={{
                     backgroundColor: "#FFFFFF",
                     border: "1px solid white",
