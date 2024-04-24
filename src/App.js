@@ -27,6 +27,8 @@ import PiraEnaipugal from './pages/PiraEnaipugal';
 import Kalvi from './pages/kalvi';
 import kalvisub from './pages/kalvisub';
 import Gyanagamiyangal from "./pages/Gyanagamiyangal";
+import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
+
 
 
 function App() {
@@ -161,6 +163,8 @@ function App() {
               <Route path="/கல்வி/:id" element={<Kalvi />} />
           <Route path="/கல்வி/:id/:subCategoryId" element={<kalvisub />} />
           <Route path="/ஞான அகமியங்கள்/:id" element={<Gyanagamiyangal />} />
+          <Route path="/ஞான அகமியங்கள்/:id/:id" element={<GyanagamiyangalSub />} />
+
         </Routes>
     
     </HashRouter>
