@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 //import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
-const Kolgaigal = () => {
+const Kalvi = () => {
   const { id } = useParams();
 
   const [religion, setReligion] = useState([]);
@@ -72,5 +72,4 @@ const Kolgaigal = () => {
   );
 };
 
-export default Kolgaigal;
-
+export default Kalvi;
