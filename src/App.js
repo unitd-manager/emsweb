@@ -20,6 +20,7 @@ import React from "react";
 import FromBooks from './pages/FromBooks';
 import Thoguppugal from './pages/Thoguppugal';
 import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
+import Manitha from './pages/Manitha';
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -148,6 +149,8 @@ function App() {
           <Route path="/Religious" element={<Religious/>} />          
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
+          <Route path="/மனிதா/:id" element={<Manitha />} />
+          
 
         </Routes>
     
