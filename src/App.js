@@ -1,6 +1,9 @@
 //import logo from './logo.svg';
 import './App.css';
 import {  Route,HashRouter ,Routes} from 'react-router-dom';
+import { useEffect, useState } from "react";
+import api from "./constants/api";
+import React from "react";
 import NavMenu from "../src/components/NavMenu";
 import logo from "../src/assets/images/United Logo.png";
 import Home from './pages/home';
@@ -9,14 +12,11 @@ import ServiceDetails from './pages/ServiceDetails';
 import TeamPage from './pages/TeamPage';
 import Events from './pages/Events';
 import EventsEdit from './pages/EventsEdit';
-import Kolgaigal from './pages/Kolgaigal';
-import Ahlubaith from './pages/Ahlubaith';
+// import Kolgaigal from './pages/Kolgaigal';
+import Engalai from './pages/Engalai';
 //import Vappanayagam from './pages/Vappanayagam';
 import Religious from "./pages/Religious";
 import Vahdhathulujjuth from "./pages/Vahdhathulujjuth";
-import { useEffect, useState } from "react";
-import api from "./constants/api";
-import React from "react";
 import FromBooks from './pages/FromBooks';
 import Thoguppugal from './pages/Thoguppugal';
 import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
@@ -28,6 +28,15 @@ import Thunaisub from './pages/Thunaisub';
 import PiraEnaipugal from './pages/PiraEnaipugal';
 import Kalvi from './pages/kalvi';
 import Kalvisub from './pages/kalvisub';
+//import Niruvanarsub from './pages/Niruvanarsub';
+//import Engalaisub from './pages/Engalaisub';
+import PiraEnaipugal from './pages/PiraEnaipugal';
+import Kalvi from './pages/kalvi';
+import Kalvisub from './pages/kalvisub';
+import Gyanagamiyangal from "./pages/Gyanagamiyangal";
+import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
+
+
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -146,11 +155,11 @@ function App() {
           <Route path="/team" element={<TeamPage />} />
           <Route path="/Events" element={<Events />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
-          <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<Niruvanarsub />} />
-          <Route path="/எங்களைப் பற்றி/:id" element={<Kolgaigal />} />
-          <Route path="/எங்களைப் பற்றி/:id" element={<Ahlubaith />} />
-          <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<Thunaisub />} />
-          <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<PiraEnaipugal />} />
+          {/*<Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<Niruvanarsub />} />
+           <Route path="/எங்களைப் பற்றி/:id" element={<Kolgaigal />} /> */}
+          <Route path="/எங்களைப் பற்றி/:id" element={<Engalai />} />
+          {/* <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<Engalaisub />} /> */}
+          <Route path="/எங்களைப் பற்றி/:id/:id" element={<PiraEnaipugal />} />
           <Route path="/நூற்கள்/:id" element={<FromBooks />} />
           <Route path="/Ahlubaith" element={<Ahlubaith />} />
           <Route path="/Kolgaigal" element={<Kolgaigal/>} />
@@ -164,6 +173,12 @@ function App() {
           <Route path="/கல்வி/:id" element={<Kalvi />} />
           <Route path="/கல்வி/:id/:subCategoryId" element={<Kalvisub />} />
 
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />      
+              
+          <Route path="/கல்வி/:id" element={<Kalvi />} />
+          <Route path="/கல்வி/:id/:subCategoryId" element={<Kalvisub />} />
+          <Route path="/ஞான அகமியங்கள்/:id" element={<Gyanagamiyangal />} />
+          <Route path="/ஞான அகமியங்கள்/:id/:id" element={<GyanagamiyangalSub />} />
 
         </Routes>
     

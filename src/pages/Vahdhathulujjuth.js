@@ -25,7 +25,7 @@ console.log("awsde",id)
     console.log("1111",videoUrls&&videoUrls.external_link)
     useEffect(() => {
       getVideoUrls();
-    }, []); 
+    }, [getVideoUrls]); 
   return (
     <div>
       <div className="breadcrumb service-breadcrumb">
@@ -43,7 +43,6 @@ console.log("awsde",id)
 
         <div className="container">
         <div className="video-gallery">
-        <h2></h2>
         <div className="container">
           
                 <div  className="video-item">
@@ -56,7 +55,7 @@ console.log("awsde",id)
                     style={{ aspectRatio: '16/9' }}
                   />
                   
-                </div>
+                </div> 
        
         </div>
       </div>

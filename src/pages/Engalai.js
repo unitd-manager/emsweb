@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 //import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
-const Ahlubaith = () => {
+const Engalai = () => {
   const { id } = useParams();
 
   const [religion, setReligion] = useState([]);
@@ -72,7 +72,7 @@ const Ahlubaith = () => {
   );
 };
 
-export default Ahlubaith;
+export default Engalai;
 
 // ServiceDetails.js
 // import React, { useState, useEffect } from 'react';
