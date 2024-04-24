@@ -4,10 +4,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ReactHtmlParser from "react-html-parser";
 
-//import NavMenu from '../components/NavMenu'
 import api from '../constants/api';
 
-const Thunaisub = () => {   
+const Engalaisub = () => {   
     const { subCategoryId } = useParams([]);
     // console.log("Category ID:", categoryId);
     // console.log("Subcategory ID:", subCategoryId);
@@ -73,4 +72,4 @@ const Thunaisub = () => {
     );
 }
 
-export default Thunaisub;
+export default Engalaisub;
