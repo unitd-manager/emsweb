@@ -2,42 +2,42 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-//import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
 const Religious = () => {
-  const { title } = useParams();
+  const { id } = useParams();
   const [sectiones, setSectiones] = useState([]);
-
   const [religion, setReligion] = useState([]);
+
+  // Fetch the sections when the component mounts
   useEffect(() => {
-    
     api
       .get("/section/getSectionMenu")
       .then((res) => {
-        setSectiones(res.data.data[0]);
+        setSectiones(res.data.data);
       })
       .catch((error) => {
         console.error("Error fetching sections:", error);
       });
+  }, []); // No dependencies since we only fetch once on mount
 
-      console.log("1w2e3",sectiones.section_id)
-
-
-    const getReligion = () => {
-      var formated = title.split("-").join(" ");
-
-      api
-        .post("/content/getReligionService", { title: formated,section_id:sectiones.section_id, })
-        .then((res) => {
-          setReligion(res.data.data);
-          AOS.init(); // Move AOS.init() inside the promise chain to ensure it's called after data is fetched
-        })
-        .catch(() => {});
-    };
-
-    getReligion();
-  }, [title]);
+  // Fetch the religion service data when sectiones and id are available
+  useEffect(() => {
+    if (sectiones.length > 0) {
+      const section = sectiones.find((sec) => sec.section_title === "வஹ்தத்துல் வுஜூத்");
+      if (section) {
+        api
+          .post("/content/getReligionService", { category_id: id, section_id: section.section_id })
+          .then((res) => {
+            setReligion(res.data.data);
+            AOS.init(); // Move AOS.init() inside the promise chain
+          })
+          .catch((error) => {
+            console.error("Error fetching religion data:", error);
+          });
+      }
+    }
+  }, [id, sectiones]); // Run when `id` or `sectiones` changes
 
   return (
     <div>
@@ -63,12 +63,6 @@ const Religious = () => {
           <div className="row justify-content-center">
             {religion.map((image, index) => (
               <div key={index} className="col-xl-12 col-lg-12 col-md-12">
-                {/* <div className="part-img">
-                  <img
-                    src={`https://emsweb.unitdtechnologies.com/storage/uploads/${image.file_name}`}
-                    alt={image.alt}
-                  />
-                </div> */}
                 <div className="col-xl-12 col-lg-12 col-md-12">
                   <div
                     className="part-txt"
