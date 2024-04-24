@@ -22,6 +22,8 @@ import FromBooks from './pages/FromBooks';
 import Thoguppugal from './pages/Thoguppugal';
 import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
 import Manitha from './pages/Manitha';
+import Gyanagamiyangal from "./pages/Gyanagamiyangal";
+
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -150,7 +152,8 @@ function App() {
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
           <Route path="/மனிதா/:id" element={<Manitha />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
-          <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:title/:id" element={<Vahdhathulujjuth />} />
+          <Route path="/ஞான அகமியங்கள்/:id" element={<Gyanagamiyangal />} />
         </Routes>
     
     </HashRouter>
