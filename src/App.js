@@ -13,12 +13,14 @@ import Kolgaigal from './pages/Kolgaigal';
 import Ahlubaith from './pages/Ahlubaith';
 //import Vappanayagam from './pages/Vappanayagam';
 import Religious from "./pages/Religious";
+import Vahdhathulujjuth from "./pages/Vahdhathulujjuth";
 import { useEffect, useState } from "react";
 import api from "./constants/api";
 import React from "react";
 import FromBooks from './pages/FromBooks';
 //import Thoguppugal from './pages/Thoguppugal';
 import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
+import Manitha from './pages/Manitha';
 import Niruvanarsub from './pages/Niruvanarsub';
 import Thunaisub from './pages/Thunaisub';
 import PiraEnaipugal from './pages/PiraEnaipugal';
@@ -149,10 +151,11 @@ function App() {
           <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<PiraEnaipugal />} />
           <Route path="/நூற்கள்/:id" element={<FromBooks />} />
           <Route path="/Kolgaigal" element={<Kolgaigal/>} />
-          <Route path="/Religious" element={<Religious/>} />          
           {/* <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} /> */}
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
-          <Route path="/கல்வி/:id" element={<Kalvi />} />
+          <Route path="/மனிதா/:id" element={<Manitha />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />          <Route path="/கல்வி/:id" element={<Kalvi />} />
           <Route path="/கல்வி/:id/:subCategoryId" element={<kalvisub />} />
 
 
