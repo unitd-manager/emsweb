@@ -19,7 +19,9 @@ import { useEffect, useState } from "react";
 import api from "./constants/api";
 import React from "react";
 import FromBooks from './pages/FromBooks';
-
+import Thoguppugal from './pages/Thoguppugal';
+import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
+import Manitha from './pages/Manitha';
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -140,15 +142,15 @@ function App() {
           <Route path="/EventsEdit/:id" element={<EventsEdit />} />
           <Route path="/Thandhainayagam" element={<Thandhainayagam />} />
           <Route path="/Kolgaigal" element={<Kolgaigal />} />
-          <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:title" element={<Ahlubaith />} />
-          <Route path="/நூற்கள்/:title" element={<FromBooks />} />
-          <Route path="/Ahlubaith" element={<Ahlubaith />} />
+          <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:id" element={<Ahlubaith />} />
+          <Route path="/நூற்கள்/:id" element={<FromBooks />} />
           <Route path="/Kolgaigal" element={<Kolgaigal/>} />
           <Route path="/Thandhainayagam" element={<Thandhainayagam/>} />
+          <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
+          <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
+          <Route path="/மனிதா/:id" element={<Manitha />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />
-
-          Vahdhathulujjuth
         </Routes>
     
     </HashRouter>

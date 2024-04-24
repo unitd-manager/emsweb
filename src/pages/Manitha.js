@@ -5,25 +5,25 @@ import "aos/dist/aos.css";
 //import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
-const FromBooks = () => {
+const Manitha = () => {
   const { id } = useParams();
 
-  const [books, setBooks] = useState([]);
+  const [manitha, setManitha] = useState([]);
 
   useEffect(() => {
-    const getBooks = () => {
+    const getManitha = () => {
       //var formated = title.split("-").join(" ");
 
       api
-        .post("/content/getBooks", { category_id:id })
+        .post("/content/getManitha", { category_id:id })
         .then((res) => {
-          setBooks(res.data.data);
+          setManitha(res.data.data);
           AOS.init(); // Move AOS.init() inside the promise chain to ensure it's called after data is fetched
         })
         .catch(() => {});
     };
 
-    getBooks();
+    getManitha();
   }, [id]);
 
   return (
@@ -33,11 +33,11 @@ const FromBooks = () => {
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
               <div className="part-txt">
-                <h1>Books</h1>
+                <h1>Manitha</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>Books Detail</li>
+                  <li>Magangal</li>
                  
                 </ul>
               </div>
@@ -50,7 +50,7 @@ const FromBooks = () => {
       <div className="feature-2">
         <div className="container">
           <div className="row justify-content-center">
-            {books.map((image, index) => (
+            {manitha.map((image, index) => (
               <div key={index} className="col-xl-12 col-lg-12 col-md-12">
                 <div className="part-img">
                 </div>
@@ -71,4 +71,4 @@ const FromBooks = () => {
   );
 };
 
-export default FromBooks;
+export default Manitha;
