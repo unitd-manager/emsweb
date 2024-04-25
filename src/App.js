@@ -7,13 +7,15 @@ import Home from './pages/home';
 import BlogDetails from './pages/BlogDetails';
 import ServiceDetails from './pages/ServiceDetails';
 import TeamPage from './pages/TeamPage';
-import Events from './pages/Events';
-import EventsEdit from './pages/EventsEdit';
+// import Events from './pages/Events';
+// import EventsEdit from './pages/EventsEdit';
 import Thandhainayagam from './pages/Thandhainayagam';
 import Kolgaigal from './pages/Kolgaigal';
 import Ahlubaith from './pages/Ahlubaith';
 //import Vappanayagam from './pages/Vappanayagam';
 import Religious from "./pages/Religious";
+import Pugaipadangal from "./pages/Pugaipadangal";
+import PhotoGallery from "./pages/PhotoGallery";
 import { useEffect, useState } from "react";
 import api from "./constants/api";
 import React from "react";
@@ -136,10 +138,12 @@ function App() {
           <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/service-details" element={<ServiceDetails />} />
           <Route path="/team" element={<TeamPage />} />
-          <Route path="/Events" element={<Events />} />
-          <Route path="/EventsEdit/:id" element={<EventsEdit />} />
+          {/* <Route path="/Events" element={<Events />} />
+          <Route path="/EventsEdit/:id" element={<EventsEdit />} /> */}
           <Route path="/Thandhainayagam" element={<Thandhainayagam />} />
           <Route path="/Kolgaigal" element={<Kolgaigal />} />
+          <Route path="/நிகழ்ச்சிகள்/:id" element={<PhotoGallery />} />
+          <Route path="/நிகழ்ச்சிகள்/:id/Pugaipadangal" element={<Pugaipadangal />} />
           <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:id" element={<Ahlubaith />} />
           <Route path="/நூற்கள்/:id" element={<FromBooks />} />
           <Route path="/Kolgaigal" element={<Kolgaigal/>} />
