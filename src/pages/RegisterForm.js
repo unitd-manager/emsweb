@@ -4,6 +4,7 @@ import { useState } from "react";
 import api from "../constants/api";
 import { Button } from "reactstrap";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const [registerForm, setRegisterForm] = useState({
@@ -294,6 +295,9 @@ const RegisterForm = () => {
                 >
                   Register
                 </Button>
+                <p className="login-link"style={{ textAlign: "center", marginTop: "10px", color:"white"}}>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
               </div>
               <br />
             </div>
