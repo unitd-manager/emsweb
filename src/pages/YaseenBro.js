@@ -30,6 +30,8 @@ const YaseenBro = () => {
         <img src="imag2.jpg" alt="Image 2" />
         <img src="imag3.jpg" alt="Image 3" />
         <img src="img2.png" alt="Image 4" />
+        <img src="imag4.png" alt="Image 5" />
+
       </div>
     </div>
   );
