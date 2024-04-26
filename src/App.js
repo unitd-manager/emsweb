@@ -12,7 +12,7 @@ import ServiceDetails from './pages/ServiceDetails';
 import TeamPage from './pages/TeamPage';
 import Events from './pages/Events';
 import EventsEdit from './pages/EventsEdit';
-// import Kolgaigal from './pages/Kolgaigal';
+import Kolgaigal from './pages/Kolgaigal';
 import Engalai from './pages/Engalai';
 //import Vappanayagam from './pages/Vappanayagam';
 import Religious from "./pages/Religious";
@@ -22,19 +22,20 @@ import Thoguppugal from './pages/Thoguppugal';
 import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
 import Manitha from './pages/Manitha';
 import RegisterForm from './pages/RegisterForm';
-import Login from './pages/LoginForm';
-import Niruvanarsub from './pages/Niruvanarsub';
-import Thunaisub from './pages/Thunaisub';
+import Login from './constants/LoginForm';
+//import Niruvanarsub from './pages/Niruvanarsub';
+//import Thunaisub from './pages/Thunaisub';
 import PiraEnaipugal from './pages/PiraEnaipugal';
 import Kalvi from './pages/kalvi';
 import Kalvisub from './pages/kalvisub';
 //import Niruvanarsub from './pages/Niruvanarsub';
 //import Engalaisub from './pages/Engalaisub';
-import PiraEnaipugal from './pages/PiraEnaipugal';
-import Kalvi from './pages/kalvi';
-import Kalvisub from './pages/kalvisub';
+//import PiraEnaipugal from './pages/PiraEnaipugal';
+//import Kalvi from './pages/kalvi';
+//import Kalvisub from './pages/kalvisub';
 import Gyanagamiyangal from "./pages/Gyanagamiyangal";
 import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
+
 
 
 
@@ -161,7 +162,7 @@ function App() {
           {/* <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<Engalaisub />} /> */}
           <Route path="/எங்களைப் பற்றி/:id/:id" element={<PiraEnaipugal />} />
           <Route path="/நூற்கள்/:id" element={<FromBooks />} />
-          <Route path="/Ahlubaith" element={<Ahlubaith />} />
+          {/* <Route path="/Ahlubaith" element={<Ahlubaith />} /> */}
           <Route path="/Kolgaigal" element={<Kolgaigal/>} />
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
