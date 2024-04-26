@@ -70,10 +70,12 @@ const RegisterForm = () => {
     {
   
       const to = registerForm.email;
-       const dynamic_template_data = {
-        first_name: registerForm.first_name,
-        mobile: registerForm.mobile,
-        pass_word: registerForm.pass_word,
+      const dynamic_template_data = {
+        names: registerForm.first_name,
+        phone: registerForm.mobile,
+        Email: registerForm.email,
+        UserName:registerForm.name,
+        Dob:registerForm.birth_year,
      
       };
       api
@@ -94,9 +96,11 @@ const RegisterForm = () => {
   
       const to = mailId && mailId.email;
        const dynamic_template_data = {
-        first_name: registerForm.first_name,
-        mobile: registerForm.mobile,
-        pass_word: registerForm.pass_word,
+        names: registerForm.first_name,
+        phone: registerForm.mobile,
+        Email: registerForm.email,
+        UserName:registerForm.name,
+        Dob:registerForm.birth_year,
      
       };
       api

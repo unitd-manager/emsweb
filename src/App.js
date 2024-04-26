@@ -28,13 +28,13 @@ import PiraEnaipugal from './pages/PiraEnaipugal';
 import Kalvi from './pages/kalvi';
 import Kalvisub from './pages/kalvisub';
 //import Niruvanarsub from './pages/Niruvanarsub';
-//import Engalaisub from './pages/Engalaisub';
+import Engalaisub from './pages/Engalaisub';
 //import PiraEnaipugal from './pages/PiraEnaipugal';
 //import Kalvi from './pages/kalvi';
 //import Kalvisub from './pages/kalvisub';
 import Gyanagamiyangal from "./pages/Gyanagamiyangal";
 import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
-
+import Contact from './pages/Contact';
 import YaseenBro from './pages/YaseenBro';
 
 
@@ -50,7 +50,7 @@ function App() {
     api
       .get("/content/getEmail")
       .then((res) => {
-        setEmail(res.data.data[0]);
+        setEmail(res.data.data);
       })
       .catch(() => {
         // Handle error
@@ -81,11 +81,11 @@ function App() {
                 <div className="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
                   <div className="top-right">
                     <a
-                      href="https://www.facebook.com/profile.php?id=100085667005902"
-                      className="fb"
-                      style={{ marginRight: "10px" }}
+                      href="/login"
+                      className="login"
+                      //style={{ marginRight: "10px" }}
                     >
-                      <i className="flaticon-facebook"></i>
+                      <i class="fa-solid fa-right-to-bracket"></i>
                     </a>
                     <a
                       href="https://twitter.com/PenaKural"
@@ -165,6 +165,7 @@ function App() {
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
           <Route path="/மனிதா/:id" element={<Manitha />} />
           <Route path="/RegisterForm" element={<RegisterForm />} />
+          <Route path="/Contact" element={<Contact />} />
           <Route path="/Login" element={<Login/>} />
           <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
           <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />          
