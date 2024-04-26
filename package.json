@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@react-pdf/renderer": "^3.4.4",
+=======
+    "@ant-design/icons": "^5.3.6",
+>>>>>>> 9819bd79cc24d065385e4def6a9c0531ac8cfef9
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "animate.css": "^4.1.1",
+    "antd": "^5.16.4",
     "aos": "^2.3.4",
     "axios": "^1.6.2",
     "file-saver": "^2.0.5",
