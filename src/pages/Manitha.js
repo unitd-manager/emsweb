@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AOS from "aos";
@@ -6,25 +5,25 @@ import "aos/dist/aos.css";
 //import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
-const Kolgaigal = () => {
+const Manitha = () => {
   const { id } = useParams();
 
-  const [religion, setReligion] = useState([]);
+  const [manitha, setManitha] = useState([]);
 
   useEffect(() => {
-    const getReligion = () => {
+    const getManitha = () => {
       //var formated = title.split("-").join(" ");
 
       api
-        .post("/content/getByVappa", { category_id:id })
+        .post("/content/getManitha", { category_id:id })
         .then((res) => {
-          setReligion(res.data.data);
+          setManitha(res.data.data);
           AOS.init(); // Move AOS.init() inside the promise chain to ensure it's called after data is fetched
         })
         .catch(() => {});
     };
 
-    getReligion();
+    getManitha();
   }, [id]);
 
   return (
@@ -34,11 +33,11 @@ const Kolgaigal = () => {
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
               <div className="part-txt">
-                <h1>Services</h1>
+                <h1>Manitha</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>Service Detail</li>
+                  <li>Magangal</li>
                  
                 </ul>
               </div>
@@ -51,7 +50,7 @@ const Kolgaigal = () => {
       <div className="feature-2">
         <div className="container">
           <div className="row justify-content-center">
-            {religion.map((image, index) => (
+            {manitha.map((image, index) => (
               <div key={index} className="col-xl-12 col-lg-12 col-md-12">
                 <div className="part-img">
                 </div>
@@ -72,5 +71,4 @@ const Kolgaigal = () => {
   );
 };
 
-export default Kolgaigal;
-
+export default Manitha;

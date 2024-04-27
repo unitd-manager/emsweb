@@ -9,12 +9,12 @@ import ServiceDetails from './pages/ServiceDetails';
 import TeamPage from './pages/TeamPage';
 // import Events from './pages/Events';
 // import EventsEdit from './pages/EventsEdit';
-import Thandhainayagam from './pages/Thandhainayagam';
+// import Thandhainayagam from './pages/Thandhainayagam';
 import Kolgaigal from './pages/Kolgaigal';
-import Ahlubaith from './pages/Ahlubaith';
+// import Ahlubaith from './pages/Ahlubaith';
 //import Vappanayagam from './pages/Vappanayagam';
 import Religious from "./pages/Religious";
-import Pugaipadangal from "./pages/Pugaipadangal";
+// import Pugaipadangal from "./pages/Pugaipadangal";
 import PhotoGallery from "./pages/PhotoGallery";
 import { useEffect, useState } from "react";
 import api from "./constants/api";
@@ -22,6 +22,21 @@ import React from "react";
 import FromBooks from './pages/FromBooks';
 import Thoguppugal from './pages/Thoguppugal';
 import ThoguppugalSubCategory from './pages/ThoguppugalSubcategory';
+import Manitha from './pages/Manitha';
+import RegisterForm from './pages/RegisterForm';
+import Login from './pages/LoginForm';
+import Niruvanarsub from './pages/Niruvanarsub';
+// import Thunaisub from './pages/Thunaisub';
+//import Niruvanarsub from './pages/Niruvanarsub';
+//import Engalaisub from './pages/Engalaisub';
+import PiraEnaipugal from './pages/PiraEnaipugal';
+import Kalvi from './pages/kalvi';
+import Kalvisub from './pages/kalvisub';
+import Vahdhathulujjuth from './pages/Vahdhathulujjuth';
+import Gyanagamiyangal from "./pages/Gyanagamiyangal";
+import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
+
+
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -140,17 +155,30 @@ function App() {
           <Route path="/team" element={<TeamPage />} />
           {/* <Route path="/Events" element={<Events />} />
           <Route path="/EventsEdit/:id" element={<EventsEdit />} /> */}
-          <Route path="/Thandhainayagam" element={<Thandhainayagam />} />
+          {/* <Route path="/Thandhainayagam" element={<Thandhainayagam />} /> */}
           <Route path="/Kolgaigal" element={<Kolgaigal />} />
           <Route path="/நிகழ்ச்சிகள்/:id" element={<PhotoGallery />} />
-          <Route path="/நிகழ்ச்சிகள்/:id/Pugaipadangal" element={<Pugaipadangal />} />
-          <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:id" element={<Ahlubaith />} />
+          {/* <Route path="/நிகழ்ச்சிகள்/:id/Pugaipadangal" element={<Pugaipadangal />} /> */}
+          {/* <Route path="/அஹ்லுல்பைத் (அநந்தரர்கள்)/:id" element={<Ahlubaith />} /> */}
           <Route path="/நூற்கள்/:id" element={<FromBooks />} />
+          {/* <Route path="/Ahlubaith" element={<Ahlubaith />} /> */}
           <Route path="/Kolgaigal" element={<Kolgaigal/>} />
-          <Route path="/Thandhainayagam" element={<Thandhainayagam/>} />
-          <Route path="/Religious" element={<Religious/>} />          
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
           <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />}/>
+          <Route path="/மனிதா/:id" element={<Manitha />} />
+          <Route path="/RegisterForm" element={<RegisterForm />} />
+          <Route path="/Login" element={<Login/>} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />          
+          <Route path="/கல்வி/:id" element={<Kalvi />} />
+          <Route path="/கல்வி/:id/:subCategoryId" element={<Kalvisub />} />
+
+          <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />      
+              
+          <Route path="/கல்வி/:id" element={<Kalvi />} />
+          <Route path="/கல்வி/:id/:subCategoryId" element={<Kalvisub />} />
+          <Route path="/ஞான அகமியங்கள்/:id" element={<Gyanagamiyangal />} />
+          <Route path="/ஞான அகமியங்கள்/:id/:id" element={<GyanagamiyangalSub />} />
 
         </Routes>
     
