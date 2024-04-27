@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import { useParams } from "react-router-dom";
 import "aos/dist/aos.css";
+import bannerImage from "../../src/assets/images/Evens.jpg";
 import ReactPlayer from "react-player";
 
 import api from "../constants/api";
@@ -54,7 +55,12 @@ const Thoguppugal = () => {
 
   return (
     <div>
-      <div className="breadcrumb service-breadcrumb">
+      <div className="breadcrumb service-breadcrumb"   style={{
+          backgroundImage: `url(${bannerImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">

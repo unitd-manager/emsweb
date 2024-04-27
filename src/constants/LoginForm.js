@@ -1,9 +1,33 @@
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input,Card, Col,Row } from 'antd';
+import { Button, Checkbox, Form, Input,Card, Col,Row,message } from 'antd';
+import api from './api';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({login,setLogin,register,setRegister}) => {
+
+const navigate = useNavigate();
+  // const handleToggle = () => {
+  //   setRegister(true);
+  //   setLogin(false);
+  // };
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
+    api
+    .post('/api/login', values)
+    .then((res) => {
+      if (res && res.data.status === '400') {
+        alert('Invalid Username or Password');
+      } else {
+        
+        localStorage.setItem('user',JSON.stringify(res.data.data));
+        localStorage.setItem('token', JSON.stringify(res.data.token));
+       
+        navigate("/");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   };
   return (
     <div className='container center'>
@@ -50,16 +74,16 @@ const Login = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <a className="login-form-forgot" href="/forgotpassword">
+        {/* <a className="login-form-forgot" href="/forgotpassword">
           Forgot password
-        </a>
+        </a> */}
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
           Log in
         </Button>
-        
+        {/* Or <span onClick={handleToggle}><a>register now!</a></span> */}
       </Form.Item>
     </Form>
     </Card>
@@ -70,16 +94,3 @@ const Login = () => {
   );
 };
 export default Login;
-
-// #components-form-demo-normal-login .login-form {
-//   max-width: 300px;
-// }
-// #components-form-demo-normal-login .login-form-forgot {
-//   float: right;
-// }
-// #components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
-//   float: left;
-// }
-// #components-form-demo-normal-login .login-form-button {
-//   width: 100%;
-// }
