@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -169,6 +171,11 @@ const Home = () => {
   return (
     <div>
       <div>
+        <div>
+        <Link to="/MagazineLogin" target="_blank">
+  <Button>EMS Magazine</Button>
+  </Link>
+      </div>
         <Slider {...bannersettings}>
           {Array.isArray(banners) &&
             banners.map((item, index) => (
