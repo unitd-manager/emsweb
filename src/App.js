@@ -1,11 +1,9 @@
 //import logo from './logo.svg';
 import "./App.css";
 import { Route, HashRouter, Routes,Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import api from "./constants/api";
 import React from "react";
 import NavMenu from "../src/components/NavMenu";
-import logo from "../src/assets/images/United Logo.png";
+import logo from "../src/assets/images/media.jpg";
 import Home from "./pages/home";
 import BlogDetails from "./pages/BlogDetails";
 import ServiceDetails from "./pages/ServiceDetails";
@@ -41,23 +39,23 @@ import MagazineRegisterForm from './pages/MagazineRegisterForm';
 import MagazineLogin from './pages/MagazineLogin';
 
 function App() {
-  const stripHtmlTags = (htmlString) => {
-    const doc = new DOMParser().parseFromString(htmlString, "text/html");
-    return doc.body.textContent || "";
-  };
-  const [email, setEmail] = useState([]);
+  // const stripHtmlTags = (htmlString) => {
+  //   const doc = new DOMParser().parseFromString(htmlString, "text/html");
+  //   return doc.body.textContent || "";
+  // };
+  // const [email, setEmail] = useState([]);
 
-  useEffect(() => {
-    // Fetch sections
-    api
-      .get("/content/getEmail")
-      .then((res) => {
-        setEmail(res.data.data);
-      })
-      .catch(() => {
-        // Handle error
-      });
-  }, []);
+  // useEffect(() => {
+  //   // Fetch sections
+  //   api
+  //     .get("/content/getEmail")
+  //     .then((res) => {
+  //       setEmail(res.data.data);
+  //     })
+  //     .catch(() => {
+  //       // Handle error
+  //     });
+  // }, []);
   return (
     <HashRouter>
       <div class="preloader">
@@ -75,8 +73,7 @@ function App() {
                   <div className="top-left">
                     <ul>
                       <li>
-                        <i className="flaticon-message"></i>
-                        <span>{stripHtmlTags(email.description)}</span>
+                      info@emsmedia.net
                       </li>
                       <li><span><Link to="/contact" className="top-left">
                           Contact
