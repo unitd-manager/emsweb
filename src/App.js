@@ -1,11 +1,9 @@
 //import logo from './logo.svg';
 import "./App.css";
 import { Route, HashRouter, Routes,Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import api from "./constants/api";
 import React from "react";
 import NavMenu from "../src/components/NavMenu";
-import logo from "../src/assets/images/United Logo.png";
+import logo from "../src/assets/images/media.jpg";
 import Home from "./pages/home";
 import BlogDetails from "./pages/BlogDetails";
 import ServiceDetails from "./pages/ServiceDetails";
@@ -24,6 +22,7 @@ import RegisterForm from "./pages/RegisterForm";
 import Login from "./constants/LoginForm";
 //import Niruvanarsub from './pages/Niruvanarsub';
 //import Thunaisub from './pages/Thunaisub';
+import PhotoGallery from './pages/PhotoGallery';
 import PiraEnaipugal from "./pages/PiraEnaipugal";
 import Kalvi from "./pages/kalvi";
 import Kalvisub from "./pages/kalvisub";
@@ -43,23 +42,23 @@ import MagazineSubscripe from './pages/MagazineSubscripe';
 
 
 function App() {
-  const stripHtmlTags = (htmlString) => {
-    const doc = new DOMParser().parseFromString(htmlString, "text/html");
-    return doc.body.textContent || "";
-  };
-  const [email, setEmail] = useState([]);
+  // const stripHtmlTags = (htmlString) => {
+  //   const doc = new DOMParser().parseFromString(htmlString, "text/html");
+  //   return doc.body.textContent || "";
+  // };
+  // const [email, setEmail] = useState([]);
 
-  useEffect(() => {
-    // Fetch sections
-    api
-      .get("/content/getEmail")
-      .then((res) => {
-        setEmail(res.data.data);
-      })
-      .catch(() => {
-        // Handle error
-      });
-  }, []);
+  // useEffect(() => {
+  //   // Fetch sections
+  //   api
+  //     .get("/content/getEmail")
+  //     .then((res) => {
+  //       setEmail(res.data.data);
+  //     })
+  //     .catch(() => {
+  //       // Handle error
+  //     });
+  // }, []);
   return (
     <HashRouter>
       <div class="preloader">
@@ -77,8 +76,7 @@ function App() {
                   <div className="top-left">
                     <ul>
                       <li>
-                        <i className="flaticon-message"></i>
-                        <span>{stripHtmlTags(email.description)}</span>
+                      info@emsmedia.net
                       </li>
                       <li><span><Link to="/contact" className="top-left">
                           Contact
@@ -159,6 +157,7 @@ function App() {
           path="/தொகுப்புகள்/:id/:subCategoryId"
           element={<ThoguppugalSubCategory />}
         />
+        <Route path="/நிகழ்ச்சிகள்/:id" element={<PhotoGallery />} />
         <Route path="/மனிதா/:id" element={<Manitha />} />
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Contact" element={<Contact />} />
