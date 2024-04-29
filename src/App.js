@@ -2,6 +2,7 @@
 import './App.css';
 import {  Route,HashRouter ,Routes} from 'react-router-dom';
 import { useEffect, useState } from "react";
+import { ToastProvider } from 'react-toast-notifications';
 import api from "./constants/api";
 import React from "react";
 import NavMenu from "../src/components/NavMenu";
@@ -28,13 +29,13 @@ import PiraEnaipugal from './pages/PiraEnaipugal';
 import Kalvi from './pages/kalvi';
 import Kalvisub from './pages/kalvisub';
 //import Niruvanarsub from './pages/Niruvanarsub';
-//import Engalaisub from './pages/Engalaisub';
+import Engalaisub from './pages/Engalaisub';
 //import PiraEnaipugal from './pages/PiraEnaipugal';
 //import Kalvi from './pages/kalvi';
 //import Kalvisub from './pages/kalvisub';
 import Gyanagamiyangal from "./pages/Gyanagamiyangal";
 import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
-
+import NoolVivaram from './pages/NoolVivaram';
 import YaseenBro from './pages/YaseenBro';
 
 
@@ -57,6 +58,7 @@ function App() {
       });
   }, []);
   return (
+    <ToastProvider placement="bottom-left">
     <HashRouter>
  <div class="preloader">
         <div class="loader"><img src="assets/images/spinner.gif" alt="imagess" /></div>
@@ -159,6 +161,7 @@ function App() {
           <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<Engalaisub />} />
           <Route path="/எங்களைப் பற்றி/:id/:id" element={<PiraEnaipugal />} />
           <Route path="/நூற்கள்/:id" element={<FromBooks />} />
+          <Route path="/நூற்கள்/:id/:categoryid" element={<NoolVivaram />} />
           {/* {/* <Route path="/Ahlubaith" element={<Ahlubaith />} /> */}
           <Route path="/Kolgaigal" element={<Kolgaigal/>} /> 
           <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
@@ -177,6 +180,7 @@ function App() {
         </Routes>
     
     </HashRouter>
+    </ToastProvider>
   );
 }
 
