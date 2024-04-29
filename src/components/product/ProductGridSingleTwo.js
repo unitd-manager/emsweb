@@ -58,7 +58,7 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
             <Link to={process.env.PUBLIC_URL + "/நூற்கள்/" + product.product_id+"/"+ product.product_id}>
               <img
                 className="default-img"
-                src={`https://emsweb.unitdtechnologies.com:4014/${product.images[0]}`}
+                src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images[0]}`}
                 alt=""
                 style={{height:'250px',width:'250px'}}
               />
@@ -171,11 +171,11 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
             </div>
            
           </div>
-          <div className="price-2">
+          {/* <div className="price-2"> */}
                 
                   <Fragment>
                     <span>
-                      500
+                      {product.price}
                     </span>{" "}
                    
                   </Fragment>
@@ -183,7 +183,7 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
               </div>
           
               <span>
-               <Button style={{width:'100%'}} type="submit">
+               <Button style={{width:'100%',backgroundColor:'#000033'}} type="submit">
 Buy/View
                </Button>
               </span>
@@ -204,8 +204,8 @@ Buy/View
               </div> */}
             
            
-          
-        </div>
+{/*           
+        </div> */}
       </div>
       {/* product modal */}
       {/* <ProductModal

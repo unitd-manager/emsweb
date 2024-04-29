@@ -4,6 +4,7 @@ import { useState } from "react";
 import api from "../constants/api";
 import { Button } from "reactstrap";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const [registerForm, setRegisterForm] = useState({
@@ -70,10 +71,12 @@ const RegisterForm = () => {
     {
   
       const to = registerForm.email;
-       const dynamic_template_data = {
-        first_name: registerForm.first_name,
-        mobile: registerForm.mobile,
-        pass_word: registerForm.pass_word,
+      const dynamic_template_data = {
+        names: registerForm.first_name,
+        phone: registerForm.mobile,
+        Email: registerForm.email,
+        UserName:registerForm.name,
+        Dob:registerForm.birth_year,
      
       };
       api
@@ -94,9 +97,11 @@ const RegisterForm = () => {
   
       const to = mailId && mailId.email;
        const dynamic_template_data = {
-        first_name: registerForm.first_name,
-        mobile: registerForm.mobile,
-        pass_word: registerForm.pass_word,
+        names: registerForm.first_name,
+        phone: registerForm.mobile,
+        Email: registerForm.email,
+        UserName:registerForm.name,
+        Dob:registerForm.birth_year,
      
       };
       api
@@ -290,6 +295,9 @@ const RegisterForm = () => {
                 >
                   Register
                 </Button>
+                <p className="login-link"style={{ textAlign: "center", marginTop: "10px", color:"white"}}>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
               </div>
               <br />
             </div>

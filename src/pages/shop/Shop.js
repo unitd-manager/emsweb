@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { Fragment, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import MetaTags from "react-meta-tags";
-//import Paginator from "react-hooks-paginator";
+import Paginator from "react-hooks-paginator";
 //import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 //import { connect } from "react-redux";
 import { getSortedProducts } from "../../helpers/product";
@@ -147,19 +147,19 @@ const Shop = ({}) => {
               <div className="col-lg-9 order-1 order-lg-2">
                 {/* shop topbar default */}
                 <ShopTopbar
-                //  getLayout={getLayout}
+                  getLayout={getLayout}
                   getFilterSortParams={getFilterSortParams}
                   productCount={products.length}
                   sortedProductCount={currentData.length}
                 />
                 {/* shop page content default */}
                 <ShopProducts 
-                //layout={layout} 
+                layout={layout} 
                 products={currentData} />
 
                 {/* shop product pagination */}
                 <div className="pro-pagination-style text-center mt-30">
-                  {/* <Paginator
+                  <Paginator
                     totalRecords={sortedProducts.length}
                     pageLimit={pageLimit}
                     pageNeighbours={2}
@@ -169,7 +169,7 @@ const Shop = ({}) => {
                     pageContainerClass="mb-0 mt-0"
                     pagePrevText="«"
                     pageNextText="»"
-                  /> */}
+                  />
                 </div>
               </div>
             </div>

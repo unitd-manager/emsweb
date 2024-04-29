@@ -35,49 +35,7 @@ const ProductGrid = ({
 const[loginModal,setLoginModal]=useState(false);
 const [sessionId, setSessionId] = useState('');
 const { id } = useParams();
-//console.log('user',user)
 
-  //const onAddToCart = () => {
-   
-    // if(user){
-    //   if(data.price){
-    // data.contact_id=user.contact_id
-  
-    // InsertToCart(data);}
-    // }
-    // else{
-    //   // addToast("Please Login", { appearance: "warning", autoDismiss: true })
-    //   setLoginModal(true)
-    // }
-   
-  //};
-  
-  // const onAddToWishlist = () => {
-  //   if(user){
-
-  //     data.contact_id=user.contact_id
-  //     insertWishlistData(data);
-    
-  // }
-  //   else{
-  //    // addToast("Please Login", { appearance: "warning", autoDismiss: true })
-  //     setLoginModal(true)
-  //   }
-  // };
-
-  // const onAddToCompare = (data) => {
- 
-  //   if(user){
-
-  //     data.contact_id = user.contact_id
-  //  insertCompareData(data)  
-  // }
-  //   else{
-  //   //  addToast("Please Login", { appearance: "warning", autoDismiss: true })
-  //     setLoginModal(true)
-  //   }
-  // };
-   
   useEffect(()=>{
    
     // const userInfo=getUser();

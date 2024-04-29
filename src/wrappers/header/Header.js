@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-//import { connect } from "react-redux";
+import { connect } from "react-redux";
 import Logo from "../../components/header/Logo";
 import NavMenu from "../../components/header/NavMenu";
 import IconGroup from "../../components/header/IconGroup";
@@ -131,12 +131,12 @@ Header.propTypes = {
   cartItems:PropTypes.array
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     cartData: state.cartData,
-//     cartItems: state.cartItems.cartItems,
-//     currency: state.currencyData,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    cartData: state.cartData,
+    cartItems: state.cartItems.cartItems,
+    currency: state.currencyData,
+  };
+};
 
-export default Header;
+export default connect(mapStateToProps)(Header);

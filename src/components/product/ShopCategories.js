@@ -1,12 +1,30 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React,{useState} from "react";
 import { setActiveSort } from "../../helpers/product";
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+} from 'reactstrap';
 
 const ShopCategories = ({ categories, getSortParams }) => {
+  const [open, setOpen] = useState('1');
+  const toggle = (id) => {
+    if (open === id) {
+      setOpen();
+    } else {
+      setOpen(id);
+    }
+  };
+
   return (
-    <div className="sidebar-widget">
-      <h4 className="pro-sidebar-title">Categories </h4>
-      <div className="sidebar-widget-list mt-30">
+    <div>
+    <Accordion open={open} toggle={toggle}>
+      <AccordionItem>
+        <AccordionHeader targetId="1">Categories</AccordionHeader>
+        <AccordionBody accordionId="1">
+        <div className="sidebar-widget-list mt-30">
         {categories ? (
           <ul>
             <li>
@@ -43,6 +61,12 @@ const ShopCategories = ({ categories, getSortParams }) => {
           "No categories found"
         )}
       </div>
+        </AccordionBody>
+      </AccordionItem>
+      </Accordion>
+    {/* <div className="sidebar-widget">
+      <h4 className="pro-sidebar-title">Categories </h4>
+      */}
     </div>
   );
 };

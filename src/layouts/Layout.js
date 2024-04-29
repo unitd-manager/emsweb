@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-//import Header from "../wrappers/header/Header";
-//import Footer from "../wrappers/footer/Footer";
+import Header from "../wrappers/header/Header";
+import Footer from "../wrappers/footer/Footer";
 
 const Layout = ({
   children,
@@ -14,20 +14,18 @@ const Layout = ({
 
   return (
     <Fragment>
-      {/* <Header
+      <Header
         layout={headerContainerClass}
         top={headerTop}
         headerPaddingClass={headerPaddingClass}
         headerPositionClass={headerPositionClass}
-      /> */}
-      <div>
+      />
       {children}
-      </div>
-      {/* <Footer
+      <Footer
         backgroundColorClass="bg-gray"
         spaceTopClass="pt-100"
         spaceBottomClass="pb-70"
-      /> */}
+      />
     </Fragment>
   );
 };
