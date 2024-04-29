@@ -7,6 +7,7 @@ import api from "../constants/api";
 
 const MagazineSubscribe = () => {
   const [magazine, setMagazine] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const getMagazineSubscription = () => {
@@ -21,7 +22,12 @@ const MagazineSubscribe = () => {
     };
 
     getMagazineSubscription();
+    setShowPopup(true);
   }, []); // Empty dependency array, runs once on mount
+  const handleClosePopup = () => {
+    // Close the popup by setting showPopup to false
+    setShowPopup(false);
+};
 
   return (
     <div className="container">
@@ -50,8 +56,17 @@ const MagazineSubscribe = () => {
           ))}
         </div>
       </div>
-    </div>
-  );
-};
+      {showPopup && (
+                <div className="popup">
+                    {/* Close button positioned at the top-left corner */}
+                    <button className="close-btn" onClick={handleClosePopup}>X</button>
+                    {/* Popup content with the image */}
+                    <img src="https://emsmedia.net/magazine/assets/img/popup.jpeg" alt="Popup" />
+                </div>
+            )}
+            </div>
+    );
+}
+
 
 export default MagazineSubscribe;
