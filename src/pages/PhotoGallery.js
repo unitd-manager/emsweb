@@ -38,6 +38,7 @@ const Thoguppugal = () => {
   }, [id]);
 
   const openVideoPopup = (description, fileName) => {
+    console.log('description',description);
     if (description) {
       setSelectedVideoUrl(description);
     } else if (fileName && fileName.endsWith(".mp3")) {
@@ -132,7 +133,7 @@ const Thoguppugal = () => {
             <ReactPlayer
               url={selectedVideoUrl}
               controls
-              width="50%"
+              width="100%"
               height="100%"
             />
           </div>
