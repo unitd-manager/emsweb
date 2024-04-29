@@ -38,6 +38,9 @@ import Contact from "./pages/Contact";
 import YaseenBro from "./pages/YaseenBro";
 import MagazineRegisterForm from './pages/MagazineRegisterForm';
 import MagazineLogin from './pages/MagazineLogin';
+import MagazineSubscripe from './pages/MagazineSubscripe';
+
+
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -175,6 +178,7 @@ function App() {
         <Route path="/YaseenBro" element={<YaseenBro />} />
         <Route path="/MagazineRegisterForm" element={<MagazineRegisterForm />} />
         <Route path="/MagazineLogin" element={<MagazineLogin />} />
+         <Route path="/MagazineSubscripe" element={<MagazineSubscripe />} />
       </Routes>
     </HashRouter>
   );
