@@ -34,7 +34,7 @@ const RegisterForm = () => {
   };
   const insertMembership = () => {
     if (validateForm()) {
-      if (registerForm.first_name.trim() !== "") {
+      if (registerForm.name.trim() !== "") {
         // Check if first_name is not empty
         api
           .post("/content/insertMagazineRegisterDetails", registerForm)

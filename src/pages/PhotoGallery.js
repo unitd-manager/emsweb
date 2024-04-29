@@ -133,8 +133,8 @@ const Thoguppugal = () => {
             <ReactPlayer
               url={selectedVideoUrl}
               controls
-              width="100%"
-              height="100%"
+              width="500px"
+              height="450px"
             />
           </div>
         </div>
