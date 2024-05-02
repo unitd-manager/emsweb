@@ -28,6 +28,7 @@ import Kalvi from "./pages/kalvi";
 import Kalvisub from "./pages/kalvisub";
 //import Niruvanarsub from './pages/Niruvanarsub';
 import Engalaisub from "./pages/Engalaisub";
+import Cart from "./pages/others/Cart";
 //import PiraEnaipugal from './pages/PiraEnaipugal';
 //import Kalvi from './pages/kalvi';
 //import Kalvisub from './pages/kalvisub';
@@ -150,6 +151,10 @@ function App() {
           path="/எங்களைப் பற்றி/:id/:subCategoryId"
           element={<Engalaisub />}
         />
+         <Route
+                  path= "/cart"
+                  element={<Cart/>}
+                />
         <Route path="/எங்களைப் பற்றி/:id/:id" element={<PiraEnaipugal />} />
         <Route path="/நூற்கள்/:id" element={<FromBooks />} />
           <Route path="/நூற்கள்/:id/:categoryid" element={<NoolVivaram />} />

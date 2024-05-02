@@ -54,7 +54,7 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
             spaceBottomClass ? spaceBottomClass : ""
           } ${colorClass ? colorClass : ""} `}
         >
-          <div className="product-img">
+          <div className="product-img" style={{marginBottom:'10px'}}>
             <Link to={process.env.PUBLIC_URL + "/நூற்கள்/" + product.product_id+"/"+ product.product_id}>
               <img
                 className="default-img"
@@ -148,9 +148,9 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
                 titlePriceClass ? titlePriceClass : ""
               }`}
             >
-              <span>
+              <span style={{marginBottom:'10px'}} >
                 <Link to={process.env.PUBLIC_URL + "/நூற்கள்/" + product.product_id+"/"+ product.product_id}>
-                  <span >{product.title}</span>
+                  <span style={{color:'black'}} >{product.title}</span>
                 </Link>
               </span>
 {/*            
@@ -173,16 +173,16 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
           </div>
           {/* <div className="price-2"> */}
                 
-                  <Fragment>
-                    <span>
-                      {product.price}
+                  <Fragment style={{marginBottom:'10px'}}>
+                    <span style={{color:'orange'}}>
+                      ${product.price}
                     </span>{" "}
                    
                   </Fragment>
                 
               </div>
           
-              <span>
+              <span style={{marginBottom:'10px'}}>
                <Button style={{width:'100%',backgroundColor:'#000033'}} type="submit">
 Buy/View
                </Button>

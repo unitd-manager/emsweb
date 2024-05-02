@@ -28,7 +28,7 @@ const NoolVivaram = () => {
       //var formated = title.split("-").join(" ");
 
       api
-        .post("/content/getBooks", { category_id:id })
+        .post("/product/productDetail", { product_id:id })
         .then((res) => {
           res.data.data[0].images= String(res.data.data[0].images).split(',')
           setBooks(res.data.data[0]);
@@ -64,7 +64,7 @@ const NoolVivaram = () => {
 
 </div>
 </div> */}
-<div className="container">
+{books&& books.title && <div className="container">
   <Row>
   <Col md='1'></Col>
   <Col md='10'>
@@ -145,7 +145,7 @@ const NoolVivaram = () => {
 </Col>
 <Col md='1'></Col>
 </Row>
-</div>
+</div>}
       {/* <div className="feature-2"> */}
         {/* <div className="container">
           <div className="row justify-content-center">

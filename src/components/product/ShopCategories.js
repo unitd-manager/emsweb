@@ -17,12 +17,64 @@ const ShopCategories = ({ categories, getSortParams }) => {
       setOpen(id);
     }
   };
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <div>
+      <div className="accordion">
+  <div className="accordion-item">
+    <div
+      className="accordion-title"
+      onClick={() => setIsActive(!isActive)}
+    >
+      <div>Categories {isActive ? '-' : '+'}</div>
+      {/* <div>{isActive ? '-' : '+'}</div> */}
+    </div>
+    {isActive && <div className="accordion-content">
+    <div className="sidebar-widget-list mt-30">
+        {categories ? (
+          <ul>
+            <li>
+              <div className="sidebar-widget-list-left">
+                <button
+                  onClick={e => {
+                    getSortParams("category", "");
+                    setActiveSort(e);
+                  }}
+                >
+                  <span className="checkmark" /> All Categories
+                </button>
+              </div>
+            </li>
+            {categories.map((category, key) => {
+              return (
+                <li key={key}>
+                  <div className="sidebar-widget-list-left">
+                    <button
+                      onClick={e => {
+                        getSortParams("category", category.category_id);
+                        setActiveSort(e);
+                      }}
+                    >
+                      {" "}
+                      <span className="checkmark" /> {category.category_title}{" "}
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          "No categories found"
+        )}
+      </div>
+        </div>}
+  </div>
+</div>
+
     <Accordion open={open} toggle={toggle}>
       <AccordionItem>
-        <AccordionHeader targetId="1">Categories</AccordionHeader>
+        <AccordionHeader targetId="1" style={{backgroundColor:'#oo66a4'}}>Categories</AccordionHeader>
         <AccordionBody accordionId="1">
         <div className="sidebar-widget-list mt-30">
         {categories ? (
