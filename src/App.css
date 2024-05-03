@@ -162,6 +162,9 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
+}
+
+
 .login-form-container {
   background: transparent none repeat scroll 0 0;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
@@ -268,7 +271,7 @@
   font-size: 20px;
   cursor: pointer;
 }
-}
+
 .audio-popup {
   position: fixed;
   top: 50%;
