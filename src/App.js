@@ -28,6 +28,7 @@ import Kalvi from "./pages/kalvi";
 import Kalvisub from "./pages/kalvisub";
 //import Niruvanarsub from './pages/Niruvanarsub';
 import Engalaisub from "./pages/Engalaisub";
+import Cart from "./pages/others/Cart";
 //import PiraEnaipugal from './pages/PiraEnaipugal';
 //import Kalvi from './pages/kalvi';
 //import Kalvisub from './pages/kalvisub';
@@ -38,7 +39,8 @@ import YaseenBro from "./pages/YaseenBro";
 import MagazineRegisterForm from './pages/MagazineRegisterForm';
 import MagazineLogin from './pages/MagazineLogin';
 import MagazineSubscripe from './pages/MagazineSubscripe';
-
+import NoolVivaram from "./pages/NoolVivaram";
+import { ToastProvider } from "react-toast-notifications";
 
 
 function App() {
@@ -60,6 +62,7 @@ function App() {
   //     });
   // }, []);
   return (
+    <ToastProvider placement="bottom-left">
     <HashRouter>
       <div class="preloader">
         <div class="loader">
@@ -148,8 +151,13 @@ function App() {
           path="/எங்களைப் பற்றி/:id/:subCategoryId"
           element={<Engalaisub />}
         />
+         <Route
+                  path= "/cart"
+                  element={<Cart/>}
+                />
         <Route path="/எங்களைப் பற்றி/:id/:id" element={<PiraEnaipugal />} />
         <Route path="/நூற்கள்/:id" element={<FromBooks />} />
+          <Route path="/நூற்கள்/:id/:categoryid" element={<NoolVivaram />} />
         {/* {/* <Route path="/Ahlubaith" element={<Ahlubaith />} /> */}
         <Route path="/Kolgaigal" element={<Kolgaigal />} />
         <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
@@ -180,6 +188,7 @@ function App() {
          <Route path="/MagazineSubscripe" element={<MagazineSubscripe />} />
       </Routes>
     </HashRouter>
+    </ToastProvider>
   );
 }
 

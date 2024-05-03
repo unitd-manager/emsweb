@@ -49,7 +49,7 @@ const Contact = () => {
 
   useEffect(() => {
     // Fetch sections
-    api.get('/content/getContact')
+    api.get('/content/getContacts')
       .then((res) => {
         setAddressData(res.data.data[0]);
       })
@@ -161,13 +161,13 @@ let name, value;
           <Row className='ml-5'>   
         
           <div>
-                <span>{stripHtmlTags(addressData.description)}</span>
+                <span>{stripHtmlTags(addressData && addressData.description)}</span>
                 </div>
           </Row>
 
           <Row className='ml-5'>
                 <div>
-                <span>{stripHtmlTags(email.description)}</span>
+                <span>{stripHtmlTags(email && email.description)}</span>
                 </div>
           </Row>
           <h2>தொடர்பு கொள்ள</h2>

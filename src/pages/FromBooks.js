@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 //import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
+import Shop from "./shop/Shop";
 
 const FromBooks = () => {
   const { id } = useParams();
@@ -28,7 +29,7 @@ const FromBooks = () => {
 
   return (
     <div>
-      <div className="breadcrumb service-breadcrumb">
+     {id!=49 && <div className="breadcrumb service-breadcrumb">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
@@ -44,9 +45,9 @@ const FromBooks = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
 
-
+      {id==49 &&<Shop/>}
       <div className="feature-2">
         <div className="container">
           <div className="row justify-content-center">
