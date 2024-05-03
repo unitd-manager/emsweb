@@ -13,12 +13,17 @@ const Thoguppugal = () => {
   const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
   const [selectedAudioUrl, setSelectedAudioUrl] = useState(null);
 
-  console.log('sectionid',id);
+  console.log("sectionid", id);
 
-  const openMediaPopup = (mediaUrl) => {
-    setSelectedAudioUrl(mediaUrl);
+  const openMediaPopup = (mediaUrl, fileName) => {
+    if (mediaUrl && fileName && mediaUrl.match(/\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g)) {
+      // If mediaUrl is an image URL, play audio file using fileName
+      setSelectedAudioUrl(`https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`);
+    } else {
+      // Otherwise, directly set selectedAudioUrl to mediaUrl
+      setSelectedAudioUrl(mediaUrl);
+    }
   };
-
   const closeMediaPopup = () => {
     setSelectedAudioUrl(null);
   };
@@ -38,15 +43,26 @@ const Thoguppugal = () => {
   }, [id]);
 
   const openVideoPopup = (description, fileName) => {
-    console.log('description',description);
-    if (description) {
-      setSelectedVideoUrl(description);
-    } else if (fileName && fileName.endsWith(".mp3")) {
+    if (description && description.match(/\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g)) {
+      // If description contains an image URL, open audio popup with fileName
       openMediaPopup(
-        `https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`
+        `https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`,
+        fileName
+      );
+      setSelectedVideoUrl(null); // Set selectedVideoUrl to null
+    } else if (description) {
+      // If description is not an image URL, set selectedVideoUrl to the description
+      setSelectedVideoUrl(description);
+      setSelectedAudioUrl(null); // Set selectedAudioUrl to null
+    } else if (fileName && fileName.endsWith(".mp3")) {
+      // If fileName ends with ".mp3", open audio popup
+      openMediaPopup(
+        `https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`,
+        fileName
       );
     } else {
       setSelectedVideoUrl(null);
+      setSelectedAudioUrl(null);
     }
   };
 
@@ -56,7 +72,9 @@ const Thoguppugal = () => {
 
   return (
     <div>
-      <div className="breadcrumb service-breadcrumb"   style={{
+      <div
+        className="breadcrumb service-breadcrumb"
+        style={{
           backgroundImage: `url(${bannerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -86,13 +104,23 @@ const Thoguppugal = () => {
                 <div className="single-box">
                   <div
                     className="video-item"
-                    onClick={() => openVideoPopup(item.description, item.file_name)}
+                    onClick={() =>
+                      openVideoPopup(item.description, item.file_name)
+                    }
                   >
                     <div className="part-img">
                       <img
-                        src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
+                        src={
+                          item.description &&
+                          item.description.match(
+                            /\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g
+                          )
+                            ? item.description.match(
+                                /\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g
+                              )[0]
+                            : `https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`
+                        }
                         alt={`${item.content_id}`}
-                      
                       />
                     </div>
                   </div>
