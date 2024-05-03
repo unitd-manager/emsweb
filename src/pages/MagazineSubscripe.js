@@ -69,4 +69,5 @@ const MagazineSubscribe = () => {
 }
 
 
+
 export default MagazineSubscribe;
