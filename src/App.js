@@ -2,10 +2,11 @@
 import "./App.css";
 import { Route, HashRouter, Routes,Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Button } from 'antd';
 import api from "./constants/api";
 import React from "react";
 import NavMenu from "../src/components/NavMenu";
-import logo from "../src/assets/images/United Logo.png";
+import logo from "../src/assets/images/media.jpg";
 import Home from "./pages/home";
 import BlogDetails from "./pages/BlogDetails";
 import ServiceDetails from "./pages/ServiceDetails";
@@ -51,7 +52,7 @@ function App() {
     api
       .get("/content/getEmail")
       .then((res) => {
-        setEmail(res.data.data);
+        setEmail(res.data.data[0]);
       })
       .catch(() => {
         // Handle error
@@ -78,25 +79,26 @@ function App() {
                         <span>{stripHtmlTags(email.description)}</span>
                       </li>
                       <li><span><Link to="/contact" className="top-left">
-                          Contact
+                          Contact Us
                         </Link></span>
                         </li>
                     </ul>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
+                <div>
+        <Link to="/MagazineLogin" target="_blank">
+  <Button>EMS Magazine</Button>
+  </Link>
+      </div>
                   <div className="top-right">
-                    <ul>
-                  <li><span><Link to="/login" className="top-right">
+                  <Link to="/login" className="top-right">
                           Login
-                        </Link></span>
-                        </li>
-                        <li><span><Link to="/RegisterForm" className="top-right">
+                        </Link><Link to="/RegisterForm" className="top-right">
                           Register
-                        </Link></span>
-                        </li>
-                        </ul>
+                        </Link>
                   </div>
+                 
                 </div>
               </div>
             </div>
@@ -119,10 +121,16 @@ function App() {
                     <i class="flaticon-menu-button-of-three-horizontal-lines"></i>
                   </button> */}
                 </div>
-                <div className="col-xl-1 col-lg-1 ">
+                <div className="col-xl-12 col-lg-12 col-12 d-flex align-items-center">
                   <div className="logo">
                     <a href="/">
-                      <img src={logo} alt="signature" />
+                      <img
+                        src={logo}
+                        alt="signature"
+                        width="750px"
+                        height="65px"
+                        style={{ paddingLeft: "300px" }}
+                      />
                     </a>
                   </div>
                 </div>
