@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import "aos/dist/aos.css";
 import bannerImage from "../../src/assets/images/Evens.jpg";
 import ReactPlayer from "react-player";
-
+import ReactAudioPlayer from "react-audio-player";
 import api from "../constants/api";
 
 const Thoguppugal = () => {
@@ -41,7 +41,7 @@ const Thoguppugal = () => {
 
     getGallery();
   }, [id]);
-
+  
   const openVideoPopup = (description, fileName) => {
     if (description && description.match(/\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g)) {
       // If description contains an image URL, open audio popup with fileName
@@ -142,8 +142,8 @@ const Thoguppugal = () => {
             <button className="close-btn" onClick={closeMediaPopup}>
               Close
             </button>
-            <ReactPlayer
-              url={selectedAudioUrl}
+            <ReactAudioPlayer
+              src={selectedAudioUrl}
               controls
               width="40%"
               height="35%"

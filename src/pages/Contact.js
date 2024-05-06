@@ -111,7 +111,7 @@ let name, value;
   const handleSubmit = e => {
     e.preventDefault();
     // Make an HTTP POST request to the API endpoint with the form data
-    api.post("/contact/insertEnquiry", formData)
+    api.post("/enquiry/insertEnquiry", formData)
       .then(response => {
         console.log("Contact inserted successfully:", response.data);
         // Optionally, you can reset the form after successful submission
