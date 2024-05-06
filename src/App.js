@@ -37,8 +37,13 @@ import Gyanagamiyangal from "./pages/Gyanagamiyangal";
 import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
 import Contact from "./pages/Contact";
 import YaseenBro from "./pages/YaseenBro";
+import Cart from "./pages/others/Cart";
+import PhotoGallery from './pages/PhotoGallery';
 import MagazineRegisterForm from './pages/MagazineRegisterForm';
 import MagazineLogin from './pages/MagazineLogin';
+import MagazineSubscripe from './pages/MagazineSubscripe';
+import NoolVivaram from "./pages/NoolVivaram";
+// import { ToastProvider } from "react-toast-notifications";
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -155,8 +160,13 @@ function App() {
           path="/எங்களைப் பற்றி/:id/:subCategoryId"
           element={<Engalaisub />}
         />
+            <Route
+                  path= "/cart"
+                  element={<Cart/>}
+                />
         <Route path="/எங்களைப் பற்றி/:id/:id" element={<PiraEnaipugal />} />
         <Route path="/நூற்கள்/:id" element={<FromBooks />} />
+        <Route path="/நூற்கள்/:id/:categoryid" element={<NoolVivaram />} />
         {/* {/* <Route path="/Ahlubaith" element={<Ahlubaith />} /> */}
         <Route path="/Kolgaigal" element={<Kolgaigal />} />
         <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
@@ -164,6 +174,8 @@ function App() {
           path="/தொகுப்புகள்/:id/:subCategoryId"
           element={<ThoguppugalSubCategory />}
         />
+                <Route path="/நிகழ்ச்சிகள்/:id" element={<PhotoGallery />} />
+
         <Route path="/மனிதா/:id" element={<Manitha />} />
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Contact" element={<Contact />} />
@@ -183,6 +195,8 @@ function App() {
         <Route path="/YaseenBro" element={<YaseenBro />} />
         <Route path="/MagazineRegisterForm" element={<MagazineRegisterForm />} />
         <Route path="/MagazineLogin" element={<MagazineLogin />} />
+        <Route path="/MagazineSubscripe" element={<MagazineSubscripe />} />
+
       </Routes>
     </HashRouter>
   );
