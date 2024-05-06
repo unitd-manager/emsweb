@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from 'antd';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -97,7 +96,6 @@ const Home = () => {
   };
   const bannersettings = {
     dots: true,
-    infinite: true,
     speed: 500,
     slidesToShow: 1, // Display three slides at a time
     slidesToScroll: 1, // Scroll one slide at a time
@@ -170,12 +168,7 @@ const Home = () => {
   }, []);
   return (
     <div>
-      <div>
-        <div>
-        <Link to="/MagazineLogin" target="_blank">
-  <Button>EMS Magazine</Button>
-  </Link>
-      </div>
+       
         <Slider {...bannersettings}>
           {Array.isArray(banners) &&
             banners.map((item, index) => (
@@ -184,16 +177,11 @@ const Home = () => {
                   <img
                     src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
                     alt={`News ${item.content_id}`}
-                    style={{
-                      width: "100%",
-                      height: "400px",
-                      objectFit: "cover",
-                    }}
+                    style={{ width: "100%", height: "400px", objectFit: "cover" }}
+
                   />
                 </div>
-                <div className="part-txt">
-                  {/* Check if item.description is not null before accessing its properties */}
-                </div>
+              
               </div>
             ))}
         </Slider>
@@ -203,7 +191,13 @@ const Home = () => {
         {/* Video Gallery Panel */}
         <div>
           <div className="video-gallery">
-            <h2>Video Gallery</h2>
+        <div className="row justify-content-center">
+          <div className="col-xl-4 col-lg-3">
+            <div className="heading">
+              <h2>Video Gallery</h2>
+            </div>
+          </div>
+        </div>
             <div className="container">
               <Slider {...settings}>
                 {Array.isArray(videoUrls) &&
@@ -304,12 +298,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-
-
-
-    
-      </div>
     </div>
   );
 };
