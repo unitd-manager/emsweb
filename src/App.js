@@ -34,6 +34,7 @@ import Engalaisub from "./pages/Engalaisub";
 //import PiraEnaipugal from './pages/PiraEnaipugal';
 //import Kalvi from './pages/kalvi';
 //import Kalvisub from './pages/kalvisub';
+import CheckoutPage from "./pages/others/Checkout";
 import Gyanagamiyangal from "./pages/Gyanagamiyangal";
 import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
 import Contact from "./pages/Contact";
@@ -44,6 +45,7 @@ import MagazineRegisterForm from './pages/MagazineRegisterForm';
 import MagazineLogin from './pages/MagazineLogin';
 import MagazineSubscripe from './pages/MagazineSubscripe';
 import NoolVivaram from "./pages/NoolVivaram";
+import BookDetailPage from "./pages/BookDetails";
 // import { ToastProvider } from "react-toast-notifications";
 
 function App() {
@@ -175,6 +177,7 @@ function App() {
         <Route path="/" element={<Home />} />
         {/* Add other routes as needed */}
         <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/book/:id" element={<BookDetailPage />} />
         <Route path="/service-details" element={<ServiceDetails />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/Events" element={<Events />} />
@@ -188,6 +191,7 @@ function App() {
                   path= "/cart"
                   element={<Cart/>}
                 />
+                 <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/எங்களைப் பற்றி/:id/:id" element={<PiraEnaipugal />} />
         <Route path="/நூற்கள்/:id" element={<FromBooks />} />
         <Route path="/நூற்கள்/:id/:categoryid" element={<NoolVivaram />} />
