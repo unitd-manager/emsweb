@@ -55,7 +55,7 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
           } ${colorClass ? colorClass : ""} `}
         >
           <div className="product-img" style={{marginBottom:'10px'}}>
-            <Link to={process.env.PUBLIC_URL + "/நூற்கள்/" + product.product_id+"/"+ product.product_id}>
+            <Link to={process.env.PUBLIC_URL + "/Book/" + product.product_id}>
               <img
                 className="default-img"
                 src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images[0]}`}
@@ -149,7 +149,7 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
               }`}
             >
               <span style={{marginBottom:'10px'}} >
-                <Link to={process.env.PUBLIC_URL + "/நூற்கள்/" + product.product_id+"/"+ product.product_id}>
+                <Link to={process.env.PUBLIC_URL + "/Book/" + product.product_id}>
                   <span style={{color:'black'}} >{product.title}</span>
                 </Link>
               </span>

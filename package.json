@@ -12,6 +12,7 @@
     "antd": "^5.16.4",
     "aos": "^2.3.4",
     "axios": "^1.6.2",
+    "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
     "ftp-deploy": "^2.4.5",
     "html2canvas": "^1.4.1",
@@ -21,7 +22,10 @@
     "npm": "^10.6.0",
     "owl.carousel": "^2.3.4",
     "react": "^18.2.0",
+<<<<<<< HEAD
     "react-audio-player": "^0.17.0",
+=======
+>>>>>>> 5bf9a1cc64a370cffbc88c7f66732de9ed268734
     "react-bootstrap": "^2.10.2",
     "react-breadcrumbs": "^2.1.7",
     "react-breadcrumbs-dynamic": "^1.2.1",

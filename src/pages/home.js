@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +9,8 @@ import api from "../constants/api";
 import EventSlider from "../components/EventSlider";
 
 const Home = () => {
+  const { id } = useParams();
+console.log("111111",id)
   // const [banners, setBanners] = useState([]);
   const [videoUrls, setVideoUrls] = useState([]);
   const [banners, setBanner] = useState([]);
@@ -62,6 +65,30 @@ const Home = () => {
         // Handle error
       });
   };
+
+  const homeProductSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4, // Show four images at a time
+    slidesToScroll: 1, // Scroll one slide at a time
+    autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1140,
+        settings: {
+          slidesToShow: 3, // Show three images on medium screens
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2, // Show two images on smaller screens
+        },
+      },
+    ],
+  };
+  
 
   const getBanners = () => {
     // First API call to get banners
@@ -158,6 +185,24 @@ const Home = () => {
   //     // message('Product Data Not Found', 'info');
   //   });
   // };
+  
+  const [sectiones, setSectiones] = useState([]);
+
+  useEffect(() => {
+   
+
+    api
+      .get("/section/getSectionCategory")
+      .then((res) => {
+        setSectiones(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+
+   
+  }, []);
 
   useEffect(() => {
     // getBannerImages();
@@ -168,16 +213,20 @@ const Home = () => {
   }, []);
   return (
     <div>
-       
+      <div className="bannerImage">
         <Slider {...bannersettings}>
           {Array.isArray(banners) &&
             banners.map((item, index) => (
               <div key={item.content_id} className="single-blog">
-                <div className="part-img">
+                <div className="part-img" >
                   <img
                     src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
                     alt={`News ${item.content_id}`}
-                    style={{ width: "100%", height: "400px", objectFit: "cover" }}
+                    style={{
+                      width: '100%',
+                      height: '400px',
+                      objectit: 'cover', // Ensures image doesn't distort
+                    }}
 
                   />
                 </div>
@@ -185,7 +234,7 @@ const Home = () => {
               </div>
             ))}
         </Slider>
-
+        </div>
         <EventSlider></EventSlider>
 
         {/* Video Gallery Panel */}
@@ -234,7 +283,7 @@ const Home = () => {
             </div>
           )}
         </div>
-
+            <div></div>
         <div class="col-xl-12 col-lg-12 col-md-9">
           <div class="tab-content" id="nav-tabContent">
             <div
@@ -275,28 +324,41 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div class="partner">
-          <div class="container">
-            <div class="bg">
-              <div class="brand-slider owl-carousel">
-                <div class="single-img" style={{ marginBottom: "70px" }}>
-                  {homeProducts.map((item) => (
-                    <div
-                      key={item.content_id}
-                      style={{ marginRight: "15px", marginBottom: "50px" }}
-                    >
-                      <img
-                        src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.images}`}
-                        alt={`News ${item.content_id}`}
-                        style={{ width: "250px", height: "100px" }}
-                      />
-                      <h6>{item.title}</h6>
+
+                <div class="partner">
+                  <div class="container">
+                    <div class="bg">
+                <div className="home-products">
+                <div className="row justify-content-center">
+                  <div className="col-xl-4 col-lg-3">
+                    <div className="heading">
+                      <h2>Books</h2>
                     </div>
-                  ))}
+                  </div>
+                  <div className="col-xl-2 col-lg-3 text-right1">
+                  <Link  to={`/நூற்கள்/${sectiones && sectiones.category_id}`}>
+                    <button className="view-all-btn">View All</button>
+                  </Link>
+                  </div>
                 </div>
-              </div>
-            </div>
+          <div className="product-carousel">
+            <Slider {...homeProductSettings}>
+              {Array.isArray(homeProducts) &&
+                homeProducts.map((product) => (
+                  <div key={product.product_id} className="product-slide">
+                    <img
+                      src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images}`}
+                      alt={product.title}
+                      style={{ width: "100%", height: "150px", objectFit: "cover" }}
+                    />
+                    <h6>{product.title}</h6>
+                  </div>
+                ))}
+            </Slider>
           </div>
+        </div>
+        </div>
+        </div>
         </div>
     </div>
   );
