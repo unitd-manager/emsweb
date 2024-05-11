@@ -6,7 +6,7 @@ import './BookDetailPage.css'; // Import your custom CSS for styling
 import api from '../constants/api';
 
 
-const ProductDetailPage = () => {
+const BookDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState();
   const handleQuantityChange = (e) => {
@@ -139,4 +139,4 @@ const addToCart=()=>{
   );
 };
 
-export default ProductDetailPage;
+export default BookDetailPage;

@@ -126,7 +126,7 @@
             autoplayHoverPause: false,
             dots: false,
             nav: true,
-            navText: ['<i class="flaticon-left-arrow"></i>','<i class="flaticon-right-arrow"></i>'],
+            navText: [],
             responsive: {
                 0: {
                     items: 1
