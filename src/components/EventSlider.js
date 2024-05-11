@@ -41,8 +41,8 @@ const EventSlider = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-4 col-lg-3">
-            <div className="heading">
-              <h5>Event Activities</h5>
+            <div className="headingEvent">
+              <h2>Event Activities</h2>
             </div>
           </div>
         </div>

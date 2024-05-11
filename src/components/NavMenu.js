@@ -102,7 +102,7 @@ function Navbar() {
               <li className="nav-item dropdown" key={section.section_id}>
                 {/* Replace anchor tag with Link */}
                 <Link
-                  to={`/${section.section_title}`}
+                  to={`/`}
                   className={`nav-link ${
                     selectedSection === section.section_id ? "active" : ""
                   }`}
