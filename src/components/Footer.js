@@ -93,6 +93,24 @@ export default function Footer() {
       });
   }, []);
 
+  
+  const [sectionesphoto, setSectionesphoto] = useState([]);
+
+  useEffect(() => {
+   
+    api
+      .get("/section/getCategoryType")
+      .then((res) => {
+        setSectionesphoto(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+
+   
+  }, []);
+
 
   const [sectiones, setSectiones] = useState([]);
 
@@ -246,7 +264,7 @@ export default function Footer() {
                     }}
                     onMouseEnter={(e) => (e.target.style.color = "blue")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/News`}
+                    to={`/நிகழ்ச்சிகள்/${sectionesphoto && sectionesphoto.category_id}`}
                     onClick={scrollToTop}
                   >
                     புகைப்படங்கள்{" "}
