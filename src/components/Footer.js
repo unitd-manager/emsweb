@@ -70,6 +70,7 @@ export default function Footer() {
     return formatted.split(" ").join("-");
   };
 
+
   useEffect(() => {
     api
       .get("contact/getCompanyName")
@@ -92,116 +93,54 @@ export default function Footer() {
       });
   }, []);
 
+
+  const [sectiones, setSectiones] = useState([]);
+
+  useEffect(() => {
+   
+
+    api
+      .get("/section/getCategoryType")
+      .then((res) => {
+        setSectiones(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+
+   
+  }, []);
+
+  const [sectionbook, setSectionbook] = useState([]);
+
+  useEffect(() => {
+   
+
+    api
+      .get("/section/getSectionCategory")
+      .then((res) => {
+        setSectionbook(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+
+   
+  }, []);
+
+
+
   return (
     <>
       <div class="footer" style={{ overflow: "hidden" }}>
         <div class="container">
           <div class="main-footer">
             <div class="row justify-content-between">
-              <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="about-txt">
-                  <h3>EDITOR PICKS</h3>
-                  {Array.isArray(blogItems) &&
-                    blogItems.slice(0, 3).map((item, index) => (
-                      <div key={index}>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <img
-                            src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${item.news_image}`}
-                            alt={`News ${item.content_id}`}
-                            style={{
-                              width: "100px",
-                              height: "69px",
-                              marginRight: "10px",
-                            }} // Adjust the width and height values as needed
-                          />
-
-                          <div>
-                            <a
-                              href={`/${item.content_id}`}
-                              style={{ textDecoration: "none" }}
-                              title={` ${item.title}`}
-                            >
-                              <p style={{ margin: 0 }}>
-                                <Link
-                                  to={`/NewsEdit/${item.content_id}`}
-                                  style={{
-                                    color: "white",
-                                    transition: "color 0.3s",
-                                  }}
-                                  onMouseEnter={(e) =>
-                                    (e.target.style.color = "blue")
-                                  }
-                                  onMouseLeave={(e) =>
-                                    (e.target.style.color = "white")
-                                  }
-                                >
-                                  {item.title}
-                                </Link>
-                              </p>
-                            </a>
-                            <p style={{ margin: 0 }}>
-                              {/* {formatDate(item.creation_date)} */}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="about-txt">
-                  <h3>POPULAR POSTS</h3>
-                  {Array.isArray(Events) &&
-                    Events.slice(0, 3).map((item, index) => (
-                      <div key={index}>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <img
-                            src={`https://aimanweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
-                            alt={`News ${item.content_id}`}
-                            style={{
-                              width: "100px",
-                              height: "69px",
-                              marginRight: "10px",
-                            }} // Adjust the width and height values as needed
-                          />
-
-                          <div>
-                            <a
-                              href={`/${item.content_id}`}
-                              style={{ textDecoration: "none" }}
-                              title={` ${item.title}`}
-                            >
-                              <p style={{ margin: 0 }}>
-                                <Link
-                                  to={`/EventsEdit/${item.content_id}`}
-                                  style={{
-                                    color: "white",
-                                    transition: "color 0.3s",
-                                  }}
-                                  onMouseEnter={(e) =>
-                                    (e.target.style.color = "blue")
-                                  }
-                                  onMouseLeave={(e) =>
-                                    (e.target.style.color = "white")
-                                  }
-                                >
-                                  {item.title}
-                                </Link>
-                              </p>
-                            </a>
-                            <p style={{ margin: 0 }}>
-                              {/* <span>{formatDate(item.creation_date)}</span> */}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-lg-4 col-sm-6">
+            <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="link">
-                  <h3>POPULAR CATEGORY</h3>
+                  <h3>OUR WEBSITE LINKS LINKS</h3>
                   <Link
                     style={{
                       color: "white",
@@ -210,10 +149,92 @@ export default function Footer() {
                     }}
                     onMouseEnter={(e) => (e.target.style.color = "blue")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/Events`}
+                    to={`/MagazineLogin`}
                     onClick={scrollToTop}
                   >
-                    நிகழ்வுகள் <span>({ContentTypeCount.events_count})</span>
+                     EMS Magazine 
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/`}
+                    onClick={scrollToTop}
+                  >
+                    Awniyya Books Store{" "}
+                   
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/`}
+                    onClick={scrollToTop}
+                  >
+                    Yaseenrali
+                   
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`}
+                    onClick={scrollToTop}
+                  >
+                    EMS Web TV channel
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/`}
+                    onClick={scrollToTop}
+                  >
+                    EMS Media
+                  </Link>
+                  <br></br>
+                  <br></br>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="link">
+                  <h3>USEFUL LINKS</h3>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/நூற்கள்/${sectionbook && sectionbook.category_id}`}
+                    onClick={scrollToTop}
+                  >
+                     நூற்கள் 
                   </Link>
                   <br></br>
                   <br></br>
@@ -228,12 +249,8 @@ export default function Footer() {
                     to={`/News`}
                     onClick={scrollToTop}
                   >
-                    செய்திகள்{" "}
-                    <span>
-                      {/* style={{ marginLeft: '150px', color: 'white', 
-                            fontSize:'13px' }}> */}
-                      ({ContentTypeCount.news_count})
-                    </span>
+                    புகைப்படங்கள்{" "}
+                   
                   </Link>
                   <br></br>
                   <br></br>
@@ -248,9 +265,8 @@ export default function Footer() {
                     to={`/Articles`}
                     onClick={scrollToTop}
                   >
-                    கட்டுரைகள்
-                    {/* <span style={{ marginLeft: '140px', color: 'white', fontSize:'13px' }}> */}
-                    <span>({ContentTypeCount.article_count})</span>
+                    காணொளி
+                   
                   </Link>
                   <br></br>
                   <br></br>
@@ -265,7 +281,105 @@ export default function Footer() {
                     to={`/Resources`}
                     onClick={scrollToTop}
                   >
-                    வளங்கள் <span>({ContentTypeCount.resource_count})</span>
+                    ஆடியோ 
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/Resources`}
+                    onClick={scrollToTop}
+                  >
+                    நிகழ்வுகள்
+                  </Link>
+                  <br></br>
+                  <br></br>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="link">
+                  <h3>INFORMATION</h3>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/Events`}
+                    onClick={scrollToTop}
+                  >
+                     Contact Us 
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/News`}
+                    onClick={scrollToTop}
+                  >
+                    Login{" "}
+                   
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/Articles`}
+                    onClick={scrollToTop}
+                  >
+                    Register
+                   
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/Resources`}
+                    onClick={scrollToTop}
+                  >
+                    Privacy Policy 
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link
+                    style={{
+                      color: "white",
+                      transition: "color 0.3s",
+                      fontSize: "13px",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                    to={`/Resources`}
+                    onClick={scrollToTop}
+                  >
+                    Terms & Conditions
                   </Link>
                   <br></br>
                   <br></br>
@@ -281,7 +395,7 @@ export default function Footer() {
             <div class="row">
               <div class="col-xl-6 col-lg-6">
                 <p>
-                  &copy; Aiman Sangam. Designed by{" "}
+                  Copyright &copy; 2020 EMS Media All Rights Reserved{" "}
                   <a
                     href="http://www.unitdtechnologies.com/"
                     style={{ color: "#3399FF", textDecoration: "none" }}

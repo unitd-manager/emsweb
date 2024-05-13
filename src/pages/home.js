@@ -302,12 +302,11 @@ console.log("111111",id)
                           alt={`News ${item.content_id}`}
                           style={{
                             width: "70%",
-                            height: "150px",
-                            objectFit: "cover",
+                            height: "250px",
                           }}
                         />
                       </div>
-                      <div class="part-btn" style={{ marginTop: "25px" }}>
+                      <div class="part-btn" style={{ margin: "35px" }}>
                         <a
                           href={stripHtmlTags(item.description)}
                           class="def-btn"

@@ -136,19 +136,32 @@ function Navbar() {
                           {/* Render subcategories if category is selected */}
                           {selectedCategoryId === category.category_id && (
                             <ul className="dropdown-submenu">
-                              {getSubCategoriesForCategory(
-                                category.category_id
-                              ).map((subcategory) => (
-                                <li key={subcategory.sub_category_id}>
-                                  {/* Render subcategory links */}
-                                  <Link
-                                    to={`/${section.section_title}/${category.category_id}/${subcategory.sub_category_id}`}
-                                    className="dropdown-item"
-                                  >
-                                    {subcategory.sub_category_title}
-                                  </Link>
-                                </li>
-                              ))}
+                             {/* Modify the rendering of subcategory links */}
+{getSubCategoriesForCategory(category.category_id).map((subcategory) => (
+    <li key={subcategory.sub_category_id}>
+        {/* Check if the subcategory has a YouTube link */}
+        {subcategory.external_link ? (
+            // If a YouTube link exists, render a YouTube link
+            <a
+                href={subcategory.external_link}
+                className="dropdown-item"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {subcategory.sub_category_title}
+            </a>
+        ) : (
+            // If no YouTube link exists, render a normal link
+            <Link
+                to={`/${section.section_title}/${category.category_id}/${subcategory.sub_category_id}`}
+                className="dropdown-item"
+            >
+                {subcategory.sub_category_title}
+            </Link>
+        )}
+    </li>
+))}
+
                             </ul>
                           )}
                         </li>
