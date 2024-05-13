@@ -93,13 +93,30 @@ export default function Footer() {
       });
   }, []);
 
+  const [sectionesaudio, setSectionesaudio] = useState([]);
+
+  useEffect(() => {
+   
+    api
+      .get("/section/getCategoryAudioType")
+      .then((res) => {
+        setSectionesaudio(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+
+   
+  }, []);
+
   
   const [sectionesphoto, setSectionesphoto] = useState([]);
 
   useEffect(() => {
    
     api
-      .get("/section/getCategoryType")
+      .get("/section/getCategoryPhotoType")
       .then((res) => {
         setSectionesphoto(res.data.data[0]);
       })
@@ -110,6 +127,25 @@ export default function Footer() {
 
    
   }, []);
+
+
+  const [sectionesEvent, setSectionesEvent] = useState([]);
+
+  useEffect(() => {
+   
+    api
+      .get("/section/getCategoryEventType")
+      .then((res) => {
+        setSectionesEvent(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+
+   
+  }, []);
+
 
 
   const [sectiones, setSectiones] = useState([]);
@@ -165,7 +201,7 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
                     to={`/MagazineLogin`}
                     onClick={scrollToTop}
@@ -180,7 +216,7 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
                     to={`/`}
                     onClick={scrollToTop}
@@ -196,7 +232,7 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
                     to={`/`}
                     onClick={scrollToTop}
@@ -212,7 +248,7 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
                     to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`}
                     onClick={scrollToTop}
@@ -227,7 +263,7 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
                     to={`/`}
                     onClick={scrollToTop}
@@ -247,7 +283,7 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
                     to={`/நூற்கள்/${sectionbook && sectionbook.category_id}`}
                     onClick={scrollToTop}
@@ -262,7 +298,7 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
                     to={`/நிகழ்ச்சிகள்/${sectionesphoto && sectionesphoto.category_id}`}
                     onClick={scrollToTop}
@@ -278,9 +314,9 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/Articles`}
+                    to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`}
                     onClick={scrollToTop}
                   >
                     காணொளி
@@ -294,9 +330,9 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/Resources`}
+                    to={`/நிகழ்ச்சிகள்/${sectionesaudio && sectionesaudio.category_id}`}
                     onClick={scrollToTop}
                   >
                     ஆடியோ 
@@ -309,9 +345,9 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/Resources`}
+                    to={`/நிகழ்ச்சிகள்/${sectionesEvent && sectionesEvent.category_id}`}
                     onClick={scrollToTop}
                   >
                     நிகழ்வுகள்
@@ -330,9 +366,9 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/Events`}
+                    to={`/contact`}
                     onClick={scrollToTop}
                   >
                      Contact Us 
@@ -345,9 +381,9 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/News`}
+                    to={`/login`}
                     onClick={scrollToTop}
                   >
                     Login{" "}
@@ -361,9 +397,9 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/Articles`}
+                    to={`/RegisterForm`}
                     onClick={scrollToTop}
                   >
                     Register
@@ -377,9 +413,9 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/Resources`}
+                    to={`/`}
                     onClick={scrollToTop}
                   >
                     Privacy Policy 
@@ -392,9 +428,9 @@ export default function Footer() {
                       transition: "color 0.3s",
                       fontSize: "13px",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
                     onMouseLeave={(e) => (e.target.style.color = "white")}
-                    to={`/Resources`}
+                    to={`/`}
                     onClick={scrollToTop}
                   >
                     Terms & Conditions
