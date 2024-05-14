@@ -29,6 +29,7 @@ import PiraEnaipugal from "./pages/PiraEnaipugal";
 import Kalvi from "./pages/kalvi";
 import Kalvisub from "./pages/kalvisub";
 //import Niruvanarsub from './pages/Niruvanarsub';
+import Footer from "./components/Footer";
 import Engalaisub from "./pages/Engalaisub";
 //import PiraEnaipugal from './pages/PiraEnaipugal';
 //import Kalvi from './pages/kalvi';
@@ -53,6 +54,24 @@ function App() {
     return doc.body.textContent || "";
   };
   const [email, setEmail] = useState([]);
+
+  const [sectiones, setSectiones] = useState([]);
+
+  useEffect(() => {
+   
+
+    api
+      .get("/section/getCategoryType")
+      .then((res) => {
+        setSectiones(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+
+   
+  }, []);
 
   useEffect(() => {
     // Fetch sections
@@ -85,7 +104,7 @@ function App() {
                         <i className="flaticon-message"></i>
                         <span>{stripHtmlTags(email.description)}</span>
                       </li>
-                      <li><span><Link to="/contact" className="top-left">
+                      <li><span><Link to="/contact" className="top-left1">
                           Contact Us
                         </Link></span>
                         </li>
@@ -93,11 +112,11 @@ function App() {
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
-                <div>
-        <Link to="/MagazineLogin" target="_blank">
-  <Button>EMS Magazine</Button>
-  </Link>
-      </div>
+                <div className="top-right">
+                  <Link to="/MagazineLogin" target="_blank">
+                    <Button>EMS Magazine</Button>
+                  </Link>
+                </div>
                   <div className="top-right">
                   <Link to="/login" className="top-right">
                           Login
@@ -105,7 +124,12 @@ function App() {
                           Register
                         </Link>
                   </div>
-                 
+                  <div className="top-right">
+                    <Link  to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`} className="top-right" target="_blank">
+
+                    <Button>EMS Web Tv Channel</Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -136,7 +160,7 @@ function App() {
                         alt="signature"
                         width="750px"
                         height="65px"
-                        style={{ paddingLeft: "300px" }}
+                        style={{ paddingLeft: "440px" }}
                       />
                     </a>
                   </div>
@@ -202,6 +226,7 @@ function App() {
         <Route path="/MagazineSubscripe" element={<MagazineSubscripe />} />
 
       </Routes>
+      <Footer />
     </HashRouter>
   );
 }
