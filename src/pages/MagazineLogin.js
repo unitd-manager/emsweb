@@ -1,6 +1,7 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 import api from "../constants/api";
+import Magazine from './Magazine';
 
 function Login() {
     
@@ -13,8 +14,9 @@ function Login() {
       const [password, setPassword] = useState("");
       const [emailError, setEmailError] = useState("");
       const [passwordError, setPasswordError] = useState("");
+      const [subs, setSubs] = useState("");
 
-
+      console.log('subs', subs);
       const navigate=useNavigate();
       const validateEmail = (email) => {
         // Email validation regex pattern
@@ -63,10 +65,21 @@ function Login() {
             else {
               localStorage.setItem("user", JSON.stringify(res.data.data));
               localStorage.setItem("token", JSON.stringify(res.data.token));
+
+              if(subs !=='subscribe'){
     
-              setTimeout(()=>{
-    navigate('/MagazineSubscripe')
+                       setTimeout(()=>{
+               navigate('/MagazineSubscripe')
               },300)
+            }else{
+              // <Magazine></Magazine>
+              // navigate('/Magazine')
+              console.log('teststs')
+            }
+            
+            //  {subs !=='subscribe'?navigate('/MagazineSubscripe'):<Magazine></Magazine>} 
+    
+             
             }
           }).catch((err)=>{
             // addToast("Invalid Username or Password", {
@@ -76,6 +89,32 @@ function Login() {
           });
         }
       };
+
+      useEffect(() => {
+      const getSelectedLanguageFromLocalStorage = () => {
+        const user = localStorage.getItem('user');
+        return user ? JSON.parse(user) : {};
+      };
+    
+      const selectedLanguage = getSelectedLanguageFromLocalStorage();
+      console.log('selectedLanguage', selectedLanguage);
+      const contactId = selectedLanguage.contact_id;
+      console.log('contactId', contactId);
+
+      
+        const getContactById = () => {
+          api
+            .post('/contact/getContactsById', { contact_id: contactId })
+            .then((res) => {
+              setSubs(res.data.data[0].subs_payment_status);
+            })
+            .catch(() => {
+            });
+        };
+      
+        getContactById();
+      }, []);
+    
   return (
     <div className="container">
   <div className="row justify-content-center">

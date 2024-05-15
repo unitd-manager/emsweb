@@ -27,6 +27,7 @@
     "react-breadcrumbs": "^2.1.7",
     "react-breadcrumbs-dynamic": "^1.2.1",
     "react-dom": "^18.2.0",
+    "react-fast-marquee": "^1.6.4",
     "react-hooks-paginator": "^0.5.1",
     "react-html-parser": "^2.0.2",
     "react-id-swiper": "^4.0.0",
@@ -75,6 +76,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
- ]
-}
+    ]
+  }
 }

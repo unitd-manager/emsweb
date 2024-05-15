@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Marquee from "react-fast-marquee";
 import ReactPlayer from "react-player";
 import api from "../constants/api";
 import EventSlider from "../components/EventSlider";
@@ -187,7 +188,19 @@ console.log("111111",id)
   // };
   
   const [sectiones, setSectiones] = useState([]);
+  const [marquee, setMarquee] = useState([]);
+  const getMarquee = () => {
+    api
+      .get('/setting/getSettingsForQuizInfoText')
+      .then(res => {
+        setMarquee(res.data.data);
+      })
+      .catch(error => {
+        console.log("error",error)
+      });
 
+  };
+  const marqueeValue =marquee && marquee[0]?.value
   useEffect(() => {
    
 
@@ -208,11 +221,15 @@ console.log("111111",id)
     // getBannerImages();
     getVideoUrls();
     getBanners();
+    getMarquee();
     getHomeLink();
     getHomeProducts();
   }, []);
   return (
     <div>
+      <Marquee style={{ backgroundColor: 'red', color: 'white', fontSize: '15px' }}>
+        {marqueeValue}
+      </Marquee>
       <div className="bannerImage">
         <Slider {...bannersettings}>
           {Array.isArray(banners) &&
@@ -247,23 +264,25 @@ console.log("111111",id)
             </div>
           </div>
         </div>
-            <div className="container">
-              <Slider {...settings}>
-                {Array.isArray(videoUrls) &&
-                  videoUrls.map((videoUrl, index) => (
-                    <div
-                      key={index}
-                      className="video-item"
-                      onClick={() => openVideoPopup(videoUrl.description)}
-                    >
-                      <img
-                        src={`https://emsweb.unitdtechnologies.com/storage/uploads/${videoUrl.file_name}`}
-                        alt="Video Thumbnail"
-                      />
-                    </div>
-                  ))}
-              </Slider>
-            </div>
+        <div className="container" style={{ maxWidth: '600px' }}>
+          <Slider {...settings}>
+            {Array.isArray(videoUrls) &&
+              videoUrls.map((videoUrl, index) => (
+                <div
+                  key={index}
+                  className="video-item"
+                  onClick={() => openVideoPopup(videoUrl.description)}
+                  style={{ height: '200px' }} // Adjust height as needed
+                >
+                  <img
+                    src={`https://emsweb.unitdtechnologies.com/storage/uploads/${videoUrl.file_name}`}
+                    alt="Video Thumbnail"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              ))}
+          </Slider>
+        </div>
           </div>
 
           {/* Video Popup */}
@@ -271,13 +290,13 @@ console.log("111111",id)
             <div className="video-popup">
               <div className="popup-content">
                 <button className="close-btn" onClick={closeVideoPopup}>
-                  Close
+                  <text style={{color: 'white'}}>Close</text>
                 </button>
                 <ReactPlayer
                   url={selectedVideoUrl}
                   controls
-                  width="100%"
-                  height="100%"
+                  width="560px"
+                  height="450px"
                 />
               </div>
             </div>
@@ -348,9 +367,9 @@ console.log("111111",id)
                     <img
                       src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images}`}
                       alt={product.title}
-                      style={{ width: "100%", height: "150px", objectFit: "cover" }}
+                      style={{ width: "100%", height: "420px", objectFit: "cover" }}
                     />
-                    <h6>{product.title}</h6>
+                    <h6 style={{color:'white'}}>{product.title}</h6>
                   </div>
                 ))}
             </Slider>
