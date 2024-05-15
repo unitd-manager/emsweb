@@ -542,6 +542,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Table, Button } from 'reactstrap';
 import api from '../../constants/api';
 import { getUser } from '../../common/user';
+import { Link ,useNavigate} from 'react-router-dom';
 
 const CartPage = () => {
   const [user, setUser] = useState();
@@ -550,7 +551,7 @@ const CartPage = () => {
     // { id: 2, name: 'Product 2', price: 20, quantity: 2 },
     // { id: 3, name: 'Product 3', price: 30, quantity: 1 },
   ]);
-
+const navigate=useNavigate();
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
@@ -565,6 +566,19 @@ const CartPage = () => {
         item.id === id ? { ...item, quantity: newQuantity } : item
       )
     );
+  };
+
+  const removeCartData = (Item) => {
+ 
+    
+      // Make the API call
+      api
+      .post("/contact/deleteCartItem", { basket_id: Item.basket_id })
+        .then(() => {
+          
+         })
+        .catch((error) => {console.log('err',error)});
+    
   };
 
   const fetchCartItems=(userInfo)=>{
@@ -614,20 +628,32 @@ useEffect(() => {
           {cartItems.map((item, index) => (
             <tr key={item.id}>
               <td>{index + 1}</td>
-              <td>{item.name}</td>
+              <td className="product-thumbnail">
+              <Link to={process.env.PUBLIC_URL + "/Book/" + item.product_id}>
+                
+               
+                                    <img
+                                      className="img-fluid"
+                                      src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item?.images}`}
+                                      alt=""
+                                      style={{height:'200px',width:'200px'}}
+                                    />
+                                    {item.title}
+                                  </Link></td>
+              
               <td>{item.price}</td>
               <td>
                 <input
                   type="number"
-                  value={item.quantity}
+                  value={item.qty}
                   onChange={(e) =>
                     handleUpdateQuantity(item.id, parseInt(e.target.value))
                   }
                 />
               </td>
-              <td>{item.price * item.quantity}</td>
+              <td>{item.price * item.qty}</td>
               <td>
-                <Button variant="danger" onClick={() => handleRemoveItem(item.id)}>
+                <Button variant="danger" onClick={() => removeCartData(item)}>
                   Remove
                 </Button>
               </td>
@@ -636,7 +662,7 @@ useEffect(() => {
         </tbody>
       </Table>
       <h4>Total Price: {getTotalPrice()}</h4>
-      <Button variant="primary">Checkout</Button>
+      <Button variant="primary" onClick={()=>navigate("/checkout")}>Checkout</Button>
     </Container>
   );
 };

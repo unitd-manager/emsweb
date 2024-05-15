@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import api from "../constants/api";
 
@@ -20,6 +21,24 @@ const EventSlider = () => {
     const doc = new DOMParser().parseFromString(htmlString, 'text/html');
     return doc.body.textContent || '';
   };
+
+  const [sectiones, setSectiones] = useState([]);
+
+  useEffect(() => {
+   
+
+    api
+      .get("/section/getCategoryEventType")
+      .then((res) => {
+        setSectiones(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching sections:", error);
+      });
+
+
+   
+  }, []);
 
   useEffect(() => {
     getEvent();
@@ -45,6 +64,11 @@ const EventSlider = () => {
               <h2>Event Activities</h2>
             </div>
           </div>
+          <div className="col-xl-2 col-lg-3 text-right1">
+                  <Link  to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`}>
+                    <button className="view-all-btn">View All</button>
+                  </Link>
+                  </div>
         </div>
 
         <div class="row justify-content-center">

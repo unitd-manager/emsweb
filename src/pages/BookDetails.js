@@ -4,11 +4,12 @@ import { Container, Card,Row, Col, Image, Button, Form } from 'react-bootstrap';
 import AOS from "aos";
 import './BookDetailPage.css'; // Import your custom CSS for styling
 import api from '../constants/api';
-
+import { getUser } from '../common/user';
 
 const BookDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState();
+  const [user, setUser] = useState();
   const handleQuantityChange = (e) => {
     setQuantity(parseInt(e.target.value));
   };
@@ -17,6 +18,7 @@ const BookDetailPage = () => {
 console.log('id',id)
 
 const addToCart=()=>{
+  product.contact_id=user.contact_id;
   api.post('/contact/addToCart',product)
   .then(() =>{ 
     console.log("Item Added to cart")})
@@ -53,7 +55,16 @@ const addToCart=()=>{
     
 
   }, [id]);
-
+  useEffect(() => {
+   
+    // setLoading(true)
+    const userInfo = getUser();
+    //const session = getSessionId();
+    console.log('userInfo',userInfo)
+    setUser(userInfo);
+    
+    
+  }, []);
   return (
    <><Row><Col md='8'></Col><Col md='4'>
      <Link to={process.env.PUBLIC_URL + "/cart"}>
