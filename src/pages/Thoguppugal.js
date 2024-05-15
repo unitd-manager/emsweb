@@ -4,10 +4,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 //import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
+import bannerImage from "../../src/assets/images/Thogupu.jpg";
 
 const Thoguppugal = () => {
   const { id } = useParams();
-
+console.log('sect',id);
   const [thoguppugal, setThoguppugal] = useState([]);
 
   useEffect(() => {
@@ -28,7 +29,12 @@ const Thoguppugal = () => {
 
   return (
     <div>
-      <div className="breadcrumb service-breadcrumb">
+      <div className="breadcrumb service-breadcrumb"
+       style={{
+        backgroundImage: `url(${bannerImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">

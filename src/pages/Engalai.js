@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import bannerImage from "../../src/assets/images/about.jpg";
 //import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
@@ -29,16 +30,21 @@ const Engalai = () => {
 
   return (
     <div>
-      <div className="breadcrumb service-breadcrumb">
+      <div className="breadcrumb service-breadcrumb"
+        style={{
+          backgroundImage: `url(${bannerImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
               <div className="part-txt">
-                <h1>Services</h1>
+                <h1>About Us</h1>
                 <ul>
                   <li>Home</li>
                   <li>-</li>
-                  <li>Service Detail</li>
+                  <li>About us</li>
                  
                 </ul>
               </div>
@@ -74,69 +80,3 @@ const Engalai = () => {
 
 export default Engalai;
 
-// ServiceDetails.js
-// import React, { useState, useEffect } from 'react';
-// import ReactHtmlParser from "react-html-parser";
-
-// //import { useParams } from 'react-router-dom';
-// import api from '../constants/api';
-
-// const stripHtmlTags = (htmlString) => {
-//     const doc = new DOMParser().parseFromString(htmlString, 'text/html');
-//     return doc.body.textContent || '';
-//   };
-// const Ahlubaith = () => {
-//     const [content, setContent] = useState(null);
-//     //const {id}=useParams(); 
-//     useEffect(() => {
-//         const fetchContent = () => {
-//             api.get("/content/getByVappa")
-//                 .then(response => {
-//                     setContent(response.data.data);
-//                     console.log("Content", response.data.data);
-//                 })
-//                 .catch(error => {
-//                     console.error('Error fetching content:', error);
-//                 });
-//         };
-
-//         fetchContent();
-//     }, []);
-
-
-//     return (
-//         <div>
-            
-//             <div className="service-details">
-//                 <div className="container">
-//                     <div className="row">
-//                         <div className="col-xl-12 col-lg-12 next">
-//                             <div className="tab-content" id="v-pills-tabContent">
-//                                 <div className="tab-pane fade show active" id="v-pills-one" role="tabpanel" aria-labelledby="v-pills-one-tab">
-//                                     <div className="main-content">
-
-//                                         <div>
-//                                             {content &&
-//                                                 content.map(item => (
-//                                                     <div key={item.content_id}>
-//                                                         <h2>{item.title}</h2>
-                                                        
-//                                                         <p>
-//                                                         {ReactHtmlParser(item.description)}
-//                                                             </p>
-//                                                     </div>
-//                                                 ))
-//                                             }
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Ahlubaith;
