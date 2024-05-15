@@ -11,7 +11,6 @@ import Home from "./pages/home";
 import BlogDetails from "./pages/BlogDetails";
 import ServiceDetails from "./pages/ServiceDetails";
 import TeamPage from "./pages/TeamPage";
-import Events from "./pages/Events";
 import EventsEdit from "./pages/EventsEdit";
 import Kolgaigal from "./pages/Kolgaigal";
 import Engalai from "./pages/Engalai";
@@ -47,6 +46,8 @@ import MagazineSubscripe from './pages/MagazineSubscripe';
 import NoolVivaram from "./pages/NoolVivaram";
 import BookDetailPage from "./pages/BookDetails";
 // import { ToastProvider } from "react-toast-notifications";
+import Essay1 from "./pages/Essay1";
+import Akkangal from "./pages/Akkangal";
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -180,7 +181,6 @@ function App() {
         <Route path="/book/:id" element={<BookDetailPage />} />
         <Route path="/service-details" element={<ServiceDetails />} />
         <Route path="/team" element={<TeamPage />} />
-        <Route path="/Events" element={<Events />} />
         <Route path="/EventsEdit/:id" element={<EventsEdit />} />
         <Route path="/எங்களைப் பற்றி/:id" element={<Engalai />} />
         <Route
@@ -208,6 +208,9 @@ function App() {
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Akkangal" element={<Akkangal />} />
+
+        <Route path="/Essay1" element={<Essay1 />} />
         <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
         <Route
           path="/வஹ்தத்துல் வுஜூத்/:id/:id"
