@@ -48,6 +48,8 @@ import BookDetailPage from "./pages/BookDetails";
 // import { ToastProvider } from "react-toast-notifications";
 import Essay1 from "./pages/Essay1";
 import Akkangal from "./pages/Akkangal";
+import Magazine from "./pages/Magazine";
+import MagazineArtical from './pages/MagazineArtical'
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -57,7 +59,7 @@ function App() {
   const [email, setEmail] = useState([]);
 
   const [sectiones, setSectiones] = useState([]);
-
+  const [contactId, setContactId] = useState();
   useEffect(() => {
    
 
@@ -73,6 +75,25 @@ function App() {
 
    
   }, []);
+
+  useEffect(() => {
+    const getSelectedLanguageFromLocalStorage = () => {
+      const user = localStorage.getItem('user');
+      return user ? JSON.parse(user) : {};
+    };
+  
+    const selectedLanguage = getSelectedLanguageFromLocalStorage();
+    console.log('selectedLanguage', selectedLanguage);
+    setContactId(selectedLanguage.contact_id);
+    console.log('contactId', selectedLanguage.contact_id);
+  }, []);
+
+  const logout=()=>{
+    localStorage.clear()
+    setTimeout(()=>{
+      window.location.reload()
+    },200)
+  }
 
   useEffect(() => {
     // Fetch sections
@@ -114,7 +135,7 @@ function App() {
                 </div>
                 <div className="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
                 <div className="top-right">
-                  <Link to="/MagazineLogin" target="_blank">
+                  <Link to="/Magazine" target="_blank">
                     <Button>EMS Magazine</Button>
                   </Link>
                 </div>
@@ -131,6 +152,13 @@ function App() {
                     <Button>EMS Web Tv Channel</Button>
                     </Link>
                   </div>
+                  {contactId &&
+                  <div className="top-right">
+                  <Button onClick={logout} color="danger" size="sm">
+                   Logout
+                 </Button>
+                  </div>
+                  }
                 </div>
               </div>
             </div>
@@ -227,6 +255,8 @@ function App() {
         <Route path="/MagazineRegisterForm" element={<MagazineRegisterForm />} />
         <Route path="/MagazineLogin" element={<MagazineLogin />} />
         <Route path="/MagazineSubscripe" element={<MagazineSubscripe />} />
+        <Route path="/Magazine" element={<Magazine />} />
+        <Route path="/MagazineArtical/:id" element={<MagazineArtical />} />
 
       </Routes>
       <Footer />
