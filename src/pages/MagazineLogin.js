@@ -17,6 +17,35 @@ function Login() {
       const [subs, setSubs] = useState("");
 
       console.log('subs', subs);
+
+
+      useEffect(() => {
+        const getSelectedLanguageFromLocalStorage = () => {
+          const user = localStorage.getItem('user');
+          console.log('user',user)
+          return user ? JSON.parse(user) : {};
+         
+        };
+     
+        const selectedLanguage = getSelectedLanguageFromLocalStorage();
+        console.log('selectedLanguage', selectedLanguage);
+        const contactId = selectedLanguage.contact_id;
+        console.log('contactId', contactId);
+  
+        
+          const getContactById = () => {
+            api
+              .post('/contact/getContactsById', { contact_id: contactId })
+              .then((res) => {
+                setSubs(res.data.data[0].subs_payment_status);
+              })
+              .catch(() => {
+              });
+          };
+        
+          getContactById();
+        }, []);
+
       const navigate=useNavigate();
       const validateEmail = (email) => {
         // Email validation regex pattern
@@ -34,7 +63,7 @@ function Login() {
         console.log("signin", signinData);
       };
     
-
+    
     const signin = (event) => {
         event.preventDefault();
         // Reset previous errors
@@ -65,17 +94,45 @@ function Login() {
             else {
               localStorage.setItem("user", JSON.stringify(res.data.data));
               localStorage.setItem("token", JSON.stringify(res.data.token));
+              
 
-              if(subs !=='subscribe'){
-    
+              const getSelectedLanguageFromLocalStorage = () => {
+                const user = localStorage.getItem('user');
+                console.log('user',user)
+                return user ? JSON.parse(user) : {};
+               
+              };
+           
+              const selectedLanguage = getSelectedLanguageFromLocalStorage();
+              console.log('selectedLanguage', selectedLanguage);
+              const contactId = selectedLanguage.contact_id;
+              console.log('contactId', contactId);
+      
+                  api
+                    .post('/contact/getContactsById', { contact_id: contactId })
+                    .then((res) => {
+                      setSubs(res.data.data[0].subs_payment_status);
+                  
+              
+               if(res.data.data[0].subs_payment_status !=='subscribe'){
+                window.location.reload()
                        setTimeout(()=>{
                navigate('/MagazineSubscripe')
+               
               },300)
             }else{
               // <Magazine></Magazine>
               // navigate('/Magazine')
               console.log('teststs')
+              window.location.reload()
+              setTimeout(()=>{
+                navigate('/Magazine')
+               },300)
             }
+
+          })
+          .catch(() => {
+          });
             
             //  {subs !=='subscribe'?navigate('/MagazineSubscripe'):<Magazine></Magazine>} 
     

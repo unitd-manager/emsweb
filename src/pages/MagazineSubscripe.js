@@ -17,6 +17,7 @@ const MagazineSubscribe = () => {
           setMagazine(res.data.data);
           console.log('MAGAZINE', res.data.data)
           AOS.init();
+          
         })
         .catch(() => {});
     };

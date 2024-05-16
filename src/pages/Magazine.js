@@ -79,7 +79,7 @@ export default function Magazine() {
                         <div className="single-blog">
                           <div className="part-img">
                             <img
-                              src={`http://43.228.126.245/emsapi/storage/uploads/${data.file_name}`}
+                              src={`http://43.228.126.245/EMS-API/storage/uploads/${data.file_name}`}
                               alt={data.alt}
                               width="300px"
                               height="250px"
