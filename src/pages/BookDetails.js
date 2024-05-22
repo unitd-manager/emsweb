@@ -19,6 +19,7 @@ console.log('id',id)
 
 const addToCart=()=>{
   product.contact_id=user.contact_id;
+  product.qty = quantity
   api.post('/contact/addToCart',product)
   .then(() =>{ 
     console.log("Item Added to cart")})
@@ -66,11 +67,20 @@ const addToCart=()=>{
     
   }, []);
   return (
-   <><Row><Col md='8'></Col><Col md='4'>
+   <><Row>
+   <Col md={{ span: 1, offset: 8 }}>
      <Link to={process.env.PUBLIC_URL + "/cart"}>
-     <Button type='submit'>Go to Cart</Button>
-                </Link>
-     </Col></Row>
+       <Button type='submit'>Go to Cart</Button>
+     </Link>
+   </Col>
+   <Col md='2'>
+     <Link to={process.env.PUBLIC_URL + "/நூற்கள்/49"}>
+       <Button type='submit'>Back to List</Button>
+     </Link>
+   </Col>
+ </Row>
+ 
+ 
    {product&& <Container className='p-3'>
       <Row>
         <Col md={5}>
@@ -87,7 +97,7 @@ const addToCart=()=>{
         <Col md={7}>
           <h2 className="product-title">{product.title}</h2>
           <p className="product-author">By {product.author_name}</p>
-          <p className="product-price">${product.price}</p>
+          <p className="product-price">Rs:{product.price}</p>
           <div
                     className="part-txt"
                     dangerouslySetInnerHTML={{ __html: product.description_short }}
@@ -130,8 +140,9 @@ const addToCart=()=>{
           </Form.Group>
           </Col>
           </Row>
-          
+          <Link to={process.env.PUBLIC_URL + "/cart"}>
           <Button variant="dark" onClick={addToCart} className="add-to-cart-btn">Add to Cart</Button>
+          </Link>
         </Col>
       </Row>
       <Container>

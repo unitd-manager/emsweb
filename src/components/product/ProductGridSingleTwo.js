@@ -60,7 +60,7 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
                 className="default-img"
                 src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images[0]}`}
                 alt=""
-                style={{height:'250px',width:'250px'}}
+                style={{height:'300px',width:'250px',borderRadius:15}}
               />
                {product.images.length > 1 ? (
                 <img
@@ -175,7 +175,7 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
                 
                   <Fragment style={{marginBottom:'10px'}}>
                     <span style={{color:'orange'}}>
-                      ${product.price}
+                      Rs: {product.price}
                     </span>{" "}
                    
                   </Fragment>
@@ -183,9 +183,11 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
               </div>
           
               <span style={{marginBottom:'10px'}}>
-               <Button style={{width:'100%',backgroundColor:'#000033'}} type="submit">
-Buy/View
+              <Link to={process.env.PUBLIC_URL + "/Book/" + product.product_id}>
+               <Button style={{width:'100%',backgroundColor:'green'}} type="submit">
+                 Buy/View
                </Button>
+               </Link>
               </span>
 {/*            
               <div className="price-2">

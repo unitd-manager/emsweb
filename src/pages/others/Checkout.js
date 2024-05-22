@@ -1,114 +1,24 @@
-// import React, { useState } from 'react';
-// import { Container, Form, Button } from 'react-bootstrap';
-// import './CheckoutPage.css'; // Import your custom CSS for styling
-
-// const CheckoutPage = () => {
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     email: '',
-//     address: '',
-//     paymentMethod: '',
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Handle form submission logic here
-//     console.log(formData);
-//   };
-
-//   return (
-//     <Container>
-//       <h2 className="checkout-title">Checkout</h2>
-//       <Form onSubmit={handleSubmit}>
-//         <Form.Group controlId="formName">
-//           <Form.Label>Name</Form.Label>
-//           <Form.Control
-//             type="text"
-//             name="name"
-//             value={formData.name}
-//             onChange={handleChange}
-//             required
-//           />
-//         </Form.Group>
-//         <Form.Group controlId="formEmail">
-//           <Form.Label>Email</Form.Label>
-//           <Form.Control
-//             type="email"
-//             name="email"
-//             value={formData.email}
-//             onChange={handleChange}
-//             required
-//           />
-//         </Form.Group>
-//         <Form.Group controlId="formAddress">
-//           <Form.Label>Address</Form.Label>
-//           <Form.Control
-//             as="textarea"
-//             name="address"
-//             value={formData.address}
-//             onChange={handleChange}
-//             required
-//           />
-//         </Form.Group>
-//         <Form.Group controlId="formPaymentMethod">
-//           <Form.Label>Payment Method</Form.Label>
-//           <Form.Control
-//             as="select"
-//             name="paymentMethod"
-//             value={formData.paymentMethod}
-//             onChange={handleChange}
-//             required
-//           >
-//             <option value="">Select Payment Method</option>
-//             <option value="credit_card">Credit Card</option>
-//             <option value="paypal">PayPal</option>
-//           </Form.Control>
-//         </Form.Group>
-//         <Button variant="primary" type="submit" className="submit-btn">
-//           Submit
-//         </Button>
-//       </Form>
-//     </Container>
-//   );
-// };
-
-// export default CheckoutPage;
 
 import PropTypes from "prop-types";
 import React, { Fragment, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-//import MetaTags from "react-meta-tags";
-//import { connect } from "react-redux";
-//import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-//import { getDiscountPrice } from "../../helpers/product";
-//import LayoutOne from "../../layouts/Layout";
-//import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-//import StripeCheckout from "react-stripe-checkout";
-//import { useToasts } from "react-toast-notifications";
-//import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 import api from "../../constants/api";
 import { getUser } from "../../common/user";
-//import { loadStripe } from "@stripe/stripe-js";
-//import Payment from "../../components/Payment";
-//import Stripe from "stripe";
-import { Input } from "reactstrap";
-//import CheckoutRazorpay from "./CheckoutRazorpay";
-//import InstaPay from "./InstaPay";
+import { Input,Button,Row,Col} from "reactstrap";
+import RazorpayCheckout from 'razorpay-checkout';
 
-// const stripePromise = loadStripe(
-//   "pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3"
-// );
-// const stripe = Stripe(
-//   "sk_test_51KX4uOSJWiuYw3gIHasMc0HZONGNydONE1kA9BPa2MpTDYQySDEAVVsBqoCRtpnKbPlscBgQzkqY1JGqKBO8pLl300spdpbXRm"
-// );
+
+
+const loadScript = (src) => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = () => resolve(true);
+    script.onerror = (error) => reject(error);
+    document.body.appendChild(script);
+  });
+};
 
 const Checkout = ({
   
@@ -190,9 +100,256 @@ stripeToken && makeRequest();
     setOrderDetail({ ...orderDetail, [e.target.name]: e.target.value });
   };
 
-  //const { addToast } = useToasts();
+  // const handleQtyChanges = (itemId, newQty) => {
+  //   // Update the quantity of the item with itemId to newQty
+  //   // You can use setCartItems to update the cartItems state with the new quantity
+  //   const updatedCartItems = cartItems.map(item => {
+  //     if (item.id === itemId) {
+  //       return { ...item, qty: newQty };
+  //     }
+  //     return item;
+  //   });
+  //   setCartItems(updatedCartItems); 
+  //  const total =((cartItems).reduce((total, item) => total + item.price * item.qty, 0));
+  //  console.log('total',total)
+  // };
+  const handleQtyChange = (index, newQuantity) => {
+    const newCart = [...cartItems];
+    newCart[index].qty = newQuantity;
+    setCartItems(newCart);
+  };
 
-  const placeOrder = (os) => {
+  const decrementQuantity = (index) => {
+    const newQuantity = Math.max(0, cartItems[index].qty - 1);
+    handleQtyChange(index, newQuantity);
+  };
+
+  const incrementQuantity = (index) => {
+    const newQuantity = cartItems[index].qty + 1;
+    handleQtyChange(index, newQuantity);
+  };
+
+  const containerStyle = {
+    border: '1px solid #ccc',
+    padding: '20px',
+    borderRadius: '10px',
+    marginBottom: '20px'
+  };
+  
+  const sectionStyle = {
+    border: '1px solid #ccc',
+    padding: '10px',
+    borderRadius: '5px',
+    marginBottom: '10px'
+  };
+  
+  const imageStyle = {
+    maxWidth: '100px',
+    marginRight: '10px',
+    marginBottom: '10px'
+  };
+  
+  const labelStyle = {
+    fontWeight: 'bold',
+    width: '50px',
+    marginLeft: '10px'
+  };
+  
+  const buttonStyle = {
+    fontWeight: 'bold',
+    width: '50px',
+    marginLeft: '10px'
+  };
+  
+  const orderTopStyle = {
+    border: '1px solid #ccc',
+    padding: '10px',
+    borderRadius: '5px',
+    marginBottom: '10px',
+    backgroundColor: '#f9f9f9'
+  };
+  
+  const orderMiddleStyle = {
+    border: '1px solid #ccc',
+    padding: '10px',
+    borderRadius: '5px',
+    marginBottom: '10px'
+  };
+  const containerStyles = {
+    border: '1px solid #ccc',
+    padding: '20px',
+    borderRadius: '10px',
+    marginBottom: '20px',
+    backgroundColor: '#f9f9f9'
+  };
+  
+  const sectionStyles = {
+    border: '1px solid #ccc',
+    padding: '10px',
+    borderRadius: '5px',
+    marginBottom: '10px',
+    backgroundColor: '#fff'
+  };
+  
+  const inputContainerStyle = {
+    marginBottom: '10px'
+  };
+  
+  
+  const getTotalPrice = () => {
+    return cartItems.reduce((total, product) => total + product.price * product.qty, 0).toFixed(2);
+  };
+
+  const totalAmount = 100
+  const user = getUser();
+  const  userContactId = user.contact_id
+
+  const placeOrder = () => {
+    // Validate fields
+   
+  
+    api.post('/orders/insertorders', { ...orderDetail, contact_id: userContactId })
+      .then(response => {
+        if (response.status === 200) {
+          const orderId = response.data.data.insertId;
+          Promise.all(cartItems.map(item => {
+            console.log('orderitem',item)
+            return api.post('/orders/insertOrderItem1', {
+              qty: item.qty,
+              unit_price: item.price,
+              contact_id: userContactId,
+              order_id:orderId,
+              cost_price:item.qty*item.price,
+               item_title:item.title
+            });
+          }))
+            .then(responses => {
+              const allInserted = responses.every(response => response.status === 200);
+              if (allInserted) {
+                SendEmail();
+              } else {
+                console.error('Error placing one or more order items');
+              }
+            })
+            .catch(error => {
+              console.error('Error placing order items:', error);
+            });
+        } else {
+          console.error('Error');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
+  const SendEmail = () => {
+
+    const to = orderDetail.shipping_email;
+    const subject = "Order Confirmed";
+    const phone = orderDetail.shipping_phone;
+    const names = orderDetail.shipping_first_name;
+    const address = orderDetail.shipping_address1;
+    const city = orderDetail.shipping_address_city;
+    const state = orderDetail.shipping_address_state;
+    const Country = orderDetail.shipping_address_country_code;
+    const TotalAmount = totalAmount;
+    const code = orderDetail.shipping_address_po_code;
+
+    api
+        .post('/commonApi/sendUseremail', {
+            to,
+            subject,
+            phone,
+            names,
+            address,
+            city,
+            state,
+            Country,
+            TotalAmount,
+            code
+
+
+        })
+        .then(response => {
+            if (response.status === 200) {
+              window.confirm('Orders Sent successfully on your mail.');
+                // Alert.alert('Orders Sent successfully on your mail.');
+                // navigation.navigate(StackNav.ProductList)
+            } else {
+                console.error('Error');
+            }
+        });
+};
+
+const handlePaymentSuccess = (data) => {
+  console.log('Payment Successful:', data);
+  placeOrder()
+ 
+  // history('/order-success');
+};
+
+const handlePaymentFailure = (error) => {
+  console.error('Payment Failed:', error);
+  // history('/orderfail');
+};
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+const onPaymentPress = () => {
+
+
+  if (!orderDetail.shipping_first_name) {
+    alert('Please enter your first Name.');
+    return;
+  }
+  if (!orderDetail.shipping_email) {
+    alert('Please enter your email.');
+    return;
+  }
+  if (!orderDetail.shipping_phone) {
+    alert('Please enter your phone number.');
+    return;
+  }
+  if (!orderDetail.shipping_address1) {
+    alert('Please enter your address.');
+    return;
+  }
+
+  // Proceed with adding delivery address
+  if (!userContactId) {
+    alert('User information not found.');
+    return;
+  }
+
+  const totalAmount = getTotalPrice();
+  const amountInPaise = totalAmount * 100;
+
+  const options = {
+    key: "rzp_test_Cmcb2IrTMsQEYc", // Replace with your Razorpay test/live key
+    amount: amountInPaise,
+    currency: "INR",
+    name: "United",
+    description: "Purchase Description",
+    image: "",
+    handler: handlePaymentSuccess,
+    prefill: {
+      name: orderDetail.shipping_first_name,
+      email: orderDetail.shipping_email,
+      contact: orderDetail.shipping_phone,
+    },
+    theme: {
+      color: "#532C6D",
+    },
+  };
+
+  const rzp = new window.Razorpay(options);
+  rzp.open();
+  rzp.on('payment.failed', handlePaymentFailure);
+};
+
+
+
+  const placeOrders = (os) => {
     console.log("userData", userData);
     if (userData) {
       orderDetail.contact_id = userData.contact_id;
@@ -229,7 +386,8 @@ stripeToken && makeRequest();
           });
         })
         .then(() => {
-          history("/order-success");
+          // history("/order-success");
+          console.log("order-success");
         })
         .catch((err) => console.log(err));
     } else {
@@ -295,7 +453,10 @@ stripeToken && makeRequest();
   }, []);
 
   return (
+    
     <Fragment>
+      <br/>
+      <br/>
       
       {/* <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
@@ -304,60 +465,153 @@ stripeToken && makeRequest();
       {/* <LayoutOne headerTop="visible"> */}
         {/* breadcrumb */}
         {/* <Breadcrumb /> */}
-        <div className="checkout-area pt-95 pb-100">
+        <div className="checkout-area pt-95 pb-100" style={containerStyles}>
           <div className="container">
             {cartItems && cartItems.length >= 1 ? (
               <div className="row">
                 <div className="col-lg-7">
-                  <div className="billing-info-wrap">
-                    <h3>Billing Details</h3>
+                  <div className="billing-info-wrap" style={sectionStyles}>
+                    <h3 style={{ fontWeight: 'bold'}}>Billing Details</h3>
                     <div className="row">
-                      <div className="col-lg-6 col-md-6">
+                      <div className="col-lg-6 col-md-6" style={inputContainerStyle}>
                         <div className="billing-info mb-20">
-                          <label>First Name</label>
-                          <input
-                            type="text"
-                            name="shipping_first_name"
-                            value={
-                              orderDetail && orderDetail.shipping_first_name
-                            }
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>Last Name</label>
-                          <input
-                            type="text"
-                            name="shipping_last_name"
-                            value={
-                              orderDetail && orderDetail.shipping_last_name
-                            }
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="billing-info mb-20">
-                          <label>Company Name</label>
-                          <input
-                            type="text"
-                            name="selling_company"
-                            value={orderDetail && orderDetail.selling_company}
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="billing-select mb-20">
-                          <label>Country</label>
+                           <label style={{ color: "black" ,fontWeight:'bold'}}>First Name</label>
+                           
                           <Input
-                type="select"
-                name="shipping_address_country_code"
-                onChange={handleOrderDetail}
-                value={orderDetail && orderDetail.shipping_address_country_code}
-              >
+                         type="text"
+                        name="shipping_first_name"
+                       value={orderDetail && orderDetail.shipping_first_name}
+                        onChange={handleOrderDetail}
+                         />
+                        </div>
+                      </div>
+                      <br/>
+                      <div className="col-lg-6 col-md-6">
+                        <div className="billing-info mb-20">
+                           <label style={{ color: "black" ,fontWeight:'bold'}}>Last Name</label>
+                          <Input
+                         type="text"
+                        name="shipping_last_name"
+                       value={orderDetail && orderDetail.shipping_last_name}
+                        onChange={handleOrderDetail}
+                         />
+                        </div>
+                      </div>
+                      <br/>
+                      <div className="col-lg-12">
+                        <div className="billing-info mb-20">
+                           <label style={{ color: "black",fontWeight:'bold' }}>Company Name</label>
+                          <Input
+                         type="text"
+                        name="selling_company"
+                       value={orderDetail && orderDetail.selling_company}
+                        onChange={handleOrderDetail}
+                         />
+                        </div>
+                      </div>
+                      
+                      <br/>
+                      <div className="col-lg-12">
+                      <br/>
+                        <div className="billing-info mb-20">
+                          <label style={{ color: "black",fontWeight:'bold' }}>Street Address</label>
+                          <Input
+                          type="textarea"
+                            className="billing-address"
+                            placeholder="House number and street name"
+                           
+                            name="shipping_address1"
+                            value={orderDetail && orderDetail.shipping_address1}
+                            onChange={handleOrderDetail}
+                          />
+                          <br/>
+                          <Input
+                            placeholder="Apartment, suite, unit etc."
+                            type="textarea"
+                            name="shipping_address2"
+                            value={orderDetail && orderDetail.shipping_address2}
+                            onChange={handleOrderDetail}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-12">
+                      <br/>
+                        <div className="billing-info mb-20">
+                          <label style={{ color: "black",fontWeight:'bold' }}>Town / City</label>
+                          <Input
+                            type="text"
+                            name="shipping_address_city"
+                            value={
+                              orderDetail && orderDetail.shipping_address_city
+                            }
+                            onChange={handleOrderDetail}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6">
+                      <br/>
+                        <div className="billing-info mb-20">
+                          <label style={{ color: "black",fontWeight:'bold' }}>State / County</label>
+                          <Input
+                            type="text"
+                            name="shipping_address_state"
+                            value={
+                              orderDetail && orderDetail.shipping_address_state
+                            }
+                            onChange={handleOrderDetail}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6">
+                      <br/>
+                        <div className="billing-info mb-20">
+                          <label style={{ color: "black",fontWeight:'bold' }}>Postcode / ZIP</label>
+                          <Input
+                            type="text"
+                            name="shipping_address_po_code"
+                            value={
+                              orderDetail &&
+                              orderDetail.shipping_address_po_code
+                            }
+                            onChange={handleOrderDetail}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6">
+                      <br/>
+                        <div className="billing-info mb-20">
+                          <label style={{ color: "black",fontWeight:'bold' }}>Phone</label>
+                          <Input
+                            type="text"
+                            name="shipping_phone"
+                            value={orderDetail && orderDetail.shipping_phone}
+                            onChange={handleOrderDetail}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6">
+                      <br/>
+                        <div className="billing-info mb-20">
+                          <label style={{ color: "black",fontWeight:'bold' }}>Email Address</label>
+                          <Input
+                            type="text"
+                            name="shipping_email"
+                            value={orderDetail && orderDetail.shipping_email}
+                            onChange={handleOrderDetail}
+                          />
+                        </div>
+                      </div>
+                      <br/>
+                      <div className="col-lg-12">
+                      <br/>
+                        <div className="billing-select mb-20">
+                          <label style={{ color: "black",fontWeight:'bold' }}>Country</label>
+                          <Input
+                        type="select"
+                      name="shipping_address_country_code"
+                        onChange={handleOrderDetail}
+                       value={orderDetail && orderDetail.shipping_address_country_code}
+                        >
                 <option defaultValue="selected" value="">
                   Please Select
                 </option>
@@ -370,98 +624,18 @@ stripeToken && makeRequest();
               </Input>
                         </div>
                       </div>
-                      <div className="col-lg-12">
-                        <div className="billing-info mb-20">
-                          <label>Street Address</label>
-                          <input
-                            className="billing-address"
-                            placeholder="House number and street name"
-                            type="text"
-                            name="shipping_address1"
-                            value={orderDetail && orderDetail.shipping_address1}
-                            onChange={handleOrderDetail}
-                          />
-                          <input
-                            placeholder="Apartment, suite, unit etc."
-                            type="text"
-                            name="shipping_address2"
-                            value={orderDetail && orderDetail.shipping_address2}
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="billing-info mb-20">
-                          <label>Town / City</label>
-                          <input
-                            type="text"
-                            name="shipping_address_city"
-                            value={
-                              orderDetail && orderDetail.shipping_address_city
-                            }
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>State / County</label>
-                          <input
-                            type="text"
-                            name="shipping_address_state"
-                            value={
-                              orderDetail && orderDetail.shipping_address_state
-                            }
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>Postcode / ZIP</label>
-                          <input
-                            type="text"
-                            name="shipping_address_po_code"
-                            value={
-                              orderDetail &&
-                              orderDetail.shipping_address_po_code
-                            }
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>Phone</label>
-                          <input
-                            type="text"
-                            name="shipping_phone"
-                            value={orderDetail && orderDetail.shipping_phone}
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>Email Address</label>
-                          <input
-                            type="text"
-                            name="shipping_email"
-                            value={orderDetail && orderDetail.shipping_email}
-                            onChange={handleOrderDetail}
-                          />
-                        </div>
-                      </div>
                     </div>
-
-                    <div className="additional-info-wrap">
+                    <br/>
+                    <div className="additional-info-wrap" style={sectionStyle}>
                       <h4>Additional information</h4>
                       <div className="additional-info">
-                        <label>Order notes</label>
-                        <textarea
+                        <label style={{ color: "black",fontWeight:'bold' }}>Order notes</label>
+                        <Input
+                          type="textarea"
                           placeholder="Notes about your order, e.g. special notes for delivery. "
                           name="message"
                           defaultValue={""}
+                          style={{ height: "100px", resize: "vertical" }}
                         />
                       </div>
                     </div>
@@ -469,121 +643,69 @@ stripeToken && makeRequest();
                 </div>
 
                 <div className="col-lg-5">
-                  <div className="your-order-area">
-                    <h3>Your order</h3>
-                    <div className="your-order-wrap gray-bg-4">
-                      <div className="your-order-product-info">
-                        <div className="your-order-top">
-                          <ul>
-                            <li>Product</li>
-                            <li>Total</li>
-                          </ul>
-                        </div>
-                        <div className="your-order-middle">
-                          <ul>
-                            {cartItems.map((cartItem, key) => {
-                              const discountedPrice = 
-                                cartItem.price;
-                              const finalProductPrice = (
-                                cartItem.price
-                              ).toFixed(2);
-                              const finalDiscountedPrice = (
-                                discountedPrice 
-                              ).toFixed(2);
-
-                              discountedPrice != null
-                                ? (cartTotalPrice +=
-                                    finalDiscountedPrice * cartItem.qty)
-                                : (cartTotalPrice +=
-                                    finalProductPrice * cartItem.qty);
-                              return (
-                                <li key={key}>
-                                  <span className="order-middle-left">
-                                    {cartItem.title} X {cartItem.qty}
-                                  </span>{" "}
-                                  <span className="order-price">
-                                    {discountedPrice !== null
-                                      ? 
-                                        (
-                                          finalDiscountedPrice * cartItem.qty
-                                        ).toFixed(2)
-                                      : 
-                                        (
-                                          finalProductPrice * cartItem.qty
-                                        ).toFixed(2)}
-                                  </span>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                        <div className="your-order-bottom">
-                          <ul>
-                            <li className="your-order-shipping">Shipping</li>
-                            <li>Free shipping</li>
-                          </ul>
-                        </div>
-                        <div className="your-order-total">
-                          <ul>
-                            <li className="order-total">Total</li>
-                            <li>
-                              {
-                                cartTotalPrice.toFixed(2)}
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div className="payment-method">
-                        {/* <PayPalScriptProvider
-                          options={{
-                            "client-id":
-                              "ActPqt3MVzbwuKZfPIItIysHPTNkOVvpiEaHYUJosBQ4uO7NxOKOntLKfk2rxQH9RnAfC8B_cq26TQXy",
-                          }}
-                        >
-                          <PayPalButtons
-                            createOrder={(data, actions) => {
-                              return actions.order.create({
-                                purchase_units: [
-                                  {
-                                    amount: {
-                                      value: cartTotalPrice, // Set the amount to charge
-                                    },
-                                  },
-                                ],
-                              });
-                            }}
-                            onApprove={(data, actions) => {
-                              return actions.order
-                                .capture()
-                                .then(function (details) {
-                                  // Handle the payment success
-                                  console.log(details);
-                                });
-                            }}
-                          />
-                        </PayPalScriptProvider> */}
-                      
-                        {/* <Payment
-                          amount={cartTotalPrice * 100}
-                          placeOrder={placeOrder}
-                        /> */}
-                        {/* <CheckoutRazorpay 
-                        amount={cartTotalPrice * 100}
-                        placeOrder={placeOrder}
-                        />
-                        <InstaPay
-                        amount={cartTotalPrice * 100}
-                        placeOrder={placeOrder}
-                        /> */}
-                      </div>
-                    </div>
-                    <div className="place-order mt-25">
-                      <button className="btn-hover" onClick={placeOrder}>
-                        Place Order
-                      </button>
-                    </div>
-                  </div>
+                <div className="your-order-area" style={containerStyle}>
+  <h3 style={{ fontWeight: 'bold' }}>Your order</h3>
+  <div className="your-order-wrap gray-bg-4" style={sectionStyle}>
+    <div className="your-order-product-info">
+      <div className="your-order-bottom"></div>
+      <br />
+      <div className="place-order mt-25" style={sectionStyle}>
+        <Row>
+          <Col>
+            <label style={{ fontSize: 18, marginLeft: 2, fontWeight: 'bold' }}>Total Price:</label>
+          </Col>
+          <Col md='2'>
+            <h4 style={{ marginLeft: -40, color: 'green',fontSize: 16,marginTop:7 }}>{getTotalPrice()}</h4>
+          </Col>
+          <Col md='2'>
+            <Button color="primary" style={{ marginLeft: 1, width: "110px" }} className="btn-hover" onClick={onPaymentPress}>
+              Place Order
+            </Button>
+          </Col>
+          <Col>
+            <Link to={process.env.PUBLIC_URL + "/நூற்கள்/49"}>
+              <Button style={{ marginLeft: 40, width: "110px" }} type='submit'>Book List</Button>
+            </Link>
+          </Col>
+        </Row>
+      </div>
+      <br />
+      <div className="your-order-top" style={orderTopStyle}>
+        <ul>
+          <label style={{ fontSize: 20 }}>Product List</label>
+        </ul>
+      </div>
+      <div className="your-order-middle" style={orderMiddleStyle}>
+        <ul>
+          {cartItems.map((cartItem, index) => {
+            const discountedPrice = cartItem.price;
+            const finalProductPrice = cartItem.price.toFixed(2);
+            const finalDiscountedPrice = discountedPrice.toFixed(2);
+            const totalPrice = discountedPrice !== null ? finalDiscountedPrice * cartItem.qty : finalProductPrice * cartItem.qty;
+            return (
+              <li key={index}>
+                <div className="image-and-qty" style={sectionStyle}>
+                  <img src={`https://emsweb.unitdtechnologies.com/storage/uploads/${cartItem?.images}`} alt="" style={imageStyle} />
+                  <label style={labelStyle}>Rs:</label>
+                  <span style={{ fontWeight: "bold", width: "50px", marginLeft: -20, color: 'green' }}>{cartItem.price}</span>
+                  <span>
+                    <Button onClick={() => decrementQuantity(index)} style={buttonStyle}>-</Button>
+                    <span style={{ fontWeight: "bold", marginLeft: 10 }}>{cartItem.qty}</span>
+                    <Button onClick={() => incrementQuantity(index)} style={buttonStyle}>+</Button>
+                  </span>
+                  <br />
+                  <label style={{ fontWeight: "bold" }}>{cartItem.title}</label>
                 </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
               </div>
             ) : (
               <div className="row">
@@ -606,8 +728,12 @@ stripeToken && makeRequest();
             )}
           </div>
         </div>
+        <br/>
+        <br/>
+        <br/>
       {/* </LayoutOne> */}
     </Fragment>
+   
   );
 };
 
