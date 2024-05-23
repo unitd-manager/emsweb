@@ -231,12 +231,13 @@ span {
 }
 
 .view-all-btn {
-  background-color: #f0f0f0;
+  background-color: #28505d;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  color: wheat;
 }
 
 .view-all-btn:hover {
@@ -259,6 +260,7 @@ span {
 .product-slide {
   text-align: center;
   margin-top: 10px;
+  color: white;
 }
 
 .product-slide img {
@@ -270,7 +272,19 @@ span {
   margin-top: 10px;
   font-size: 16px;
   color: #333;
+}.product-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
 }
+
+.product-title {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 
 .heading h2 {
   font-size: 35px;
@@ -1163,7 +1177,7 @@ span {
   padding-bottom: 120px;
 }
 .partner .bg {
-  background: #E7B03C;
+  background: #FFF;
   border-radius: 10px;
   padding: 35px 55px;
 }
@@ -2249,13 +2263,13 @@ span {
   font-size: 35px;
   line-height: 45px;
   font-weight: 700;
-  color: #e4e420;
+  color: #1a1a17;
   margin-bottom: 41px;
   text-align: center;
 }
 .blog {
   padding: 120px 0;
-  background: rgba(13, 9, 37, 0.93);
+  background: #f0f0f0;
 }
 .blog .blog-slider .owl-stage-outer {
   margin: -20px;
@@ -2296,20 +2310,68 @@ span {
 
 .blog .blog-slider .owl-stage-outer .owl-item .single-box .part-img {
   width: 190px;
-  border-radius: 10px;
+  border-radius: 30px;
   overflow: hidden;
+  height: auto;
 }
+
+
+.event-slider .event-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 10px;
+}
+
+.event-slider .event-img {
+  width: 100%;
+  text-align: center;
+}
+
+.event-slider .event-img .event-image {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+}
+
+.event-slider .event-details {
+  padding: 15px;
+  text-align: center;
+}
+
+.event-slider .event-title {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.blog .blog-slider .read-more-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
 .blog .blog-slider .owl-stage-outer .owl-item .single-box .part-txt {
-  width: 290px;
-  margin-bottom: -50px;
+  margin-bottom: 50px;
+  padding: 10px; /* Padding inside the description box */
+  background-color: #f0f0f0; /* Grey shaded box */
+  text-align: center; 
+  margin-top: 70px;
+border-radius: 70px;
 }
 .blog .blog-slider .owl-stage-outer .owl-item .single-box .part-txt .title {
-  font-size: 20px;
+  font-size: 14px;
   line-height: 28px;
   font-weight: 700;
   color: #4b4b46;
   margin-top: -6px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .blog .blog-slider .owl-stage-outer .owl-item .single-box .part-txt p {
   font-size: 16px;
@@ -2366,18 +2428,21 @@ span {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+          margin-top: 10px;
 }
 .blog .blog-slider .owl-stage-outer .owl-item .single-box .part-txt .part-btn .def-btn {
   height: 40px;
   line-height: 40px;
-  /* padding: 0 20px; */
-  bottom: 70px;
+  padding: 0 20px;
+  bottom: 50px;
   position: absolute;
+  display: inline-block;
+  
 }
 #nav-tabContent {
   position: relative;
   top: 60px;
-  left: 50px;
+  left: 250px;
 }
 
 .blog .blog-slider .owl-stage-outer .owl-item .single-box:hover .part-txt .title {
@@ -2598,6 +2663,17 @@ span {
   background: #0D0925;
   color: #fff;
 }
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four videos per row */
+  gap: 20px; /* Adjust spacing between videos */
+}
+
+.video-item {
+  position: relative;
+}
+
 
 .footer {
   padding-top: 15px;

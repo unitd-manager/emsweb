@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
@@ -226,6 +226,9 @@ console.log("111111",id)
     getHomeProducts();
   }, []);
   return (
+    <>
+    <br/>
+    <Fragment>
     <div>
       <Marquee style={{ backgroundColor: 'red', color: 'white', fontSize: '15px' }}>
         {marqueeValue}
@@ -255,7 +258,7 @@ console.log("111111",id)
         <EventSlider></EventSlider>
 
         {/* Video Gallery Panel */}
-        <div>
+        {/* <div>
           <div className="video-gallery">
         <div className="row justify-content-center">
           <div className="col-xl-4 col-lg-3">
@@ -285,7 +288,6 @@ console.log("111111",id)
         </div>
           </div>
 
-          {/* Video Popup */}
           {selectedVideoUrl && (
             <div className="video-popup">
               <div className="popup-content">
@@ -301,8 +303,33 @@ console.log("111111",id)
               </div>
             </div>
           )}
-        </div>
+        </div> */}
             <div></div>
+                {/* Video Gallery Panel */}
+      <div className="video-gallery">
+        <div className="row justify-content-center">
+          <div className="col-xl-4 col-lg-3">
+            <div className="heading">
+              <h2>Video Gallery</h2>
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="video-grid">
+            {Array.isArray(videoUrls) &&
+              videoUrls.map((videoUrl, index) => (
+                <div key={index} className="video-item">
+                  <ReactPlayer
+                    url={videoUrl.description}
+                    controls
+                    width="100%"
+                    height="200px"
+                  />
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
         <div class="col-xl-12 col-lg-12 col-md-9">
           <div class="tab-content" id="nav-tabContent">
             <div
@@ -360,27 +387,63 @@ console.log("111111",id)
                   </div>
                 </div>
           <div className="product-carousel">
-            <Slider {...homeProductSettings}>
-              {Array.isArray(homeProducts) &&
-                homeProducts.map((product) => (
-                  <Link  to={`/cart/${product.category_id}`}>
-                  <div key={product.product_id} className="product-slide">
-                    <img
-                      src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images}`}
-                      alt={product.title}
-                      style={{ width: "100%", height: "420px", objectFit: "cover" }}
-                    />
-                    <h6 style={{color:'white'}}>{product.title}</h6>
-                  </div>
-                  </Link>
-                ))}
-            </Slider>
+          <Slider {...homeProductSettings}>
+                {Array.isArray(homeProducts) &&
+                  homeProducts.map((product) => (
+                    <Link key={product.product_id} to={`/cart/${product.category_id}`}>
+                      <div  className="product-img-container shadow" style={{marginBottom:'10px'}}>
+                        <img
+                          src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images}`}
+                          alt={product.title}
+                          style={{height:"270px", width: "100%",objectFit: "cover",borderRadius:15 }}
+
+                        />
+                        <h6 className="product-title">{product.title.substring(0, 14)}</h6>
+                        {/* <div className="product-rating">
+                          <span className="star-icon">★</span>
+                          <span>{product.rating}</span>
+                        </div> */}
+                      </div>
+                    </Link>
+                  ))}
+              </Slider>
           </div>
         </div>
         </div>
         </div>
         </div>
     </div>
+    <style jsx>{`
+    .shadow {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      padding: 40px;
+      border-radius: 8px;
+      background-color: #D0DFD6;
+    }
+
+    .product-img-container {
+      text-align: center;
+    }
+
+   
+    .product-title-container {
+      text-align: center;
+      font-size: 1.0em;
+      font-weight: bold;
+    }
+
+    .product-price-container {
+      text-align: center;
+      font-size: 1.1em;
+      color: orange;
+    }
+
+    .product-button-container {
+      text-align: center;
+    }
+  `}</style>
+  </Fragment>
+  </>
   );
 };
 
