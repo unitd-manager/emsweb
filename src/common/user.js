@@ -3,7 +3,7 @@ export const getUser = () => {
     const userData = localStorage.getItem('user')
     ? localStorage.getItem('user')
     : null
-    const userInfo=JSON.parse(userData)
+    const userInfo=userData?JSON.parse(userData):null
     return userInfo
   };
 
