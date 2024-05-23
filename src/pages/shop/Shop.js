@@ -8,12 +8,14 @@ import { getSortedProducts } from "../../helpers/product";
 import ShopSidebar from "../../wrappers/product/ShopSidebar";
 import ShopTopbar from "../../wrappers/product/ShopTopbar";
 import ShopProducts from "../../wrappers/product/ShopProducts";
+import { getUser } from '../../common/user'
 import api from "../../constants/api";
 
 const Shop = () => {
   const [layout, setLayout] = useState('grid three-column');
   const [sortType, setSortType] = useState("");
   const [sortValue, setSortValue] = useState("");
+  const [user, setUser] = useState();
   const [filterSortType, setFilterSortType] = useState("");
   const [filterSortValue, setFilterSortValue] = useState("");
   const [offset, setOffset] = useState(0);
@@ -129,6 +131,16 @@ const Shop = () => {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
+  useEffect(() => {
+   
+    // setLoading(true)
+    const userInfo = getUser();
+    //const session = getSessionId();
+    console.log('userInfo',userInfo)
+    setUser(userInfo);
+    
+    
+  }, []);
 
   return (
     <Fragment>
@@ -147,15 +159,22 @@ const Shop = () => {
               <br/>
               <br/>
               <br/>
-         
+              <br/>
               <Row><Col md='6'>
+              { user !== null ?(
      <Link to={process.env.PUBLIC_URL + "/cart"}>
      <Button  type='submit'>View Cart</Button>
                 </Link>
+              ):(
+                <Link to={process.env.PUBLIC_URL + "/MagazineLogin"}>
+                <Button  type='submit'>View Cart</Button>
+                           </Link> 
+              )
+               }
      </Col></Row>
+                
      <br/>
-              <br/>
-              <br/>
+              
             
               <ShopSidebar
                 products={filteredGallery}

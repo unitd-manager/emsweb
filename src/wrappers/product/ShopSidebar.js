@@ -1,14 +1,10 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import Select from 'react-select';
-import { getIndividualTags } from "../../helpers/product";
 import ShopSearch from "../../components/product/ShopSearch";
-// import ShopCategories from "../../components/product/ShopCategories";
-import ShopTag from "../../components/product/ShopTag";
 import api from "../../constants/api";
 
 const ShopSidebar = ({ products, getSortParams, sideSpaceClass, handleSearchSubmit, handleSearchChange }) => {
-  const uniqueTags = getIndividualTags(products);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
@@ -31,6 +27,11 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass, handleSearchSubm
     getSortParams('area', selectedOption ? selectedOption.value : 'default');
   };
 
+  const handleClearCategory = () => {
+    setSelectedCategory(null);
+    getSortParams('category', 'default');
+  };
+
   const categoryOptions = categories.map(category => ({
     value: category.category_title,
     label: category.category_title
@@ -47,9 +48,7 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass, handleSearchSubm
       <ShopSearch handleSearchSubmit={handleSearchSubmit} handleSearchChange={handleSearchChange} />
 
       <br/>
-
       {/* filter by categories */}
-      {/* <ShopCategories categories={categories} getSortParams={getSortParams} /> */}
       <h4 className="pro-sidebar-title">Category</h4>
       <div className="shop-select">
         <Select
@@ -59,6 +58,12 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass, handleSearchSubm
           placeholder="Filter category"
         />
       </div>
+
+      {selectedCategory &&(
+      <button onClick={handleClearCategory} style={{ marginTop: '10px', cursor: 'pointer', color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', padding: 0 }}>
+        Clear
+      </button>
+           ) }
 
       <br/>
       <h4 className="pro-sidebar-title">Year</h4>
@@ -71,8 +76,8 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass, handleSearchSubm
         />
       </div>
 
-      {/* filter by tag
-      <ShopTag tags={uniqueTags} getSortParams={getSortParams} /> */}
+      {/* filter by tag */}
+      {/* <ShopTag tags={uniqueTags} getSortParams={getSortParams} /> */}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
 import { Container, Card,Row, Col, Image, Button, Form } from 'react-bootstrap';
 import AOS from "aos";
 import './BookDetailPage.css'; // Import your custom CSS for styling
@@ -7,6 +7,7 @@ import api from '../constants/api';
 import { getUser } from '../common/user';
 
 const BookDetailPage = () => {
+  // const history = useHistory();
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState();
   const [user, setUser] = useState();
@@ -18,6 +19,12 @@ const BookDetailPage = () => {
 console.log('id',id)
 
 const addToCart=()=>{
+
+  if (!user || !user.contact_id) {
+    alert('Please Login');
+    // history.push('/login'); // Replace '/login' with your actual login route
+  }else{
+ 
   product.contact_id=user.contact_id;
   product.qty = quantity
   api.post('/contact/addToCart',product)
@@ -25,6 +32,7 @@ const addToCart=()=>{
     console.log("Item Added to cart")})
   .catch((error) =>console.log("Item error",error));
   
+}
 }
 
   useEffect(() => {
@@ -140,9 +148,15 @@ const addToCart=()=>{
           </Form.Group>
           </Col>
           </Row>
+          { user !== null ?(
           <Link to={process.env.PUBLIC_URL + "/cart"}>
           <Button variant="dark" onClick={addToCart} className="add-to-cart-btn">Add to Cart</Button>
-          </Link>
+          </Link>):(
+            <Link to={process.env.PUBLIC_URL + "/MagazineLogin"}>
+            <Button variant="dark" onClick={addToCart} className="add-to-cart-btn">Add to Cart</Button>
+            </Link>
+          )
+        }
         </Col>
       </Row>
       <Container>

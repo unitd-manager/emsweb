@@ -227,6 +227,7 @@ stripeToken && makeRequest();
               const allInserted = responses.every(response => response.status === 200);
               if (allInserted) {
                 SendEmail();
+                removeBacket();
               } else {
                 console.error('Error placing one or more order items');
               }
@@ -451,6 +452,15 @@ const onPaymentPress = () => {
     }
     getAllCountries();
   }, []);
+
+  const removeBacket = async () => {
+    try {
+      await api.post('/orders/deleteBasketContact', { contact_id: userContactId });
+      
+    } catch (error) {
+      console.error('Error removing item:', error);
+    }
+  };
 
   return (
     

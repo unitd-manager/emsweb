@@ -146,9 +146,9 @@ const CartPage = () => {
                  
                 </Link>
               </td>
-              <td><span style={{ marginTop:90 }}>{item.price} </span></td>
+              <td><span style={{ marginTop:95,color:'green',fontWeight:'bold' }}> Rs : {item.price} </span></td>
               <td >
-              <span style={{ marginTop:80 }}>
+              <span style={{ marginTop:90 }}>
                     <Button onClick={() => decrementQuantity(index)} style={buttonStyle}>-</Button>
                     <span style={{ fontWeight: "bold", marginLeft: 10 }}>{item.qty}</span>
                     <Button onClick={() => incrementQuantity(index)} style={buttonStyle}>+</Button>
