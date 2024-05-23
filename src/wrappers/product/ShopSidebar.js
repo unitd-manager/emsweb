@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import ShopSearch from "../../components/product/ShopSearch";
 import api from "../../constants/api";
+//import ShopCategories from "../../components/product/ShopCategories";
 
 const ShopSidebar = ({ products, getSortParams, sideSpaceClass, handleSearchSubmit, handleSearchChange }) => {
   const [categories, setCategories] = useState([]);
@@ -66,6 +67,10 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass, handleSearchSubm
            ) }
 
       <br/>
+      {/* <ShopCategories
+        categories={categories}
+        getSortParams={getSortParams}
+      /> */}
       <h4 className="pro-sidebar-title">Year</h4>
       <div className="shop-select">
         <Select

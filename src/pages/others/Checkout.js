@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../constants/api";
 import { getUser } from "../../common/user";
 import { Input,Button,Row,Col} from "reactstrap";
-import RazorpayCheckout from 'razorpay-checkout';
+//import RazorpayCheckout from 'razorpay-checkout';
 
 
 
@@ -294,7 +294,7 @@ const handlePaymentFailure = (error) => {
   console.error('Payment Failed:', error);
   // history('/orderfail');
 };
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 
 const onPaymentPress = () => {
 
@@ -326,7 +326,8 @@ const onPaymentPress = () => {
   const amountInPaise = totalAmount * 100;
 
   const options = {
-    key: "rzp_test_Cmcb2IrTMsQEYc", // Replace with your Razorpay test/live key
+    key: "rzp_test_yE3jJN90A3ObCp", // Replace with your Razorpay test/live key
+    key_secret:"tt8BnBOG7yRvYZ6TSB28RXJy",
     amount: amountInPaise,
     currency: "INR",
     name: "United",
@@ -337,6 +338,9 @@ const onPaymentPress = () => {
       name: orderDetail.shipping_first_name,
       email: orderDetail.shipping_email,
       contact: orderDetail.shipping_phone,
+    },
+    notes: {
+      address: "Corporate Office",
     },
     theme: {
       color: "#532C6D",
