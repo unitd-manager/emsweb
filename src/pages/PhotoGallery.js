@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import { useParams } from "react-router-dom";
+import { Label, Col, Input, FormGroup } from 'react-bootstrap';
 import "aos/dist/aos.css";
 import bannerImage from "../../src/assets/images/Evens.jpg";
+import Select from 'react-select';
 import ReactPlayer from "react-player";
 import ReactAudioPlayer from "react-audio-player";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import api from "../constants/api";
 
 const Thoguppugal = () => {
@@ -12,18 +16,24 @@ const Thoguppugal = () => {
   const [gallery, setGallery] = useState([]);
   const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
   const [selectedAudioUrl, setSelectedAudioUrl] = useState(null);
+  const [valuelistCountry, setValuelistCountry] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState({ value: 'All', label: 'All' });
+  const [areaFilter, setAreaFilter] = useState({ value: 'All', label: 'All' });
+  const [searchQuery, setSearchQuery] = useState('');
+  const [valuelistCity, setValuelistCity] = useState([]);
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(null);
 
   console.log("sectionid", id);
 
   const openMediaPopup = (mediaUrl, fileName) => {
     if (mediaUrl && fileName && mediaUrl.match(/\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g)) {
-      // If mediaUrl is an image URL, play audio file using fileName
       setSelectedAudioUrl(`https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`);
     } else {
-      // Otherwise, directly set selectedAudioUrl to mediaUrl
       setSelectedAudioUrl(mediaUrl);
     }
   };
+
   const closeMediaPopup = () => {
     setSelectedAudioUrl(null);
   };
@@ -42,20 +52,59 @@ const Thoguppugal = () => {
     getGallery();
   }, [id]);
   
+  const handleCategoryChange = (selectedOption) => {
+    setCategoryFilter(selectedOption || { value: 'All', label: 'All' });
+  };
+  const handleCategoryChanges = (selectedOption) => {
+    setAreaFilter(selectedOption || { value: 'All', label: 'All' });
+  };
+
+  const getValuelistCountry = () => {
+    api
+      .get('/valuelist/getValueListCountry')
+      .then((res) => {
+        const options = res.data.data.map(item => ({
+          value: item.valuelist_id,
+          label: item.value
+        }));
+        setValuelistCountry([{ value: 'All', label: 'All' }, ...options]);
+      })
+      .catch((error) => {
+        console.log('valuelist not found:', error);
+      });
+  };
+  useEffect(() => {
+    const countryValue = categoryFilter.label
+    console.log('countryValue',countryValue)
+            api
+            .post('/valuelist/getValueListCity',{value:countryValue})
+            .then((res1) => {
+              const options = res1.data.data.map(item => ({
+                value: item.valuelist_id,
+                label: item.citi_value
+              }));
+              setValuelistCity([{ value: 'All', label: 'All' }, ...options]);
+             
+              console.log('cityrr',res1.data.data)
+              console.log('city',options)
+             })
+  }, [categoryFilter]);
+
+  useEffect(() => {
+    getValuelistCountry();
+  }, []);
+
   const openVideoPopup = (description, fileName) => {
     if (description && description.match(/\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g)) {
-      // If description contains an image URL, open audio popup with fileName
       openMediaPopup(
         `https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`,
         fileName
       );
-      setSelectedVideoUrl(null); // Set selectedVideoUrl to null
+      setSelectedVideoUrl(null);
     } else if (description) {
-      // If description is not an image URL, set selectedVideoUrl to the description
       setSelectedVideoUrl(description);
-      setSelectedAudioUrl(null); // Set selectedAudioUrl to null
+      setSelectedAudioUrl(null);
     } else if (fileName && fileName.endsWith(".mp3")) {
-      // If fileName ends with ".mp3", open audio popup
       openMediaPopup(
         `https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`,
         fileName
@@ -69,6 +118,89 @@ const Thoguppugal = () => {
   const closeVideoPopup = () => {
     setSelectedVideoUrl(null);
   };
+
+  const handleDateChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'fromDate') {
+      setFromDate(value ? new Date(value) : null);
+    } else if (name === 'toDate') {
+      setToDate(value ? new Date(value) : null);
+    }
+  };
+
+  const applyFilters = () => {
+    let filteredData = [...gallery];
+
+    if (categoryFilter.value !== 'All') {
+      filteredData = filteredData.filter(item => item.upload_country === categoryFilter.label);
+    }
+
+    if (areaFilter.value !== 'All') {
+      filteredData = filteredData.filter(item => item.upload_city === areaFilter.label);
+    }
+
+    if (fromDate && toDate) {
+      filteredData = filteredData.filter(item => {
+        const contentDate = new Date(item.content_date);
+        return contentDate >= fromDate && contentDate <= toDate;
+      });
+    }
+
+    if (searchQuery !== '') {
+      filteredData = filteredData.filter(item =>
+        (item.search_keyword && item.search_keyword.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (item.title && item.title.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    }
+
+    return filteredData;
+  };
+
+  const filteredGallery = applyFilters();
+  console.log('filteredGallery',filteredGallery)
+  console.log('areaFilter',areaFilter)
+  console.log('valuelistCity',valuelistCity)
+  console.log('categoryFilter.label',categoryFilter.label)
+
+  const customStyles = {
+    control: (base) => ({
+      ...base,
+      minWidth: '200px',
+      cursor: 'pointer',
+      color: 'blue',
+      background: 'none',
+      border: '1px solid #ccc',
+      padding: 0
+    }),
+    menu: (base) => ({
+      ...base,
+      minWidth: '200px'
+    })
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    applyFilters();
+  };
+  const handleClearCategory = () => {
+    setCategoryFilter({ value: 'All', label: 'All' });
+    setAreaFilter({ value: 'All', label: 'All' });
+    setFromDate(null)
+    setToDate(null)
+    // getSortParams('category', 'default');
+  };
+  const handleClearCategorydate = () => {
+    setCategoryFilter({ value: 'All', label: 'All' });
+    setAreaFilter({ value: 'All', label: 'All' });
+    setFromDate(null)
+    setToDate(null)
+    // getSortParams('category', 'default');
+  };
+  
 
   return (
     <div>
@@ -98,8 +230,84 @@ const Thoguppugal = () => {
 
       <div className="team-inner-2">
         <div className="container">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '10px 0',marginTop:-70 }}>
+          <div className="shop-select" style={{ marginRight: '10px', border: '1px solid #ccc', padding: '10px', borderRadius: '4px'  }}>
+              <h4 className="pro-sidebar-title">Country</h4>
+              <Select
+                styles={customStyles}
+                value={categoryFilter}
+                onChange={handleCategoryChange}
+                options={valuelistCountry}
+                placeholder="Filter category"
+              />
+            </div>
+            <div className="shop-select" style={{ marginRight: '10px', border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}>
+              <h4 className="pro-sidebar-title">City</h4>
+              <Select
+                styles={customStyles}
+                value={areaFilter}
+                onChange={handleCategoryChanges}
+                options={valuelistCity}
+                placeholder="Filter category"
+              />
+            </div>
+          <div className="shop-select" style={{ marginRight:'10px', border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}>
+              {/* <label style={{ fontSize:15,fontWeight:'bold' }} >From Date</label> */}
+              <h5 className="pro-sidebar-title">From Date</h5>
+              <input
+              style={{  border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}
+                type="date"
+                onChange={handleDateChange}
+                value={fromDate ? fromDate.toISOString().split('T')[0] : ''}
+                name="fromDate"
+              />
+            </div>
+            <div className="shop-select" style={{ marginRight:'1000px', border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}>
+              {/* <label style={{ fontSize:15,fontWeight:'bold' }}>To Date</label> */}
+              <h5 className="pro-sidebar-title">To Date</h5>
+              <input
+              style={{  border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}
+                type="date"
+                onChange={handleDateChange}
+                value={toDate ? toDate.toISOString().split('T')[0] : ''}
+                name="toDate"
+              />
+            </div>
+            
+          
+          </div>
+          { toDate !== null &&(
+            <button onClick={handleClearCategory} style={{ marginTop: '10px', cursor: 'pointer', color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', padding: 0 }}>
+              Clear
+            </button>
+          )}
+           
+          <div className="sidebar-widget" style={{ padding: '10px', borderRadius: '4px', marginRight: "450px",marginLeft:-10 }}>
+            <h4 className="pro-sidebar-title">Search</h4>
+            <div className="pro-sidebar-search mb-50 mt-25">
+              <form className="pro-sidebar-search-form" onSubmit={handleSearchSubmit}>
+                <TextField
+                  variant="outlined"
+                  placeholder="Search here..."
+                  fullWidth
+                  onChange={handleSearchChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton type="submit">
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </form>
+            </div>
+          </div>
+          <br/>
+          <br/>
           <div className="row">
-            {gallery.map((item, index) => (
+            {filteredGallery.map((item, index) => (
               <div className="col-xl-4 col-lg-4 col-sm-6" key={index}>
                 <div className="single-box">
                   <div
