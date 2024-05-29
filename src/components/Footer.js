@@ -15,16 +15,35 @@ export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // const formatDate = (dateString) => {
-  //   const options = {
-  //     year: "numeric",
-  //     month: "long",
-  //     day: "numeric",
-  //   };
-  //   const date = new Date(dateString);
-  //   return new Intl.DateTimeFormat("en-US", options).format(date);
-  // };
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+
+    if (!validateEmail(email)) {
+      setMessage('Please enter a valid email address.');
+      return;
+    }
+
+    setLoading(true);
+    setMessage('');
+
+    try {
+      const res = await api.post('/api/subscribe', { email });
+      setMessage(res.data.msg);
+    } catch (error) {
+      setMessage('An error occurred. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getblogItems = () => {
     api
@@ -37,6 +56,7 @@ export default function Footer() {
       });
   };
 
+ 
   const getEvents = () => {
     // var formated = title.split("-").join(" ");
     api
@@ -188,6 +208,38 @@ export default function Footer() {
 
   return (
     <>
+ <div className="call-back" style={{ backgroundColor: "white" }}>
+      <div className="container">
+        <div className="bg" style={{ backgroundColor: "#CF9FFF" }}>
+          <div className="row align-items-center">
+            <div className="col-xl-6 col-lg-6 col-md-6">
+              <div className="part-txt">
+                <h5>Subscribe!</h5>
+                <h2>to our Newsletter</h2>
+              </div>
+            </div>
+            <div className="col-xl-6 col-lg-6 col-md-6">
+              <div className="form">
+                <form onSubmit={handleSubscribe}>
+                  <input
+                    type="email"
+                    placeholder="Your email address here"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                  />
+                  <button type="submit" disabled={loading} style={{backgroundColor:"#FF9FFF"}}>
+                    {loading ? 'Subscribing...' : 'Subscribe Now'}
+                  </button>
+                </form>
+                {message && <p>{message}</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
       <div class="footer" style={{ overflow: "hidden" }}>
         <div class="container">
           <div class="main-footer">
