@@ -330,45 +330,57 @@ console.log("111111",id)
           </div>
         </div>
       </div>
-        <div class="col-xl-12 col-lg-12 col-md-9">
-          <div class="tab-content" id="nav-tabContent">
-            <div
-              class="tab-pane fade show active"
-              id="nav-month"
-              role="tabpanel"
-              aria-labelledby="nav-month-tab"
-            >
-              <div class="row">
-                {homeLink.map((item, index) => (
-                  <div class="col-xl-3 col-lg-3">
-                    <div class="single-box">
-                      <div class="part-img">
-                        <img
-                          src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
-                          alt={`News ${item.content_id}`}
-                          style={{
-                            width: "70%",
-                            height: "250px",
-                          }}
-                        />
-                      </div>
-                      <div class="part-btn" style={{ margin: "35px" }}>
-                        <a
-                          href={stripHtmlTags(item.description)}
-                          class="def-btn"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Click Here
-                        </a>
-                      </div>
+
+      <Fragment>
+      <div className="blog" style={{backgroundColor:"#F0FFFF", paddingTop:"25px",marginTop:"25px"}}>
+      <div className="container">
+      <div className="col-xl-6 col-lg-6 col-md-6">
+  <div className="tab-content" id="nav-tabContent">
+    <div
+      className="tab-pane fade show active spaced-pane"
+      id="nav-month"
+      role="tabpanel"
+      aria-labelledby="nav-month-tab"
+    >
+      <div className="image-container" >
+        <div className="image-gallery">
+          <div className="image-gallery-container">
+            <div className="row">
+              {homeLink.map((item, index) => (
+                <div className="col-xl-4 col-lg-4" key={index}> {/* Adjusted column class */}
+                  <div className="single-box">
+                    <div className="bordered-container">
+                      <img
+                        src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
+                        alt={`News ${item.content_id}`}
+                        className="bordered-img"
+                      />
+                    </div>
+                    <div className="part-btn" style={{ margin: "55px 200px 0 -250px", textAlign: "center" }}>
+                      <a
+                        href={stripHtmlTags(item.description)}
+                        className="def-btn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Click Here
+                      </a>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+      </Fragment>
+
+
 
                 <div class="partner">
                   <div class="container">
