@@ -328,10 +328,25 @@
   padding-left: 250px;
 }
 .container {
-  max-width: 1200px; /* Adjust based on your design */
+  max-width: 200%; /* Adjust based on your design */
   margin: 0 auto;
 }
 .image-container {
-margin-left: -250px;
-width: 1600px;
+  margin-left: -300px;
+  width: 200%; /* Default width */
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    width: 200%; /* Width for mobile screens */
+  }
+}
+
+@media (min-width: 769px) {
+  .image-container {
+    width: 230%; /* Width for desktop screens */
+  }
+}
+.part-btn{
+  padding-bottom: 50px;
 }
