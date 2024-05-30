@@ -390,7 +390,7 @@ console.log("111111",id)
           <Slider {...homeProductSettings}>
                 {Array.isArray(homeProducts) &&
                   homeProducts.map((product) => (
-                    <Link key={product.product_id} to={`/cart/${product.category_id}`}>
+                    <Link key={product.product_id} to={`/Book/${product.product_id}`}>
                       <div  className="product-img-container shadow" style={{marginBottom:'10px'}}>
                         <img
                           src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images}`}
