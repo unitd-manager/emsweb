@@ -78,7 +78,7 @@ console.log("111111",id)
       {
         breakpoint: 1140,
         settings: {
-          slidesToShow: 3, // Show three images on medium screens
+          slidesToShow: 2, // Show three images on medium screens
         },
       },
       {
@@ -230,7 +230,7 @@ console.log("111111",id)
     <br/>
     <Fragment>
     <div>
-      <Marquee>
+      <Marquee style={{ backgroundColor: 'red', color: 'white', fontSize: '15px' }}>
         {marqueeValue}
       </Marquee>
       <div className="bannerImage">

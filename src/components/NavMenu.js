@@ -88,7 +88,6 @@ function Navbar() {
           className="navbar-toggler"
           type="button"
           onClick={toggleMenu}
-          aria-expanded={isMenuOpen ? "true" : "false"}
         >
           <i className="flaticon-menu-button-of-three-horizontal-lines"></i>
         </button>

@@ -121,7 +121,7 @@ function App() {
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-5 d-flex justify-content-end">
-                  <div className="top-right">
+                  <div className="top-left">
                     <Link to="/Magazine" target="_blank">
                       <Button>EMS Magazine</Button>
                     </Link>
@@ -130,7 +130,7 @@ function App() {
                     <Link to="/login" className="top-right">Login</Link>
                     <Link to="/RegisterForm" className="top-right">Register</Link>
                   </div>
-                  <div className="top-right">
+                  <div className="top-left">
                     <Link to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`} className="top-right" target="_blank">
                       <Button>EMS Web Tv Channel</Button>
                     </Link>

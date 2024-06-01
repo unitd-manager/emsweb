@@ -53,7 +53,7 @@ const EventSlider = () => {
       {
         breakpoint: 1140,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
         },
       },
       {
@@ -62,6 +62,7 @@ const EventSlider = () => {
           slidesToShow: 1,
         },
       },
+      
     ],
   };
 
