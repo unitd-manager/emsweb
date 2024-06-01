@@ -215,7 +215,7 @@ export default function Footer() {
             <div className="col-xl-6 col-lg-6 col-md-6">
               <div className="part-txt">
                 <h5>Subscribe!</h5>
-                <h2>to our Newsletter</h2>
+                <h2 style={{paddingBottom:"15px"}}>to our Newsletter</h2>
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6">
@@ -223,14 +223,15 @@ export default function Footer() {
                 <form onSubmit={handleSubscribe}>
                   <input
                     type="email"
-                    placeholder="Your email address here"
+                    placeholder="Enter Email address"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={loading}
+                    className="input-field"
                   />
-                  <button type="submit" disabled={loading} style={{backgroundColor:"#FF9FFF"}}>
-                    {loading ? 'Subscribing...' : 'Subscribe Now'}
+                  <button type="submit" disabled={loading} className="submit-button">
+                    {loading ? 'Subscribing...' : 'Subscribe'}
                   </button>
                 </form>
                 {message && <p>{message}</p>}
