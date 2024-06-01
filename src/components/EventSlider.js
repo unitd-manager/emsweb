@@ -39,6 +39,7 @@ const EventSlider = () => {
     getEvent();
   }, []);
 
+
   const settings = {
     dots: false,
     infinite: true,
@@ -48,6 +49,20 @@ const EventSlider = () => {
     autoplay: true,
     autoplaySpeed: 4000,
     spacing: 10, // Adjust the spacing value as needed
+    responsive: [
+      {
+        breakpoint: 1140,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (

@@ -1,6 +1,5 @@
-//import logo from './logo.svg';
 import "./App.css";
-import { Route, HashRouter, Routes,Link } from "react-router-dom";
+import { Route, HashRouter, Routes, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from 'antd';
 import api from "./constants/api";
@@ -22,17 +21,11 @@ import ThoguppugalSubCategory from "./pages/ThoguppugalSubcategory";
 import Manitha from "./pages/Manitha";
 import RegisterForm from "./pages/RegisterForm";
 import Login from "./constants/LoginForm";
-//import Niruvanarsub from './pages/Niruvanarsub';
-//import Thunaisub from './pages/Thunaisub';
 import PiraEnaipugal from "./pages/PiraEnaipugal";
 import Kalvi from "./pages/kalvi";
 import Kalvisub from "./pages/kalvisub";
-//import Niruvanarsub from './pages/Niruvanarsub';
 import Footer from "./components/Footer";
 import Engalaisub from "./pages/Engalaisub";
-//import PiraEnaipugal from './pages/PiraEnaipugal';
-//import Kalvi from './pages/kalvi';
-//import Kalvisub from './pages/kalvisub';
 import CheckoutPage from "./pages/others/Checkout";
 import Gyanagamiyangal from "./pages/Gyanagamiyangal";
 import GyanagamiyangalSub from "./pages/GyanagamiyangalSub";
@@ -45,7 +38,6 @@ import MagazineLogin from './pages/MagazineLogin';
 import MagazineSubscripe from './pages/MagazineSubscripe';
 import NoolVivaram from "./pages/NoolVivaram";
 import BookDetailPage from "./pages/BookDetails";
-// import { ToastProvider } from "react-toast-notifications";
 import Essay1 from "./pages/Essay1";
 import Akkangal from "./pages/Akkangal";
 import Magazine from "./pages/Magazine";
@@ -56,13 +48,12 @@ function App() {
     const doc = new DOMParser().parseFromString(htmlString, "text/html");
     return doc.body.textContent || "";
   };
-  const [email, setEmail] = useState([]);
 
+  const [email, setEmail] = useState([]);
   const [sectiones, setSectiones] = useState([]);
   const [contactId, setContactId] = useState();
-  useEffect(() => {
-   
 
+  useEffect(() => {
     api
       .get("/section/getCategoryType")
       .then((res) => {
@@ -71,9 +62,6 @@ function App() {
       .catch((error) => {
         console.error("Error fetching sections:", error);
       });
-
-
-   
   }, []);
 
   useEffect(() => {
@@ -81,22 +69,19 @@ function App() {
       const user = localStorage.getItem('user');
       return user ? JSON.parse(user) : {};
     };
-  
+
     const selectedLanguage = getSelectedLanguageFromLocalStorage();
-    console.log('selectedLanguage', selectedLanguage);
     setContactId(selectedLanguage.contact_id);
-    console.log('contactId', selectedLanguage.contact_id);
   }, []);
 
-  const logout=()=>{
-    localStorage.clear()
-    setTimeout(()=>{
-      window.location.reload()
-    },200)
-  }
+  const logout = () => {
+    localStorage.clear();
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+  };
 
   useEffect(() => {
-    // Fetch sections
     api
       .get("/content/getEmail")
       .then((res) => {
@@ -106,10 +91,11 @@ function App() {
         // Handle error
       });
   }, []);
+
   return (
     <HashRouter>
-      <div class="preloader">
-        <div class="loader">
+      <div className="preloader">
+        <div className="loader">
           <img src="assets/images/spinner.gif" alt="imagess" />
         </div>
       </div>
@@ -126,38 +112,33 @@ function App() {
                         <i className="flaticon-message"></i>
                         <span>{stripHtmlTags(email.description)}</span>
                       </li>
-                      <li><span><Link to="/contact" className="top-left1">
-                          Contact Us
-                        </Link></span>
-                        </li>
+                      <li>
+                        <span>
+                          <Link to="/contact" className="top-left1">Contact Us</Link>
+                        </span>
+                      </li>
                     </ul>
                   </div>
                 </div>
-                <div className="col-xl-3 col-lg-3 col-sm-4 d-flex justify-content-sm-end justify-content-center">
-                <div className="top-right">
-                  <Link to="/Magazine" target="_blank">
-                    <Button>EMS Magazine</Button>
-                  </Link>
-                </div>
+                <div className="col-xl-6 col-lg-6 col-md-5 d-flex justify-content-end">
                   <div className="top-right">
-                  <Link to="/login" className="top-right">
-                          Login
-                        </Link><Link to="/RegisterForm" className="top-right">
-                          Register
-                        </Link>
+                    <Link to="/Magazine" target="_blank">
+                      <Button>EMS Magazine</Button>
+                    </Link>
                   </div>
                   <div className="top-right">
-                    <Link  to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`} className="top-right" target="_blank">
-
-                    <Button>EMS Web Tv Channel</Button>
+                    <Link to="/login" className="top-right">Login</Link>
+                    <Link to="/RegisterForm" className="top-right">Register</Link>
+                  </div>
+                  <div className="top-right">
+                    <Link to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`} className="top-right" target="_blank">
+                      <Button>EMS Web Tv Channel</Button>
                     </Link>
                   </div>
                   {contactId &&
-                  <div className="top-right">
-                  <Button onClick={logout} color="danger" size="sm">
-                   Logout
-                 </Button>
-                  </div>
+                    <div className="top-right">
+                      <Button onClick={logout} color="danger" size="sm">Logout</Button>
+                    </div>
                   }
                 </div>
               </div>
@@ -168,34 +149,14 @@ function App() {
           <div className="container">
             <div className="bg">
               <div className="row align-items-center">
-                <div className="d-xl-none d-lg-none d-flex col-4">
-                  {/* <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                  >
-                    <i class="flaticon-menu-button-of-three-horizontal-lines"></i>
-                  </button> */}
-                </div>
-                <div className="col-xl-12 col-lg-12 col-12 d-flex align-items-center">
+                <div className="col-12 d-flex justify-content-center">
                   <div className="logo">
                     <a href="/">
-                      <img
-                        src={logo}
-                        alt="signature"
-                        width="750px"
-                        height="65px"
-                        style={{ paddingLeft: "440px" }}
-                      />
+                      <img src={logo} alt="signature" className="img-fluid" />
                     </a>
                   </div>
                 </div>
-
-                <NavMenu></NavMenu>
+                <NavMenu />
               </div>
             </div>
           </div>
@@ -211,53 +172,34 @@ function App() {
         <Route path="/team" element={<TeamPage />} />
         <Route path="/EventsEdit/:id" element={<EventsEdit />} />
         <Route path="/எங்களைப் பற்றி/:id" element={<Engalai />} />
-        <Route
-          path="/எங்களைப் பற்றி/:id/:subCategoryId"
-          element={<Engalaisub />}
-        />
-            <Route
-                  path= "/cart"
-                  element={<Cart/>}
-                />
-                 <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/எங்களைப் பற்றி/:id/:subCategoryId" element={<Engalaisub />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/எங்களைப் பற்றி/:id/:id" element={<PiraEnaipugal />} />
         <Route path="/நூற்கள்/:id" element={<FromBooks />} />
         <Route path="/நூற்கள்/:id/:categoryid" element={<NoolVivaram />} />
-        {/* {/* <Route path="/Ahlubaith" element={<Ahlubaith />} /> */}
         <Route path="/Kolgaigal" element={<Kolgaigal />} />
         <Route path="/தொகுப்புகள்/:id" element={<Thoguppugal />} />
-        <Route
-          path="/தொகுப்புகள்/:id/:subCategoryId"
-          element={<ThoguppugalSubCategory />}
-        />
-                <Route path="/நிகழ்ச்சிகள்/:id" element={<PhotoGallery />} />
-
+        <Route path="/தொகுப்புகள்/:id/:subCategoryId" element={<ThoguppugalSubCategory />} />
+        <Route path="/நிகழ்ச்சிகள்/:id" element={<PhotoGallery />} />
         <Route path="/மனிதா/:id" element={<Manitha />} />
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Akkangal" element={<Akkangal />} />
-
         <Route path="/Essay1" element={<Essay1 />} />
         <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
-        <Route
-          path="/வஹ்தத்துல் வுஜூத்/:id/:id"
-          element={<Vahdhathulujjuth />}
-        />
+        <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />
         <Route path="/கல்வி/:id" element={<Kalvi />} />
         <Route path="/கல்வி/:id/:subCategoryId" element={<Kalvisub />} />
         <Route path="/ஞான அகமியங்கள்/:id" element={<Gyanagamiyangal />} />
-        <Route
-          path="/ஞான அகமியங்கள்/:id/:id"
-          element={<GyanagamiyangalSub />}
-        />
+        <Route path="/ஞான அகமியங்கள்/:id/:id" element={<GyanagamiyangalSub />} />
         <Route path="/YaseenBro" element={<YaseenBro />} />
         <Route path="/MagazineRegisterForm" element={<MagazineRegisterForm />} />
         <Route path="/MagazineLogin" element={<MagazineLogin />} />
         <Route path="/MagazineSubscripe" element={<MagazineSubscripe />} />
         <Route path="/Magazine" element={<Magazine />} />
         <Route path="/MagazineArtical/:id" element={<MagazineArtical />} />
-
       </Routes>
       <Footer />
     </HashRouter>

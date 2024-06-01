@@ -127,6 +127,17 @@ span {
     min-width: 1200px;
   }
 }
+@media only screen and (min-width: 360px) and (max-width: 800px) {
+
+.header-2 .top-header .bg .top-right {
+   
+  -webkit-box-pack: center;
+-ms-flex-pack: center;
+justify-content: center;
+padding-left: 1px;
+flex-direction: column;
+}
+}
 .preloader {
   position: fixed;
   top: 0;
@@ -6743,6 +6754,15 @@ border-radius: 70px;
     margin-bottom: 40px;
   }
 
+  .header-2 .top-header .bg .top-right {
+   
+    -webkit-box-pack: center;
+-ms-flex-pack: center;
+justify-content: center;
+padding-left: 10px;
+flex-direction: column;
+}
+
   .heading h5 {
     font-size: 14px;
     margin-top: -1px;
@@ -7013,7 +7033,8 @@ border-radius: 70px;
   }
 
   .header-2 .bottom-header .bg .logo img {
-    width: 40px;
+    width: 200px;
+    display: block;
   }
 
   .header-2 .bottom-header .bg .bottom-right {
@@ -9339,11 +9360,15 @@ border-radius: 70px;
     margin-top: -1px;
   }
 
+ 
   .header-2 .top-header .bg .top-right {
+   
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
+-ms-flex-pack: center;
+justify-content: center;
+padding-left: 1px;
+flex-direction: column;
+}
 
   .header-2 .top-header .bg .top-right .language {
     padding-right: 15px;
@@ -11823,10 +11848,13 @@ border-radius: 70px;
   }
 
   .header-2 .top-header .bg .top-right {
+   
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
+-ms-flex-pack: center;
+justify-content: center;
+padding-left: 10px;
+flex-direction: column;
+}
 
   .header-2 .top-header .bg .top-right .language {
     padding-right: 15px;
@@ -14386,9 +14414,12 @@ border-radius: 70px;
   }
 
   .header-2 .top-header .bg .top-right {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+   
+            -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-left: 9px;
+    flex-direction: column;
   }
 
   .header-2 .top-header .bg .top-right .language {
@@ -14424,9 +14455,9 @@ border-radius: 70px;
 
   .header-2 .bottom-header .bg .navbar-toggler {
     text-align: center;
-    width: 40px;
-    height: 40px;
-    line-height: 45px;
+    width: 30px;
+    height: 30px;
+    line-height: 5px;
     background: #0D0925;
     color: #fff;
     font-size: 18px;
@@ -14447,7 +14478,8 @@ border-radius: 70px;
   }
 
   .header-2 .bottom-header .bg .logo img {
-    width: 40px;
+    width: 200px;
+    display: block;
   }
 
   .header-2 .bottom-header .bg .bottom-right {
