@@ -246,7 +246,7 @@ export default function Footer() {
           <div class="main-footer">
             <div class="row justify-content-between">
             <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="link">
+                <div class="link" style={{paddingTop:"50px"}}>
                   <h3>OUR WEBSITE LINKS LINKS</h3>
                   <Link
                     style={{
@@ -328,7 +328,7 @@ export default function Footer() {
                 </div>
               </div>
               <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="link">
+                <div class="link" >
                   <h3>USEFUL LINKS</h3>
                   <Link
                     style={{

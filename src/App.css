@@ -338,18 +338,16 @@
 
 @media (max-width: 768px) {
   .image-container {
-    width: 200%; /* Width for mobile screens */
+    width: 170%; /* Width for mobile screens */
   }
   .call-back .container .bg .form button {
     width: 100%;
-    margin-top: 50px; 
-    margin-left: -300px;
     padding-bottom: -55px; 
     box-sizing: border-box; 
     margin-right: 15px;
   }
   .call-back .container .bg .form input {
-    width: 400px; 
+    width: 400%; 
     height:50px ;
     margin-right: 0; 
     margin-bottom: 10px; 
@@ -358,15 +356,16 @@
 
   }
   .call-back .container .bg .form {
-    width: 200px; /* Ensure the input field takes full width */
-    height:100px ;
-    margin-right: 0; /* Reset margin for mobile layout */
-    margin-bottom: 10px; /* Space between input and button */
-    padding: 15px; /* Adjust padding for better touch experience */
-    margin-top: 10px;
-    margin-left: -50px;
-    
+    width: 75%;
+    height:80px ;
+    margin-right: 0;
+    margin-bottom: 40px; 
+    margin-left: 50px;
   }
+  /* .call-back .container .bg  {
+height: 300px;
+
+} */
 }
 
 @media (min-width: 769px) {
