@@ -127,7 +127,7 @@ function App() {
                     </Link>
                   </div>
                   <div className="top-right">
-                    <Link to="/login" className="top-right">Login</Link>
+                    <Link to="/Magazine" className="top-right">Login</Link>
                     <Link to="/RegisterForm" className="top-right">Register</Link>
                   </div>
                   <div className="top-left">

@@ -111,7 +111,13 @@ const EventSlider = () => {
                           </a>
                           {/* <p>{stripHtmlTags(event.description)}</p> */}
                           <div className="part-btn">
-                            <a href="blog-details.html" className="def-btn">Read More</a>
+                            {/* <a href="blog-details.html" className="def-btn">Read More</a> */}
+                            <Link
+                  to={process.env.PUBLIC_URL + `/EventsEdit/${event.content_id}`}
+                  state={{ event: event }} className="def-btn"
+                >
+                      Read more
+                    </Link>
                           </div>
                         </div>
                       </div>

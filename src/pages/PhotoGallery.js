@@ -328,7 +328,7 @@ const Thoguppugal = () => {
                               )[0]
                             : `https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`
                         }
-                        alt={`${item.content_id}`}
+                        alt={`${item.content_id}`} width="500"
                       />
                     </div>
                   </div>

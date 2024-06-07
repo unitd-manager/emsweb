@@ -6757,7 +6757,7 @@ border-radius: 70px;
 
   .video-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Four videos per row */
+    grid-template-columns: repeat(2, 1fr); /* Four videos per row */
     gap: 20px; /* Adjust spacing between videos */
   }
 
@@ -14217,7 +14217,7 @@ flex-direction: column;
   }
   .video-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Four videos per row */
+    grid-template-columns: repeat(1, 1fr); /* Four videos per row */
     gap: 20px; /* Adjust spacing between videos */
   }
   .heading h5 {

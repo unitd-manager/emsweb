@@ -34,7 +34,7 @@ export default function Events() {
       api
         .post('/section/getEventsById', { content_id: id })
         .then((res) => {
-          setEvents(res.data.data);
+          setEvents(res.data.data[0]);
         })
         .catch(() => {
         });
@@ -43,7 +43,7 @@ export default function Events() {
     getEventsById();
   }, [id]); // <-- Add id to the dependency array
   
-
+console.log("idcer",Events)
 //   const getFormatedText = (title) => {
 //     var formatedd = title.toLowerCase();
 //     return formatedd.split(" ").join("-");
@@ -86,17 +86,19 @@ export default function Events() {
             <div className="feature-2">
                 <div className="container">
                     <div className="row justify-content-center">
-                        {Events.map((image, index) => (
-                            <div key={index} className="col-xl-12 col-lg-12 col-md-12">
-                                <div className="part-img">
-                                    <img src={`http://43.228.126.245/emsapi/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
+                            <div className="col-xl-12 col-lg-12 col-md-12">
+                                {/* <div className="part-img">
+                                    <img src={`http://43.228.126.245/emsapi/storage/uploads/${Events&&Events.file_name}`} alt={Events&&Events.alt}  width="600px"
                       height="550px" />
-                                </div><br/>
+                                </div><br/> */}
+                                  <div className="col-xl-12 col-lg-12 col-md-12">
+                                    <div className="part-txt" dangerouslySetInnerHTML={{ __html: Events&&Events.title }} />
+                                </div>
                                 <div className="col-xl-12 col-lg-12 col-md-12">
-                                    <div className="part-txt" dangerouslySetInnerHTML={{ __html: image.description }} />
+                                    <div className="part-txt" dangerouslySetInnerHTML={{ __html: Events&&Events.description }} />
                                 </div>
                             </div>
-                        ))}
+                     
                     </div>
                 </div>
             </div>
