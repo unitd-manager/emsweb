@@ -14,7 +14,7 @@ const Thoguppugal = () => {
       //var formated = title.split("-").join(" ");
 
       api
-        .get("/content/getKatturai1")
+        .get("/content/getKatturai3")
         .then((res) => {
           setEssay1(res.data.data);
       
@@ -32,7 +32,7 @@ const Thoguppugal = () => {
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
               <div className="part-txt">
-                <h1>Essay-1</h1>
+                <h1>Essay-3</h1>
                 {/* <ul>
                   <li>Home</li>
                   <li>-</li>

@@ -6,24 +6,23 @@ import api from "../constants/api";
 
 const Thoguppugal = () => {
   const { id } = useParams();
-
-  const [Essay1, setEssay1] = useState([]);
+console.log('sect',id);
+  const [Essay1, setEssay1] = useState();
 
   useEffect(() => {
-    const getEssay = () => {
-      //var formated = title.split("-").join(" ");
-
+    const getEventsById = () => {
       api
-        .get("/content/getKatturai1")
+        .get('/content/getVaarithaathu3')
         .then((res) => {
           setEssay1(res.data.data);
-      
         })
-        .catch(() => {});
+        .catch(() => {
+        });
     };
-
-    getEssay();
-  }, [id]);
+  
+    getEventsById();
+  }, [id]); // <-- Add id to the dependency array
+  
 
   return (
     <div>
@@ -32,13 +31,8 @@ const Thoguppugal = () => {
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
               <div className="part-txt">
-                <h1>Essay-1</h1>
-                {/* <ul>
-                  <li>Home</li>
-                  <li>-</li>
-                  <li>Essay</li>
-                 
-                </ul> */}
+                <h1>Vaarithaathu-3</h1>
+               
               </div>
             </div>
           </div>

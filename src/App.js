@@ -37,11 +37,54 @@ import MagazineRegisterForm from './pages/MagazineRegisterForm';
 import MagazineLogin from './pages/MagazineLogin';
 import MagazineSubscripe from './pages/MagazineSubscripe';
 import NoolVivaram from "./pages/NoolVivaram";
+import Kavithai1 from "./pages/Kavithai1";
+import Kavithai2 from "./pages/Kavithai2";
+import Kavithai3 from "./pages/Kavithai3";
+import Kavithai4 from "./pages/Kavithai4";
+import Kavithai5 from "./pages/Kavithai5";
+import Kavithai6 from "./pages/Kavithai6";
 import BookDetailPage from "./pages/BookDetails";
 import Essay1 from "./pages/Essay1";
+import Essay2 from "./pages/Essay2";
+import Essay3 from "./pages/Essay3";
+import Essay4 from "./pages/Essay4";
+import Essay5 from "./pages/Essay5";
+import Essay6 from "./pages/Essay6";
+import Essay7 from "./pages/Essay7";
+import Essay8 from "./pages/Essay8";
+import Essay9 from "./pages/Essay9";
+import Vaarithathu1 from "./pages/Vaarithathu1";
+import Vaarithathu2 from "./pages/Vaarithathu2";
+import Vaarithathu3 from "./pages/Vaarithathu3";
+import Vaarithathu4 from "./pages/Vaarithathu4";
+import Vaarithathu5 from "./pages/Vaarithathu5";
+import Vaarithathu6 from "./pages/Vaarithathu6";
+import Vaarithathu7 from "./pages/Vaarithathu7";
+import Vaarithathu8 from "./pages/Vaarithathu8";
+import Vaarithathu9 from "./pages/Vaarithathu9";
+import Vaarithathu10 from "./pages/Vaarithathu10";
+import Vaarithathu11 from "./pages/Vaarithathu11";
+import Vaarithathu12 from "./pages/Vaarithathu12";
+import Vaarithathu13 from "./pages/Vaarithathu13";
+import Vaarithathu14 from "./pages/Vaarithathu14";
+
 import Akkangal from "./pages/Akkangal";
 import Magazine from "./pages/Magazine";
 import MagazineArtical from './pages/MagazineArtical'
+import Thoguppugal1 from "./pages/Thoguppugal1";
+import Thoguppugal2 from "./pages/Thoguppugal2";
+import Thoguppugal3 from "./pages/Thoguppugal3";
+import Thoguppugal4 from "./pages/Thoguppugal4";
+import Thoguppugal5 from "./pages/Thoguppugal5";
+import Thoguppugal6 from "./pages/Thoguppugal6";
+import Thoguppugal7 from "./pages/Thoguppugal7";
+import Thoguppugal8 from "./pages/Thoguppugal8";
+import Thoguppugal9 from "./pages/Thoguppugal9";
+import Thoguppugal10 from "./pages/Thoguppugal10";
+import Thoguppugal11 from "./pages/Thoguppugal11";
+import Thoguppugal12 from "./pages/Thoguppugal12";
+import Thoguppugal13 from "./pages/Thoguppugal13";
+import Thoguppugal14 from "./pages/Thoguppugal14";
 
 function App() {
   const stripHtmlTags = (htmlString) => {
@@ -186,8 +229,36 @@ function App() {
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Kavithai1" element={<Kavithai1 />} />
+        <Route path="/Kavithai2" element={<Kavithai2 />} />
+        <Route path="/Kavithai3" element={<Kavithai3 />} />
+        <Route path="/Kavithai4" element={<Kavithai4 />} />
+        <Route path="/Kavithai5" element={<Kavithai5 />} />
+        <Route path="/Kavithai6" element={<Kavithai6 />} />
         <Route path="/Akkangal" element={<Akkangal />} />
         <Route path="/Essay1" element={<Essay1 />} />
+        <Route path="/Essay2" element={<Essay2 />} />
+        <Route path="/Essay3" element={<Essay3 />} />
+        <Route path="/Essay4" element={<Essay4 />} />
+        <Route path="/Essay5" element={<Essay5 />} />
+        <Route path="/Essay6" element={<Essay6 />} />
+        <Route path="/Essay7" element={<Essay7 />} />
+        <Route path="/Essay8" element={<Essay8 />} />
+        <Route path="/Essay9" element={<Essay9 />} />
+        <Route path="/Vaarithathu1" element={<Vaarithathu1 />} />
+        <Route path="/Vaarithathu2" element={<Vaarithathu2 />} />
+        <Route path="/Vaarithathu3" element={<Vaarithathu3 />} />
+        <Route path="/Vaarithathu4" element={<Vaarithathu4 />} />
+        <Route path="/Vaarithathu5" element={<Vaarithathu5 />} />
+        <Route path="/Vaarithathu6" element={<Vaarithathu6 />} />
+        <Route path="/Vaarithathu7" element={<Vaarithathu7 />} />
+        <Route path="/Vaarithathu8" element={<Vaarithathu8 />} />
+        <Route path="/Vaarithathu9" element={<Vaarithathu9 />} />
+        <Route path="/Vaarithathu10" element={<Vaarithathu10 />} />
+        <Route path="/Vaarithathu11" element={<Vaarithathu11 />} />
+        <Route path="/Vaarithathu12" element={<Vaarithathu12 />} />
+        <Route path="/Vaarithathu13" element={<Vaarithathu13 />} />
+        <Route path="/Vaarithathu14" element={<Vaarithathu14 />} />
         <Route path="/வஹ்தத்துல் வுஜூத்/:id" element={<Religious />} />
         <Route path="/வஹ்தத்துல் வுஜூத்/:id/:id" element={<Vahdhathulujjuth />} />
         <Route path="/கல்வி/:id" element={<Kalvi />} />
@@ -200,6 +271,20 @@ function App() {
         <Route path="/MagazineSubscripe" element={<MagazineSubscripe />} />
         <Route path="/Magazine" element={<Magazine />} />
         <Route path="/MagazineArtical/:id" element={<MagazineArtical />} />
+        <Route path="/Thoguppugal1" element={<Thoguppugal1 />} />
+        <Route path="/Thoguppugal2" element={<Thoguppugal2 />} />
+        <Route path="/Thoguppugal3" element={<Thoguppugal3 />} />
+        <Route path="/Thoguppugal4" element={<Thoguppugal4 />} />
+        <Route path="/Thoguppugal5" element={<Thoguppugal5 />} />
+        <Route path="/Thoguppugal6" element={<Thoguppugal6 />} />
+        <Route path="/Thoguppugal7" element={<Thoguppugal7 />} />
+        <Route path="/Thoguppugal8" element={<Thoguppugal8 />} />
+        <Route path="/Thoguppugal9" element={<Thoguppugal9 />} />
+        <Route path="/Thoguppugal10" element={<Thoguppugal10 />} />
+        <Route path="/Thoguppugal11" element={<Thoguppugal11 />} />
+        <Route path="/Thoguppugal12" element={<Thoguppugal12 />} />
+        <Route path="/Thoguppugal13" element={<Thoguppugal13 />} />
+        <Route path="/Thoguppugal14" element={<Thoguppugal14 />} />
       </Routes>
       <Footer />
     </HashRouter>

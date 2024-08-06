@@ -69,9 +69,9 @@ const BlogDetails = () => {
        <h6>BOOK DESCRIPTION</h6> 
       </Row>
       <div
-                    className="part-txt"
-                    dangerouslySetInnerHTML={{ __html: users.description }}
-                  />
+        className="part-txt"
+        dangerouslySetInnerHTML={{ __html: users.description }}
+      />
     </Row>
     <Row>
       <Row>
