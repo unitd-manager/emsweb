@@ -38,7 +38,7 @@ const Kalvisub = () => {
                     {ReactHtmlParser(data.description)}
                   </p>
                   {/* Link to navigate to YaseenBro component */}
-                  <Link to="/YaseenBro">YaseenBro.pdf</Link>
+                  {/* <Link to="/YaseenBro">YaseenBro.pdf</Link> */}
                 </div>
               </div>
             ))}
