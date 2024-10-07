@@ -67,7 +67,7 @@ import Vaarithathu11 from "./pages/Vaarithathu11";
 import Vaarithathu12 from "./pages/Vaarithathu12";
 import Vaarithathu13 from "./pages/Vaarithathu13";
 import Vaarithathu14 from "./pages/Vaarithathu14";
-
+import ReligiousDetail from "./pages/ReligiousDetail";
 import Akkangal from "./pages/Akkangal";
 import Magazine from "./pages/Magazine";
 import MagazineArtical from './pages/MagazineArtical'
@@ -285,6 +285,8 @@ function App() {
         <Route path="/Thoguppugal12" element={<Thoguppugal12 />} />
         <Route path="/Thoguppugal13" element={<Thoguppugal13 />} />
         <Route path="/Thoguppugal14" element={<Thoguppugal14 />} />
+        <Route path="/ReligiousDetail/:id" element={<ReligiousDetail />} />
+
       </Routes>
       <Footer />
     </HashRouter>

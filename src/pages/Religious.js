@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import AOS from "aos";
 import "aos/dist/aos.css";
 import api from "../constants/api";
 
 const Religious = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
   const [sectiones, setSectiones] = useState([]);
   const [religion, setReligion] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   // Fetch the sections when the component mounts
   useEffect(() => {
@@ -19,7 +21,7 @@ const Religious = () => {
       .catch((error) => {
         console.error("Error fetching sections:", error);
       });
-  }, []); // No dependencies since we only fetch once on mount
+  }, []);
 
   // Fetch the religion service data when sectiones and id are available
   useEffect(() => {
@@ -30,14 +32,31 @@ const Religious = () => {
           .post("/content/getDetailContent", { category_id: id, section_id: section.section_id })
           .then((res) => {
             setReligion(res.data.data);
-            AOS.init(); // Move AOS.init() inside the promise chain
+            AOS.init();
           })
           .catch((error) => {
             console.error("Error fetching religion data:", error);
           });
       }
     }
-  }, [id, sectiones]); // Run when `id` or `sectiones` changes
+  }, [id, sectiones]);
+
+  // Fetch blog data when the id changes
+  useEffect(() => {
+    api
+      .post("/blog/getBlogsByCategoryId", { category_id: id })
+      .then((res) => {
+        setBlogs(res.data.data || []);
+      })
+      .catch((error) => {
+        console.error("Error fetching blog data:", error);
+      });
+  }, [id]);
+
+  // Function to handle blog title click
+  const handleBlogClick = (blog_id) => {
+    navigate(`/ReligiousDetail/${blog_id}`); // Navigate to the blogDetail page with the blog_id
+  };
 
   return (
     <div>
@@ -72,6 +91,23 @@ const Religious = () => {
               </div>
             ))}
           </div>
+
+          {/* Display blog titles below the detail content only if there are any blogs */}
+          {blogs.length > 0 && (
+            <div className="blog-titles">
+              <ul>
+                {blogs.map((blog, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleBlogClick(blog.blog_id)} // Handle click to navigate to blogDetail page
+                    style={{ cursor: "pointer", color: "blue" }} // Add pointer cursor and styling
+                  >
+                    {blog.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
