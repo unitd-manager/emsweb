@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ReactHtmlParser from "react-html-parser";
@@ -8,8 +8,10 @@ import bannerImage from "../../src/assets/images/Aboutussub.jpg";
 import api from '../constants/api';
 
 const Engalaisub = () => {   
+    const navigate = useNavigate(); // Initialize useNavigate for navigation
     const { subCategoryId } = useParams([]);
     const [subContent, setSubContent] = useState([]);
+    const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
         const getSubContent = async () => {
@@ -24,7 +26,19 @@ const Engalaisub = () => {
 
         getSubContent();   
     }, [subCategoryId]);
-
+    useEffect(() => {
+        api
+          .post("/blog/getBlogsBySubCategoryId", { sub_category_id: subCategoryId })
+          .then((res) => {
+            setBlogs(res.data.data || []);
+          })
+          .catch((error) => {
+            console.error("Error fetching blog data:", error);
+          });
+      }, [subCategoryId]);
+    const handleBlogClick = (blog_id) => {
+        navigate(`/DetailBlog/${blog_id}`); // Navigate to the blogDetail page with the blog_id
+      };
     return (
         <div>
             <div className="breadcrumb service-breadcrumb"
@@ -74,6 +88,21 @@ const Engalaisub = () => {
                             </div>
                         ))}
                     </div>
+                    {blogs.length > 0 && (
+            <div className="blog-titles">
+              <ul>
+                {blogs.map((blog, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleBlogClick(blog.blog_id)} // Handle click to navigate to blogDetail page
+                    style={{ cursor: "pointer", color: "blue" }} // Add pointer cursor and styling
+                  >
+                    {blog.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
                 </div>
             </div>
         </div>

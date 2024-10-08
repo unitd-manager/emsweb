@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import api from "../constants/api";
 
 const Religious = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
   const [sectiones, setSectiones] = useState([]);
   const [religion, setReligion] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   // Fetch the sections when the component mounts
   useEffect(() => {
@@ -38,6 +40,22 @@ const Religious = () => {
       }
     }
   }, [id, sectiones]); // Run when `id` or `sectiones` changes
+
+  useEffect(() => {
+    api
+      .post("/blog/getBlogsByCategoryId", { category_id: id })
+      .then((res) => {
+        setBlogs(res.data.data || []);
+      })
+      .catch((error) => {
+        console.error("Error fetching blog data:", error);
+      });
+  }, [id]);
+
+   // Function to handle blog title click
+   const handleBlogClick = (blog_id) => {
+    navigate(`/DetailBlog/${blog_id}`); // Navigate to the blogDetail page with the blog_id
+  };
 
   return (
     <div>
@@ -72,6 +90,22 @@ const Religious = () => {
               </div>
             ))}
           </div>
+
+          {blogs.length > 0 && (
+            <div className="blog-titles">
+              <ul>
+                {blogs.map((blog, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleBlogClick(blog.blog_id)} // Handle click to navigate to blogDetail page
+                    style={{ cursor: "pointer", color: "blue" }} // Add pointer cursor and styling
+                  >
+                    {blog.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
