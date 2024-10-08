@@ -7,6 +7,7 @@ import api from "../constants/api";
 const Religious = () => {
   const { id } = useParams();
   const [blogs, setBlogs] = useState([]);
+  
   useEffect(() => {
     const getSubContent = () => {
         //var formated = sub_category_id.split("-").join(" ");
