@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"; // Import useNavigate
+import AOS from "aos";
 import "aos/dist/aos.css";
-//import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
-const Thoguppugal = () => {
+const Religious = () => {
   const { id } = useParams();
-console.log('sect',id);
-  const [Essay1, setEssay1] = useState();
-
+  const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    const getEventsById = () => {
-      api
-        .get('/content/getThoguppu2')
-        .then((res) => {
-          setEssay1(res.data.data);
-        })
-        .catch(() => {
-        });
+    const getSubContent = () => {
+        //var formated = sub_category_id.split("-").join(" ");
+
+        api
+            .post("/blog/getBlogsByblogId",{blog_id: id})
+            .then((res) => {
+              setBlogs(res.data.data);
+              console.log('subcontent',res.data.data)
+                AOS.init(); // Move AOS.init() inside the promise chain to ensure it's called after data is fetched
+            })
+            .catch(() => { });
     };
-  
-    getEventsById();
-  }, [id]); // <-- Add id to the dependency array
-  
+
+    getSubContent();   
+}, [id]);
 
   return (
     <div>
@@ -31,25 +31,24 @@ console.log('sect',id);
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
               <div className="part-txt">
-                <h1>ஐயமும் தெளிவும்</h1>
-               
+                <h1>Services</h1>
+                <ul>
+                  <li>Home</li>
+                  <li>-</li>
+                  <li>Service Detail</li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-
       <div className="feature-2">
         <div className="container">
           <div className="row justify-content-center">
-            {Essay1&&Essay1.map((image, index) => (
+            {blogs.map((image, index) => (
               <div key={index} className="col-xl-12 col-lg-12 col-md-12">
-                <div className="part-img">
-                </div>
                 <div className="col-xl-12 col-lg-12 col-md-12">
-                    {/* <p>{image.category_title}</p> */}
-                    <h3 class="pt- pb-3 text-capitalize card-title">{image.title}</h3>
                   <div
                     className="part-txt"
                     dangerouslySetInnerHTML={{ __html: image.description }}
@@ -58,10 +57,12 @@ console.log('sect',id);
               </div>
             ))}
           </div>
+
+        
         </div>
       </div>
     </div>
   );
 };
 
-export default Thoguppugal;
+export default Religious;
