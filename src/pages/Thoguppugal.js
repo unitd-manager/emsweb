@@ -57,7 +57,7 @@ const Religious = () => {
 
   // Function to handle blog title click
   const handleBlogClick = (blog_id) => {
-    navigate(`/ReligiousDetail/${blog_id}`); // Navigate to the blogDetail page with the blog_id
+    navigate(`/DetailBlog/${blog_id}`); // Navigate to the blogDetail page with the blog_id
   };
 
   return (
