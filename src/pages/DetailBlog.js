@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"; // Import useNavigate
 import AOS from "aos";
 import "aos/dist/aos.css";
 import api from "../constants/api";
+import bannerImage from "../../src/assets/images/quran3.jpg";
 
 const Religious = () => {
   const { id } = useParams();
@@ -27,7 +28,12 @@ const Religious = () => {
 
   return (
     <div>
-      <div className="breadcrumb service-breadcrumb">
+       <div className="breadcrumb service-breadcrumb"
+       style={{
+        backgroundImage: `url(${bannerImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
