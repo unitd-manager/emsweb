@@ -1,41 +1,56 @@
-
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import bannerImage from "../../src/assets/images/about.jpg";
-//import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
 
 const Engalai = () => {
   const { id } = useParams();
-
   const [religion, setReligion] = useState([]);
+  const [loading, setLoading] = useState(true); // State to track loading
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getReligion = () => {
-      //var formated = title.split("-").join(" ");
+    const getReligion = async () => {
+      try {
+        const res = await api.post("/content/getByVappa", { category_id: id });
+        const responseData = res.data.data;
 
-      api
-        .post("/content/getByVappa", { category_id:id })
-        .then((res) => {
-          setReligion(res.data.data);
-          AOS.init(); // Move AOS.init() inside the promise chain to ensure it's called after data is fetched
-        })
-        .catch(() => {});
+        // Check if any of the items have sub_category_id, if so navigate to homepage
+        const hasSubCategory = responseData.some((item) => item.sub_category_id !== null);
+        
+        if (hasSubCategory) {
+          navigate("/"); // Redirect to homepage
+        } else {
+          setReligion(responseData); // Set religion data if no subcategory
+          AOS.init(); // Initialize AOS after data is fetched
+        }
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false); // Stop loading once API is complete
+      }
     };
 
     getReligion();
-  }, [id]);
+  }, [id, navigate]);
+
+  // Prevent rendering while loading or if redirect is happening
+  if (loading) {
+    return null; // Render nothing while loading or redirecting
+  }
 
   return (
     <div>
-      <div className="breadcrumb service-breadcrumb"
+      <div
+        className="breadcrumb service-breadcrumb"
         style={{
           backgroundImage: `url(${bannerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-        }}>
+        }}
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
@@ -45,7 +60,6 @@ const Engalai = () => {
                   <li>Home</li>
                   <li>-</li>
                   <li>About us</li>
-                 
                 </ul>
               </div>
             </div>
@@ -53,20 +67,22 @@ const Engalai = () => {
         </div>
       </div>
 
-
       <div className="feature-2">
         <div className="container">
           <div className="row justify-content-center">
-            {religion.map((image, index) => (
+            {religion.map((item, index) => (
               <div key={index} className="col-xl-12 col-lg-12 col-md-12">
-                <div className="part-img">
-                </div>
+                <div className="part-img"></div>
                 <div className="col-xl-12 col-lg-12 col-md-12">
-                    <p>{image.category_title}</p>
-                    <h3 class="pt- pb-3 text-capitalize card-title">{image.title}</h3>
+                  <p>{item.category_title}</p>
+                  <h3 className="pt- pb-3 text-capitalize card-title">
+                    {item.title}
+                  </h3>
                   <div
                     className="part-txt"
-                    dangerouslySetInnerHTML={{ __html: image.description }}
+                    dangerouslySetInnerHTML={{
+                      __html: item.description,
+                    }}
                   />
                 </div>
               </div>
@@ -79,4 +95,3 @@ const Engalai = () => {
 };
 
 export default Engalai;
-

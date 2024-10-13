@@ -45,22 +45,21 @@ const Contact = () => {
   
   }, []); // Empty dependency array ensures this effect runs only once when component mounts
 
-  const [addressData, setAddressData] = useState([]); // To store fetched contact data
+  // const [addressData, setAddressData] = useState([]); // To store fetched contact data
 
-  useEffect(() => {
-    // Fetch sections
-    api.get('/content/getContacts')
-      .then((res) => {
-        setAddressData(res.data.data[0]);
-      })
-      .catch(() => {
-        // Handle error
-      });
+  // useEffect(() => {
+  //   // Fetch sections
+  //   api.get('/content/getContacts')
+  //     .then((res) => {
+  //       setAddressData(res.data.data[0]);
+  //     })
+  //     .catch(() => {
+  //       // Handle error
+  //     });
 
   
-  }, []); // Empty dependency array ensures this effect runs only once when component mounts
+  // }, []);
 
-// Empty dependency array ensures this effect runs only once when component mounts
 let name, value;
  
   const handleChange = (e) => {
@@ -156,21 +155,24 @@ let name, value;
       </div>
       <div className="contact">
         <Container>
-          <Row className='ml-5'>
+          <Row>
             <h2>Contact Details</h2></Row>
-          <Row className='ml-5'>   
+          <Row >   
         
-          <div>
+          {/* <div>
                 <span>{stripHtmlTags(addressData && addressData.description)}</span>
-                </div>
+                </div> */}
           </Row>
 
-          <Row className='ml-5'>
+          <Row>
                 <div>
                 <span>{stripHtmlTags(email && email.description)}</span>
                 </div>
           </Row>
-          <h2>தொடர்பு கொள்ள</h2>
+          <Row style={{marginTop:"50px"}}>
+          <h3>Get in Touch</h3>
+          </Row>
+       
           <Form className="form mt-5" onSubmit={handleSubmit} style={{ backgroundColor: "#FFA500" }}>
             <Row className="justify-content-center  pt-0">
 

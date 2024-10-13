@@ -6,7 +6,7 @@ import api from "../constants/api";
 import bannerImage from "../../src/assets/images/quran-2.jpg";
 
 
-const Religious = () => {
+const Vahthathul = () => {
   const { id } = useParams();
   const navigate = useNavigate(); // Initialize useNavigate for navigation
   const [sectiones, setSectiones] = useState([]);
@@ -33,8 +33,14 @@ const Religious = () => {
         api
           .post("/content/getDetailContent", { category_id: id, section_id: section.section_id })
           .then((res) => {
-            setReligion(res.data.data);
+            const religionData = res.data.data;
+            setReligion(religionData);
             AOS.init();
+
+            // Check if sub_category_id exists in the response
+            if (religionData.length > 0 && religionData[0].sub_category_id) {
+              navigate("/"); // Navigate to the homepage or any other route
+            }
           })
           .catch((error) => {
             console.error("Error fetching religion data:", error);
@@ -121,4 +127,4 @@ const Religious = () => {
   );
 };
 
-export default Religious;
+export default Vahthathul;

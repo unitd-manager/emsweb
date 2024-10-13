@@ -5,13 +5,13 @@ import "aos/dist/aos.css";
 import api from "../constants/api";
 import bannerImage from "../../src/assets/images/quran-2.jpg";
 
-
 const Religious = () => {
   const { id } = useParams();
   const navigate = useNavigate(); // Initialize useNavigate for navigation
   const [sectiones, setSectiones] = useState([]);
   const [religion, setReligion] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   // Fetch the sections when the component mounts
   useEffect(() => {
@@ -33,16 +33,28 @@ const Religious = () => {
         api
           .post("/content/getDetailContent", { category_id: id, section_id: section.section_id })
           .then((res) => {
-            setReligion(res.data.data);
-            AOS.init(); // Move AOS.init() inside the promise chain
+            const responseData = res.data.data;
+            // Check if any of the items in responseData have a sub_category_id
+            const hasSubCategory = responseData.some((item) => item.sub_category_id !== null);
+
+            if (hasSubCategory) {
+              navigate("/"); // Redirect to homepage if sub_category_id exists
+            } else {
+              setReligion(responseData); // Only set religion if no sub_category_id
+              AOS.init(); // Initialize AOS after data is fetched
+            }
           })
           .catch((error) => {
             console.error("Error fetching religion data:", error);
+          })
+          .finally(() => {
+            setLoading(false); // Mark loading as false after API call is completed
           });
       }
     }
-  }, [id, sectiones]); // Run when `id` or `sectiones` changes
+  }, [id, sectiones, navigate]); // Run when `id` or `sectiones` changes
 
+  // Fetch blogs when category id changes
   useEffect(() => {
     api
       .post("/blog/getBlogsByCategoryId", { category_id: id })
@@ -54,19 +66,26 @@ const Religious = () => {
       });
   }, [id]);
 
-   // Function to handle blog title click
-   const handleBlogClick = (blog_id) => {
+  // Function to handle blog title click
+  const handleBlogClick = (blog_id) => {
     navigate(`/DetailBlog/${blog_id}`); // Navigate to the blogDetail page with the blog_id
   };
 
+  // Prevent rendering until the API call is complete
+  if (loading) {
+    return null; // Return nothing while loading
+  }
+
   return (
     <div>
-     <div className="breadcrumb service-breadcrumb"
-       style={{
-        backgroundImage: `url(${bannerImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}>
+      <div
+        className="breadcrumb service-breadcrumb"
+        style={{
+          backgroundImage: `url(${bannerImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-3">
