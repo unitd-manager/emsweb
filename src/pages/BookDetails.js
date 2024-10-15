@@ -95,7 +95,7 @@ const addToCart=()=>{
             <Card className='p-3'>
             <Image
           // src={product.imageUrl} 
-          src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product?.images}`}
+          src={`https://emsmedia.net/storage/uploads/${product?.images}`}
           alt=""
           style={{maxHeight:'500px'}}
            thumbnail />

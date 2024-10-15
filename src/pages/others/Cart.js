@@ -137,7 +137,7 @@ const CartPage = () => {
                 <Link to={process.env.PUBLIC_URL + "/Book/" + item.product_id}>
                   <img
                     className="img-fluid"
-                    src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item?.images}`}
+                    src={`https://emsmedia.net/storage/uploads/${item?.images}`}
                     alt=""
                     style={{ height: '200px', width: '200px',marginLeft:200,borderRadius:15  }}
                   />

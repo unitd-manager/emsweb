@@ -63,7 +63,7 @@ const ThoguppugalSubCategory = () => {
                         {subContent.map((data, index) => (
                             <div key={index} className="col-xl-12 col-lg-12 col-md-12">
                                 <div className="part-img">
-                                    <h5 onClick={() => playAudio(`https://emsweb.unitdtechnologies.com/storage/uploads/${data.file_name}`)}>{data.title}</h5>
+                                    <h5 onClick={() => playAudio(`https://emsmedia.net/storage/uploads/${data.file_name}`)}>{data.title}</h5>
                                 </div>
                                 <div className="text-left">
                                     <p className="description" style={{ fontSize:"14px"}}>

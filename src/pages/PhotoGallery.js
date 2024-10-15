@@ -28,7 +28,7 @@ const Thoguppugal = () => {
 
   const openMediaPopup = (mediaUrl, fileName) => {
     if (mediaUrl && fileName && mediaUrl.match(/\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g)) {
-      setSelectedAudioUrl(`https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`);
+      setSelectedAudioUrl(`https://emsmedia.net/storage/uploads/${fileName}`);
     } else {
       setSelectedAudioUrl(mediaUrl);
     }
@@ -97,7 +97,7 @@ const Thoguppugal = () => {
   const openVideoPopup = (description, fileName) => {
     if (description && description.match(/\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g)) {
       openMediaPopup(
-        `https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`,
+        `https://emsmedia.net/storage/uploads/${fileName}`,
         fileName
       );
       setSelectedVideoUrl(null);
@@ -106,7 +106,7 @@ const Thoguppugal = () => {
       setSelectedAudioUrl(null);
     } else if (fileName && fileName.endsWith(".mp3")) {
       openMediaPopup(
-        `https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`,
+        `https://emsmedia.net/storage/uploads/${fileName}`,
         fileName
       );
     } else {
@@ -326,7 +326,7 @@ const Thoguppugal = () => {
                             ? item.description.match(
                                 /\bhttps?:\/\/\S+\.(png|jpe?g|gif)\b/g
                               )[0]
-                            : `https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`
+                            : `https://emsmedia.net/storage/uploads/${item.file_name}`
                         }
                         alt={`${item.content_id}`} width="500"
                       />

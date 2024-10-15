@@ -699,7 +699,7 @@ const onPaymentPress = () => {
             return (
               <li key={index}>
                 <div className="image-and-qty" style={sectionStyle}>
-                  <img src={`https://emsweb.unitdtechnologies.com/storage/uploads/${cartItem?.images}`} alt="" style={imageStyle} />
+                  <img src={`https://emsmedia.net/storage/uploads/${cartItem?.images}`} alt="" style={imageStyle} />
                   <label style={labelStyle}>Rs:</label>
                   <span style={{ fontWeight: "bold", width: "50px", marginLeft: -20, color: 'green' }}>{cartItem.price}</span>
                   <span>

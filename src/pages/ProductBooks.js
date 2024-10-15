@@ -41,7 +41,7 @@ const Thoguppugal = () => {
       setSelectedVideoUrl(description);
     } else if (fileName && fileName.endsWith(".mp3")) {
       openMediaPopup(
-        `https://emsweb.unitdtechnologies.com/storage/uploads/${fileName}`
+        `https://emsmedia.net/storage/uploads/${fileName}`
       );
     } else {
       setSelectedVideoUrl(null);
@@ -83,7 +83,7 @@ const Thoguppugal = () => {
                   >
                     <div className="part-img">
                       <img
-                        src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
+                        src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
                         alt={`${item.content_id}`}
                       
                       />

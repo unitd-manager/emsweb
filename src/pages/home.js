@@ -240,7 +240,7 @@ console.log("111111",id)
               <div key={item.content_id} className="single-blog">
                 <div className="part-img" >
                   <img
-                    src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
+                    src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
                     alt={`News ${item.content_id}`}
                     style={{
                       width: '100%',
@@ -351,7 +351,7 @@ console.log("111111",id)
                   <div className="single-box">
                     <div className="bordered-container">
                       <img
-                        src={`https://emsweb.unitdtechnologies.com/storage/uploads/${item.file_name}`}
+                        src={`https://emsmedia.net/storage/uploads/${item.file_name}`}
                         alt={`News ${item.content_id}`}
                         className="bordered-img"
                       />
@@ -405,7 +405,7 @@ console.log("111111",id)
                     <Link key={product.product_id} to={`/Book/${product.product_id}`}>
                       <div  className="product-img-container shadow" style={{marginBottom:'10px'}}>
                         <img
-                          src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images}`}
+                          src={`https://emsmedia.net/storage/uploads/${product.images}`}
                           alt={product.title}
                           style={{height:"270px", width: "100%",objectFit: "cover",borderRadius:15 }}
 

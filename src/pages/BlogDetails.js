@@ -39,7 +39,7 @@ const BlogDetails = () => {
       <Row>
       <Col md="5">
         {users&&<img
-    src={`https://emsweb.unitdtechnologies.com/storage/uploads/${users.images}`}
+    src={`https://emsmedia.net/storage/uploads/${users.images}`}
     alt={`News ${users && users.content_id}`}
     style={{ width: '370px', height: '285px'  }} // Adjust the width and height values as needed
   />}

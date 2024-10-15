@@ -59,7 +59,7 @@ const formattedTitle = product.title.replace(/\s+/g, '-');
             <Link to={process.env.PUBLIC_URL + "/Book/" + product.product_id}>
               <img
                 className="default-img"
-                src={`https://emsweb.unitdtechnologies.com/storage/uploads/${product.images[0]}`}
+                src={`https://emsmedia.net/storage/uploads/${product.images[0]}`}
                 alt=""
                 style={{height:'300px',width:'250px',borderRadius:15}}
               />
