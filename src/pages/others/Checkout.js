@@ -277,6 +277,7 @@ stripeToken && makeRequest();
               window.confirm('Orders Sent successfully on your mail.');
                 // Alert.alert('Orders Sent successfully on your mail.');
                 // navigation.navigate(StackNav.ProductList)
+               history('/நூற்கள்/49');
             } else {
                 console.error('Error');
             }

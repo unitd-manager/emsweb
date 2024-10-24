@@ -17,6 +17,14 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass, handleSearchSubm
       })
       .catch(err => { console.log(err) });
   }, []);
+  useEffect(() => {
+    api.get('/product/getProductBookYear')
+      .then((res) => {
+        setCategories(res.data.data);
+      })
+      .catch(err => { console.log(err) });
+  }, []);
+
 
   const handleCategoryChange = (selectedOption) => {
     setSelectedCategory(selectedOption);

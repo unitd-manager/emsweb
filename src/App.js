@@ -126,10 +126,12 @@ function App() {
                       <Button>EMS Magazine</Button>
                     </Link>
                   </div>
+                  {!contactId &&
                   <div className="top-right">
                     <Link to="/Magazine" className="top-right">Login</Link>
                     <Link to="/RegisterForm" className="top-right">Register</Link>
                   </div>
+                     }
                   <div className="top-left">
                     <Link to={`/நிகழ்ச்சிகள்/${sectiones && sectiones.category_id}`} className="top-right" target="_blank">
                       <Button>EMS Web Tv Channel</Button>
