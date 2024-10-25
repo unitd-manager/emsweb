@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 // import NavMenu from '../components/NavMenu'
 import api from "../constants/api";
+import magazineimg from "../assets/images/magazine.jpg";
 
 const MagazineSubscribe = () => {
   const [magazine, setMagazine] = useState([]);
@@ -62,7 +63,7 @@ const MagazineSubscribe = () => {
                     {/* Close button positioned at the top-left corner */}
                     <button className="close-btn" onClick={handleClosePopup}>X</button>
                     {/* Popup content with the image */}
-                    <img src="https://emsmedia.net/magazine/assets/img/popup.jpeg" alt="Popup" />
+                    <img src={magazineimg} alt="Popup" />
                 </div>
             )}
             </div>

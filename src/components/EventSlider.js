@@ -99,7 +99,7 @@ const EventSlider = () => {
                       >
                         <div className="part-img shadow" style={{ width: '100%', textAlign: 'center', backgroundColor: '#f0f0f0' }}>
                           <img
-                            src={`http://43.228.126.245/EMS-API/storage/uploads/${event.file_name}`}
+                            src={`https://emsmedia.net/storage/uploads/${event.file_name}`}
                             alt="Event"
                             width="100%"
                             height="270px"

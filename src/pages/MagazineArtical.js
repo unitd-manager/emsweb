@@ -89,7 +89,7 @@ export default function Artical() {
                         {Artical.map((image, index) => (
                             <div key={index} className="col-xl-12 col-lg-12 col-md-12">
                                 <div className="part-img">
-                                    <img src={`http://43.228.126.245/EMS-API/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
+                                    <img src={`https://emsmedia.net/storage/uploads/${image.file_name}`} alt={image.alt}  width="600px"
                       height="550px" />
                                 </div><br/>
                                 <div className="col-xl-12 col-lg-12 col-md-12">

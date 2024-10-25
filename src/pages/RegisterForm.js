@@ -5,6 +5,7 @@ import api from "../constants/api";
 import { Button } from "reactstrap";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import bannerImage from "../../src/assets/images/Thogupu.jpg";
 
 const RegisterForm = () => {
   const [registerForm, setRegisterForm] = useState({
@@ -143,11 +144,10 @@ const RegisterForm = () => {
       <div
         class="breadcrumb portfolio-breadcrumb"
         style={{
-          //backgroundImage: `url(${MemberImage})`,
+          backgroundImage: `url(${bannerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-        }}
-      >
+        }}>
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-3">
@@ -168,7 +168,7 @@ const RegisterForm = () => {
         <div className="container">
           <form className="form" style={{ backgroundColor: "#183368" }}>
             {/* <i class="fas fa-user-plus register-user"></i> */}
-            <h3 class="text-center">Create Your EMS Account</h3>
+            <h3 class="text-center" style={{color:"white"}}>Create Your EMS Account</h3>
             <div className="row justify-content-center">
             <div className="col-xl-10 col-lg-10">
                 <label htmlFor="first_name" style={{ color: "#FFFFFF" }}>

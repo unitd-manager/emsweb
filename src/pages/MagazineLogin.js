@@ -83,26 +83,23 @@ function Login() {
     
         // If both email and password are valid, proceed with form submission
         if (validateEmail(email) && validatePassword(password)) {
-          api.post("/api/login", signinData).then((res) => {
+          api.post(
+            "/api/login",
+            signinData, 
+            { withCredentials: false } // Add this line to allow cookies to be sent
+          )
+          .then((res) => {
             if (res && res.status === "400") {
               alert("Invalid Username or Password");
-              // addToast("Invalid Username or Password", {
-              //   appearance: "error",
-              //   autoDismiss: true,
-              // });
-            } 
-            else {
+            } else {
               localStorage.setItem("user", JSON.stringify(res.data.data));
               localStorage.setItem("token", JSON.stringify(res.data.token));
-              
-
+      
               const getSelectedLanguageFromLocalStorage = () => {
                 const user = localStorage.getItem('user');
-                console.log('user',user)
                 return user ? JSON.parse(user) : {};
-               
               };
-           
+
               const selectedLanguage = getSelectedLanguageFromLocalStorage();
               console.log('selectedLanguage', selectedLanguage);
               const contactId = selectedLanguage.contact_id;
