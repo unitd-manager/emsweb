@@ -40,7 +40,7 @@ const Shop = () => {
 
     // Apply area filter
     if (areaFilter !== 'All' && areaFilter !== 'default') {
-      filteredData = filteredData.filter(item => item.category_title === areaFilter);
+      filteredData = filteredData.filter(item => item.year === areaFilter);
     }
 
     // Apply search filter

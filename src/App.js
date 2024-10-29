@@ -94,11 +94,11 @@ function App() {
 
   return (
     <HashRouter>
-      <div className="preloader">
+      {/* <div className="preloader">
         <div className="loader">
           <img src="assets/images/spinner.gif" alt="imagess" />
         </div>
-      </div>
+      </div> */}
 
       <div className="header-2">
         <div className="top-header">
